@@ -8,9 +8,9 @@ using DomainModel;
 
 namespace MySqlDatabase
 {
-    public class MovieDBContext : DbContext
+    public class SovaDBContext : DbContext
     {
-        public MovieDBContext() : base("madssk")
+        public SovaDBContext() : base("madssk")
         {
 
         }
