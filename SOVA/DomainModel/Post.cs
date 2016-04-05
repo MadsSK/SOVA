@@ -17,7 +17,7 @@ namespace DomainModel
         public DateTime CloseDate { get; set; }
         public string Title { get; set; }
         public int OwnerUserId { get; set; }
-        public virtual ICollection<Favorit> Favorits { get; set; }
+        public virtual ICollection<Favorit> Favorites { get; set; }
         public virtual ICollection<TagPost> TagPosts { get; set; }
     }
 }
