@@ -1,81 +1,81 @@
 ﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MySqlDatabase;
 using System.Linq;
+using NUnit.Framework;
 
 namespace MySqlDatabaseUnitTestProject
 {
-    [TestClass]
-    public class MovieDbContextTest
+    
+    public class SovaDbContextTest
     {
-        [TestMethod]
-        public void MovieDbContextTestPost()
+        [Test]
+        public void SovaDbContextTestPost()
         {
             using (var db = new SovaDBContext())
                 Assert.AreEqual(13629, db.Posts.Count());
         }
-        [TestMethod]
-        public void MovieDbContextTestAnnotation()
+        [Test]
+        public void SovaDbContextTestAnnotation()
         {
             using (var db = new SovaDBContext())
                 Assert.AreEqual(0, db.Annotations.Count());
         }
-        [TestMethod]
-        public void MovieDbContextTestAnswer()
+        [Test]
+        public void SovaDbContextTestAnswer()
         {
             using (var db = new SovaDBContext())
                 Assert.AreEqual(11392, db.Answers.Count());
         }
-        [TestMethod]
-        public void MovieDbContextTestComment()
+        [Test]
+        public void SovaDbContextTestComment()
         {
             using (var db = new SovaDBContext())
                 Assert.AreEqual(32042, db.Comments.Count());
         }
-        [TestMethod]
-        public void MovieDbContextTestFavorit()
+        [Test]
+        public void SovaDbContextTestFavorit()
         {
             using (var db = new SovaDBContext())
                 Assert.AreEqual(0, db.Favorites.Count());
         }
-        [TestMethod]
-        public void MovieDbContextTestLinkedPost()
+        [Test]
+        public void SovaDbContextTestLinkedPost()
         {
             using (var db = new SovaDBContext())
                 Assert.AreEqual(14544, db.LinkedPosts.Count());
         }
-        [TestMethod]
-        public void MovieDbContextTestQuestion()
+        [Test]
+        public void SovaDbContextTestQuestion()
         {
             using (var db = new SovaDBContext())
                 Assert.AreEqual(1620, db.Questions.Count());
         }
-        [TestMethod]
-        public void MovieDbContextTestSearch()
+        [Test]
+        public void SovaDbContextTestSearch()
         {
             using (var db = new SovaDBContext())
                 Assert.AreEqual(7, db.Searchs.Count());
         }
-        [TestMethod]
-        public void MovieDbContextTestSearchUser()
+        [Test]
+        public void SovaDbContextTestSearchUser()
         {
             using (var db = new SovaDBContext())
                 Assert.AreEqual(2, db.SearchUsers.Count());
         }
-        [TestMethod]
-        public void MovieDbContextTestTag()
+        [Test]
+        public void SovaDbContextTestTag()
         {
             using (var db = new SovaDBContext())
                 Assert.AreEqual(1874, db.Tags.Count());
         }
-        [TestMethod]
-        public void MovieDbContextTestTagPost()
+        [Test]
+        public void SovaDbContextTestTagPost()
         {
             using (var db = new SovaDBContext())
                 Assert.AreEqual(6813, db.TagPosts.Count());
         }
-        [TestMethod]
-        public void MovieDbContextTestUser()
+        [Test]
+        public void SovaDbContextTestUser()
         {
             using (var db = new SovaDBContext())
                 Assert.AreEqual(16827, db.Users.Count());

@@ -14,10 +14,8 @@ namespace DomainModel
         public DateTime CreationDate { get; set; }
         public int Score { get; set; }
         public string Body { get; set; }
-        public DateTime CloseDate { get; set; }
-        public string Title { get; set; }
         public int OwnerUserId { get; set; }
-        public virtual ICollection<Favorit> Favorits { get; set; }
+        public virtual ICollection<Favorit> Favorites { get; set; }
         public virtual ICollection<TagPost> TagPosts { get; set; }
     }
 }

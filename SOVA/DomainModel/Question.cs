@@ -9,6 +9,8 @@ namespace DomainModel
     public class Question
     {
         public int Id { get; set; }
+        public string Title { get; set; }
+        public DateTime CloseDate { get; set; }
         public int AcceptedAnswerId { get; set; }
     }
 }
