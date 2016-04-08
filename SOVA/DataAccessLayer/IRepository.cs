@@ -1,16 +1,32 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using DomainModel;
 
 namespace DataAccessLayer
 {
-    class IRepository
+    public interface IRepository 
     {
-        public getPost(int id)
-        {
-            //something needs to be done here
-        }
+        //Post
+        Post GetPost(int id);
+        IEnumerable<Post> GetPosts(string searchString);
+
+        //Comment
+        Comment GetComment(int id);
+        IEnumerable<Comment> GetComments(string searchString);
+
+        //Tag
+        Tag GetTag(int id);
+        IEnumerable<Tag> GetTags(string searchString);
+
+        //User
+        User GetUser(int id);
+        IEnumerable<User> GetUsers(string searchString);
+
+        //Search User
+        SearchUser GetSearchUser(int id);
+        IEnumerable<SearchUser> GetSearchUsers(string searchString);
+
+        //Annotation
+        Annotation GetAnnotation(int id);
+        IEnumerable<Annotation> GetAnnotations(string searchString);
     }
 }
