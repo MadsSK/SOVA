@@ -23,7 +23,6 @@ namespace DataAccessLayer
 
         //Search User
         SearchUser GetSearchUser(int id);
-        IEnumerable<SearchUser> GetSearchUsers(string searchString);
 
         //Annotation
         Annotation GetAnnotation(int id);

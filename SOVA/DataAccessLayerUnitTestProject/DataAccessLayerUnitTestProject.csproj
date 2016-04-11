@@ -71,7 +71,8 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="MySqlRepositoryTest.cs" />
+    <Compile Include="MySqlRepositoryCommentTest.cs" />
+    <Compile Include="MySqlRepositoryPostTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

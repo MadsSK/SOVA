@@ -7,7 +7,7 @@ using DomainModel;
 namespace DataAccessLayerUnitTestProject
 {
 
-    public class MySqlRepositoryTest
+    public class MySqlRepositoryPostTest
     {
         private readonly IRepository _repository = new MySqlRepository();
 
@@ -64,7 +64,6 @@ namespace DataAccessLayerUnitTestProject
         public void GetPostsTest()
         {
             Assert.That(_repository.GetPosts("java").Count().Equals(1391), _repository.GetPosts("java").Count().ToString());
-
         }
     }
 }

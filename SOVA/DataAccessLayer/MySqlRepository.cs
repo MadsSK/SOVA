@@ -106,16 +106,6 @@ namespace DataAccessLayer
             }
         }
 
-        public IEnumerable<SearchUser> GetSearchUsers(string searchString)
-        {
-            using (var db = new SovaDBContext())
-            {
-                return db.SearchUsers
-                    .Where(su => su.Id)
-                    .ToList();
-            }
-        }
-
         /**************************************
             Annotation
         **************************************/
