@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DomainModel
 {
-    public partial class Post
+    public abstract class Post
     {
         public int Id { get; set; }
         public DateTime CreationDate { get; set; }

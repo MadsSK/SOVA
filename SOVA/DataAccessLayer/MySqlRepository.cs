@@ -12,22 +12,44 @@ namespace DataAccessLayer
     public class MySqlRepository : IRepository
     {
         /**************************************
-            Post
+            Answer
         **************************************/
-        public Post GetPost(int id)
+        public Answer GetAnswer(int id)
         {
             using (var db = new SovaDBContext())
             {
-                return db.Posts.FirstOrDefault(p => p.Id == id);
+                return db.Answers.FirstOrDefault(a => a.Id == id);
             }
         }
 
-        public IEnumerable<Post> GetPosts(string searchString)
+        IEnumerable<Answer> IRepository.GetAnswers(string searchString)
         {
             using (var db = new SovaDBContext())
             {
-                return db.Posts
-                    .Where(p => p.Body.Contains(searchString))
+                return db.Answers
+                    .Where(a => a.Body.Contains(searchString))
+                    .ToList();
+            }
+        }
+
+        /**************************************
+            Question
+        **************************************/
+
+        public Question GetQuestion(int id)
+        {
+            using (var db = new SovaDBContext())
+            {
+                return db.Questions.FirstOrDefault(q => q.Id == id);
+            }
+        }
+
+        public IEnumerable<Question> GetQuestions(string searchString)
+        {
+            using (var db = new SovaDBContext())
+            {
+                return db.Questions
+                    .Where(q => q.Body.Contains(searchString))
                     .ToList();
             }
         }
@@ -110,8 +132,7 @@ namespace DataAccessLayer
         {
             using (var db = new SovaDBContext())
             {
-                return db.SearchUsers
-                    .Where(su => su.Id)
+                return db.SearchUsers.Where(su => su.Id)
                     .ToList();
             }
         }
