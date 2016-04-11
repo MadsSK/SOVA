@@ -61,7 +61,7 @@ namespace DataAccessLayerUnitTestProject
                     PostId = 39433,
                     Score = 1,
                     Text =
-                       "I'd almost hope people not know about this feature. Far preferable that they organise their code into smaller, more meaningful methods and simply use `return`, in most cases. There is a great furore at the moment around this language construct being added to PHP6.",
+                       @"I'd almost hope people not know about this feature. Far preferable that they organise their code into smaller, more meaningful methods and simply use `return`, in most cases. There is a great furore at the moment around this language construct being added to PHP6.",
                     CreateDate = new DateTime(2008, 09, 07, 15, 28, 46),
                     UserId = 1820
                 }), _repository.FindComment(120).Text);
@@ -75,3 +75,4 @@ namespace DataAccessLayerUnitTestProject
         }
     }
 }
+    
