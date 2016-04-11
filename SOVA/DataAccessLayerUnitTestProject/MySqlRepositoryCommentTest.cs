@@ -12,49 +12,49 @@ namespace DataAccessLayerUnitTestProject
         private readonly IRepository _repository = new MySqlRepository();
 
         [Test]
-        public void GetCommentIDTest()
+        public void FindCommentIdTest()
         {
-            Assert.That(_repository.GetComment(120).Id.Equals(120));
+            Assert.That(_repository.FindComment(120).Id.Equals(120));
         }
 
         [Test]
-        public void GetCommentPostIdTest()
+        public void FindCommentPostIdTest()
         {
-            Assert.That(_repository.GetComment(120).PostId.Equals(39433));
+            Assert.That(_repository.FindComment(120).PostId.Equals(39433));
         }
 
         [Test]
-        public void GetCommentScoreTest()
+        public void FindCommentScoreTest()
         {
-            Assert.That(_repository.GetComment(120).Score.Equals(1));
+            Assert.That(_repository.FindComment(120).Score.Equals(1));
         }
 
         [Test]
-        public void GetCommentTextTest()
+        public void FindCommentTextTest()
         {
             Assert.That(
-                _repository.GetComment(120)
+                _repository.FindComment(120)
                     .Text.Equals(
                         @"I'd almost hope people not know about this feature. Far preferable that they organise their code into smaller, more meaningful methods and simply use `return`, in most cases. There is a great furore at the moment around this language construct being added to PHP6."));
         }
 
         [Test]
-        public void GetCommentCreateDateTest()
+        public void FindCommentCreateDateTest()
         {
-            Assert.That(_repository.GetComment(120).CreateDate.Equals(
+            Assert.That(_repository.FindComment(120).CreateDate.Equals(
                 new DateTime(2008, 09, 07, 15, 28, 46)));
         }
 
         [Test]
-        public void GetCommentUserIdTest()
+        public void FindCommentUserIdTest()
         {
-            Assert.That(_repository.GetComment(120).UserId.Equals(1820));
+            Assert.That(_repository.FindComment(120).UserId.Equals(1820));
         }
 
         [Test]
-        public void GetCommentTest()
+        public void FindCommentTest()
         {
-            Assert.That(_repository.GetComment(120).Equals(
+            Assert.That(_repository.FindComment(120).Equals(
                 new
                 {
                     Id = 120,
@@ -64,7 +64,7 @@ namespace DataAccessLayerUnitTestProject
                        "I'd almost hope people not know about this feature. Far preferable that they organise their code into smaller, more meaningful methods and simply use `return`, in most cases. There is a great furore at the moment around this language construct being added to PHP6.",
                     CreateDate = new DateTime(2008, 09, 07, 15, 28, 46),
                     UserId = 1820
-                }), _repository.GetComment(120).Text);
+                }), _repository.FindComment(120).Text);
         }
 
         [Test]

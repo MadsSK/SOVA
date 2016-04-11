@@ -14,7 +14,7 @@ namespace DataAccessLayer
         /**************************************
             Post
         **************************************/
-        public Post GetPost(int id)
+        public Post FindPost(int id)
         {
             using (var db = new SovaDBContext())
             {
@@ -35,7 +35,7 @@ namespace DataAccessLayer
         /**************************************
             Comment
         **************************************/
-        public Comment GetComment(int id)
+        public Comment FindComment(int id)
         {
             using (var db = new SovaDBContext())
             {
@@ -56,7 +56,7 @@ namespace DataAccessLayer
         /**************************************
             Tag
         **************************************/
-        public Tag GetTag(int id)
+        public Tag FindTag(int id)
         {
             using (var db = new SovaDBContext())
             {
@@ -77,7 +77,7 @@ namespace DataAccessLayer
         /**************************************
             User
         **************************************/
-        public User GetUser(int id)
+        public User FindUser(int id)
         {
             using (var db = new SovaDBContext())
             {
@@ -98,7 +98,7 @@ namespace DataAccessLayer
         /**************************************
             SearchUser
         **************************************/
-        public SearchUser GetSearchUser(int id)
+        public SearchUser FindSearchUser(int id)
         {
             using (var db = new SovaDBContext())
             {
@@ -109,7 +109,7 @@ namespace DataAccessLayer
         /**************************************
             Annotation
         **************************************/
-        public Annotation GetAnnotation(int id)
+        public Annotation FindAnnotation(int id)
         {
             using (var db = new SovaDBContext())
             {

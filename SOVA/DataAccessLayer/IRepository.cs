@@ -6,26 +6,26 @@ namespace DataAccessLayer
     public interface IRepository 
     {
         //Post
-        Post GetPost(int id);
+        Post FindPost(int id);
         IEnumerable<Post> GetPosts(string searchString);
 
         //Comment
-        Comment GetComment(int id);
+        Comment FindComment(int id);
         IEnumerable<Comment> GetComments(string searchString);
 
         //Tag
-        Tag GetTag(int id);
+        Tag FindTag(int id);
         IEnumerable<Tag> GetTags(string searchString);
 
         //User
-        User GetUser(int id);
+        User FindUser(int id);
         IEnumerable<User> GetUsers(string searchString);
 
         //Search User
-        SearchUser GetSearchUser(int id);
+        SearchUser FindSearchUser(int id);
 
         //Annotation
-        Annotation GetAnnotation(int id);
+        Annotation FindAnnotation(int id);
         IEnumerable<Annotation> GetAnnotations(string searchString);
     }
 }
