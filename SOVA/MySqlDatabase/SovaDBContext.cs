@@ -12,7 +12,7 @@ namespace MySqlDatabase
         }
 
         /******************************************
-            StackOverflow tabels
+            StackOverflow tabels 
         ******************************************/
         public DbSet<Answer> Answers { get; set; }
         public DbSet<Comment> Comments { get; set; }
