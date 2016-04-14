@@ -44,15 +44,12 @@
     <Compile Include="Annotation.cs" />
     <Compile Include="Answer.cs" />
     <Compile Include="Comment.cs" />
-    <Compile Include="Favorit.cs" />
-    <Compile Include="LinkedPost.cs" />
     <Compile Include="Post.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Question.cs" />
     <Compile Include="Search.cs" />
     <Compile Include="SearchUser.cs" />
     <Compile Include="Tag.cs" />
-    <Compile Include="TagPost.cs" />
     <Compile Include="User.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

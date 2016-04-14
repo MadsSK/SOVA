@@ -1,16 +1,18 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DomainModel
 {
     public class Search
     {
+        [Key]
         public int Id { get; set; }
-        public int UserId { get; set; }
         public string SearchString { get; set; }
         public DateTime DateTime { get; set; }
+        public int SearchUserId { get; set; }
+
+        [ForeignKey("SearchUserId")]
+        public virtual SearchUser SearchUser { get; set; }
     }
 }

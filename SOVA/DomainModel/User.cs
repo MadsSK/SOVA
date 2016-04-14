@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DomainModel
 {
@@ -15,5 +12,8 @@ namespace DomainModel
         public DateTime CreationDate { get; set; }
         public string Location { get; set; }
         public int Age { get; set; }
+
+        public virtual IEnumerable<User> Users { get; set; }
+        public virtual IEnumerable<Comment> Comments { get; set; }
     }
 }

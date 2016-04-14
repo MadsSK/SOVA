@@ -1,14 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DomainModel
 {
     public class Answer : Post
     {
-       public int id { get; set; }
-       public int ParentId { get; set; }
+        public int ParentId { get; set; }
+
+        [ForeignKey("ParentId")]
+        public virtual Post Post { get; set; }
     }
 }
