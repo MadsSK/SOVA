@@ -22,7 +22,15 @@ namespace DataAccessLayer
             }
         }
 
-        public IEnumerable<Post> GetPosts(string searchString)
+        public IEnumerable<Post> GetPosts()
+        {
+            using (var db = new SovaDBContext())
+            {
+                return db.Posts.ToList();
+            }
+        }
+
+        public IEnumerable<Post> SearchPostsByString(string searchString)
         {
             using (var db = new SovaDBContext())
             {
@@ -31,6 +39,32 @@ namespace DataAccessLayer
                     .ToList();
             }
         }
+        
+        /**************************************
+            Question
+        **************************************/
+        public Question FindQuestion(int id)
+        {
+            using (var db = new SovaDBContext())
+            {
+                return db.Questions.FirstOrDefault(q => q.Id == id);
+            }
+        }
+
+        public IEnumerable<Question> GetQuestions()
+        {
+            using (var db = new SovaDBContext())
+            {
+                return db.Questions.ToList();
+            }
+        }
+
+        /**************************************
+            Answer
+        **************************************/
+
+
+
 
         /**************************************
             Comment
@@ -40,6 +74,14 @@ namespace DataAccessLayer
             using (var db = new SovaDBContext())
             {
                 return db.Comments.FirstOrDefault(c => c.Id == id);
+            }
+        }
+
+        public IEnumerable<Comment> GetComments()
+        {
+            using (var db = new SovaDBContext())
+            {
+                return db.Comments.ToList();
             }
         }
 

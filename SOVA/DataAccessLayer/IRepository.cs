@@ -7,10 +7,12 @@ namespace DataAccessLayer
     {
         //Post
         Post FindPost(int id);
+        IEnumerable<Post> GetPosts();
         IEnumerable<Post> GetPosts(string searchString);
 
         //Comment
         Comment FindComment(int id);
+        IEnumerable<Comment> GetComments();
         IEnumerable<Comment> GetComments(string searchString);
 
         //Tag

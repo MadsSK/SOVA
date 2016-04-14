@@ -8,6 +8,7 @@ namespace Web.Util
     public class Config
     {
         public const string PostsRoute = "PostApi";
+        public const string PostsCommentsRoute = "PostCommentApi";
         public const string CommentsRoute = "CommentApi";
     }
 }

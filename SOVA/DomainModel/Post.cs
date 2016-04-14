@@ -8,14 +8,19 @@ using System.Threading.Tasks;
 
 namespace DomainModel
 {
-    public partial class Post
+    public class Post
     {
+        [Key]
         public int Id { get; set; }
         public DateTime CreationDate { get; set; }
         public int Score { get; set; }
         public string Body { get; set; }
         public int OwnerUserId { get; set; }
-        public virtual ICollection<Favorit> Favorites { get; set; }
-        public virtual ICollection<TagPost> TagPosts { get; set; }
+
+        [ForeignKey("OwnerUserId")]
+        public User User { get; set; } 
+
+        public IEnumerable<Tag> Tags { get; set; }
+        public IEnumerable<SearchUser> SearchUsers { get; set; } 
     }
 }
