@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace DomainModel
 {
-    public class Answer
+    public class Answer : Post
     {
-        public int Id { get; set; }
-        public int ParentId { get; set; }
+       public int id { get; set; }
+       public int ParentId { get; set; }
     }
 }

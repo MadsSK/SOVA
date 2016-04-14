@@ -1,4 +1,5 @@
-﻿using System.Data.Entity;
+﻿using System;
+using System.Data.Entity;
 using DomainModel;
 
 namespace MySqlDatabase
@@ -80,6 +81,11 @@ namespace MySqlDatabase
             modelBuilder.Entity<User>().Property(u => u.Age).HasColumnName("userage");
 
             base.OnModelCreating(modelBuilder);
+        }
+
+        public void Dispose()
+        {
+            throw new NotImplementedException();
         }
     }
 }

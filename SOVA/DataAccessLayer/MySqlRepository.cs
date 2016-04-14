@@ -12,34 +12,48 @@ namespace DataAccessLayer
     public class MySqlRepository : IRepository
     {
         /**************************************
-            Post
+            Answer
         **************************************/
-        public Post FindPost(int id)
+        public Answer GetAnswer(int id)
         {
             using (var db = new SovaDBContext())
             {
-                return db.Posts.FirstOrDefault(p => p.Id == id);
+                return db.Answers.FirstOrDefault(a => a.Id == id);
             }
         }
 
-        public IEnumerable<Post> GetPosts()
+        IEnumerable<Answer> IRepository.GetAnswers(string searchString)
         {
             using (var db = new SovaDBContext())
             {
-                return db.Posts.ToList();
-            }
-        }
-
-        public IEnumerable<Post> SearchPostsByString(string searchString)
-        {
-            using (var db = new SovaDBContext())
-            {
-                return db.Posts
-                    .Where(p => p.Body.Contains(searchString))
+                return db.Answers
+                    .Where(a => a.Body.Contains(searchString))
                     .ToList();
             }
         }
-        
+
+        /**************************************
+            Question
+        **************************************/
+
+        public Question GetQuestion(int id)
+        {
+            using (var db = new SovaDBContext())
+            {
+                return db.Questions.FirstOrDefault(q => q.Id == id);
+            }
+        }
+
+        public IEnumerable<Question> GetQuestions(string searchString)
+        {
+            using (var db = new SovaDBContext())
+            {
+                return db.Questions
+                    .Where(q => q.Body.Contains(searchString))
+                    .ToList();
+            }
+        }
+
         /**************************************
             Question
         **************************************/
@@ -145,6 +159,15 @@ namespace DataAccessLayer
             using (var db = new SovaDBContext())
             {
                 return db.SearchUsers.FirstOrDefault(su => su.Id == id);
+            }
+        }
+
+        public IEnumerable<SearchUser> GetSearchUsers(string searchString)
+        {
+            using (var db = new SovaDBContext())
+            {
+                return db.SearchUsers.Where(su => su.Id)
+                    .ToList();
             }
         }
 

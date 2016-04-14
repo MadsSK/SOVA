@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DomainModel
 {
-    public class Post
+    public abstract class Post
     {
         [Key]
         public int Id { get; set; }

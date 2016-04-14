@@ -5,10 +5,13 @@ namespace DataAccessLayer
 {
     public interface IRepository 
     {
-        //Post
-        Post FindPost(int id);
-        IEnumerable<Post> GetPosts();
-        IEnumerable<Post> GetPosts(string searchString);
+        //Answer
+        Answer GetAnswer(int id);
+        IEnumerable<Answer> GetAnswers(string searchString);
+
+        //Question
+        Question GetQuestion(int id);
+        IEnumerable<Question> GetQuestions(string searchString);
 
         //Comment
         Comment FindComment(int id);
