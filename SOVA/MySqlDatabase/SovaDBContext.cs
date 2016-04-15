@@ -144,7 +144,16 @@ namespace MySqlDatabase
                 Questions
             *****************************/
             modelBuilder.Entity<Question>().ToTable("questions");
-
+            //One-To-One
+            modelBuilder.Entity<Question>()
+                .HasOptional(q => q.Answer)
+                .WithRequired(a => a.Question);
+            //One-To-Many
+            modelBuilder.Entity<Question>()
+                .HasMany<Answer>(q => (ICollection<Answer>) q.Answers)
+                .WithRequired(a => a.Question)
+                .HasForeignKey(a => a.QuestionId);
+            
 
             modelBuilder.Entity<Search>().ToTable("search_history");
             modelBuilder.Entity<Search>().Property(s => s.Id).HasColumnName("search_id");
