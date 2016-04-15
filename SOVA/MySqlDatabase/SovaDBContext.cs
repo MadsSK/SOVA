@@ -67,8 +67,22 @@ namespace MySqlDatabase
             modelBuilder.Entity<Comment>().Property(c => c.Score).HasColumnName("commentscore");
             modelBuilder.Entity<Comment>().Property(c => c.Body).HasColumnName("commenttext");
             modelBuilder.Entity<Comment>().Property(c => c.CreateDate).HasColumnName("commentcreatedate");
+            modelBuilder.Entity<Comment>()
+                .HasRequired<User>(c => c.User)
+                .WithMany(q => (ICollection<Comment>) q.Comments)
+                .HasForeignKey(c => c.UserId);
+            modelBuilder.Entity<Comment>()
+                .HasRequired<Post>(c => c.Post)
+                .WithMany(q => (ICollection<Comment>)q.Comments)
+                .HasForeignKey(c => c.PostId);
+            modelBuilder.Entity<Comment>()
+                .HasMany<Annotation>(c => (ICollection<Annotation>) c.Annotations)
+                .WithOptional(a => a.Comment)
+                .HasForeignKey(a => a.CommentId);
+
 
             modelBuilder.Entity<Post>().ToTable("posts");
+            modelBuilder.Entity<Post>().Property(p => p.UserId).HasColumnName("owneruserid");
             modelBuilder.Entity<Post>()
                 .HasMany<Tag>(p =>  (ICollection<Tag>) p.Tags)
                 .WithMany(t => t.Posts)
@@ -78,6 +92,15 @@ namespace MySqlDatabase
                         tp.MapRightKey("post_id");
                         tp.ToTable("tags_posts");
                     });
+            modelBuilder.Entity<Post>()
+                .HasMany<SearchUser>(p => (ICollection<SearchUser>)p.SearchUsers)
+                .WithMany(s => (ICollection<Post>) s.Posts)
+                .Map(tp =>
+                {
+                    tp.MapLeftKey("tag_id");
+                    tp.MapRightKey("post_id");
+                    tp.ToTable("tags_posts");
+                });
 
             modelBuilder.Entity<Question>().ToTable("questions");
 
