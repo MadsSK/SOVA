@@ -4,9 +4,9 @@ namespace DomainModel
 {
     public class Answer : Post
     {
-        public int ParentId { get; set; }
+        public int QuestionId { get; set; }
 
-        [ForeignKey("ParentId")]
-        public virtual Post Post { get; set; }
+        [ForeignKey("QuestionId")]
+        public virtual Question Question { get; set; }
     }
 }

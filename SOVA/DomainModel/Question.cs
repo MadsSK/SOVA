@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DomainModel
@@ -10,6 +11,8 @@ namespace DomainModel
         public int AcceptedAnswerId { get; set; }
 
         [ForeignKey("AcceptedAnswerId")]
-        public virtual Post Post { get; set; }   
+        public virtual Answer Answer { get; set; }   
+
+        public virtual IEnumerable<Answer> Answers { get; set; }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data.Entity;
 using DomainModel;
@@ -54,6 +55,12 @@ namespace MySqlDatabase
 
 
             modelBuilder.Entity<Answer>().ToTable("answers");
+            modelBuilder.Entity<Answer>().Property(a => a.QuestionId)
+                .HasColumnName("ParentId");
+            modelBuilder.Entity<Answer>()
+                .HasRequired<Question>(a => a.Question)
+                .WithMany(q => (ICollection<Answer>) q.Answers)
+                .HasForeignKey(a => a.QuestionId);
 
             modelBuilder.Entity<Comment>().ToTable("comments");
             modelBuilder.Entity<Comment>().Property(c => c.Id).HasColumnName("commentid");
@@ -63,7 +70,7 @@ namespace MySqlDatabase
 
             modelBuilder.Entity<Post>().ToTable("posts");
             modelBuilder.Entity<Post>()
-                .HasMany<Tag>(p => (ICollection<Tag>) p.Tags)
+                .HasMany<Tag>(p =>  (ICollection<Tag>) p.Tags)
                 .WithMany(t => t.Posts)
                 .Map(tp =>
                     {
