@@ -97,10 +97,20 @@ namespace MySqlDatabase
                 .WithMany(s => (ICollection<Post>) s.Posts)
                 .Map(tp =>
                 {
-                    tp.MapLeftKey("tag_id");
-                    tp.MapRightKey("post_id");
-                    tp.ToTable("tags_posts");
+                    tp.MapLeftKey("post_id");
+                    tp.MapRightKey("search_user_id");
+                    tp.ToTable("favorites");
                 });
+            modelBuilder.Entity<Post>()
+                .HasMany<Post>(p => (ICollection<Post>)p.LinkedPosts)
+                .WithMany(s => (ICollection<Post>)s.LinkedPosts)
+                .Map(tp =>
+                {
+                    tp.MapLeftKey("linkpostid");
+                    tp.MapRightKey("id");
+                    tp.ToTable("favorites");
+                });
+
 
             modelBuilder.Entity<Question>().ToTable("questions");
 
