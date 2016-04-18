@@ -21,6 +21,6 @@ namespace DomainModel
         [ForeignKey("UserId")]
         public User User { get; set; }
 
-        public virtual IEnumerable<Annotation> Annotations { get; set; }
+        public virtual ICollection<Annotation> Annotations { get; set; }
     }
 }

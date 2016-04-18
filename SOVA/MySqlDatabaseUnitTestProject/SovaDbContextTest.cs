@@ -9,76 +9,58 @@ namespace MySqlDatabaseUnitTestProject
     public class SovaDbContextTest
     {
         [Test]
-        public void SovaDbContextTestPost()
-        {
-            using (var db = new SovaDBContext())
-                Assert.AreEqual(13629, db.Posts.Count());
-        }
-        [Test]
         public void SovaDbContextTestAnnotation()
         {
             using (var db = new SovaDBContext())
-                Assert.AreEqual(0, db.Annotations.Count());
+                Assert.That(db.Annotations.Count().Equals(0));
         }
         [Test]
         public void SovaDbContextTestAnswer()
         {
             using (var db = new SovaDBContext())
-                Assert.AreEqual(11392, db.Answers.Count());
+                Assert.That(db.Answers.Count().Equals(11392));
         }
         [Test]
         public void SovaDbContextTestComment()
         {
             using (var db = new SovaDBContext())
-                Assert.AreEqual(32042, db.Comments.Count());
+                Assert.That(db.Comments.Count().Equals(32042));
         }
         [Test]
-        public void SovaDbContextTestFavorit()
+        public void SovaDbContextTestPost()
         {
             using (var db = new SovaDBContext())
-                Assert.AreEqual(0, db.Favorites.Count());
-        }
-        [Test]
-        public void SovaDbContextTestLinkedPost()
-        {
-            using (var db = new SovaDBContext())
-                Assert.AreEqual(14544, db.LinkedPosts.Count());
+                Assert.That(db.Posts.Count().Equals(13629));
         }
         [Test]
         public void SovaDbContextTestQuestion()
         {
             using (var db = new SovaDBContext())
-                Assert.AreEqual(1620, db.Questions.Count());
+                Assert.That(db.Questions.Count().Equals(1620));
         }
         [Test]
         public void SovaDbContextTestSearch()
         {
             using (var db = new SovaDBContext())
-                Assert.AreEqual(7, db.Searchs.Count());
+                Assert.That(db.Searchs.Count().Equals(8));
         }
         [Test]
         public void SovaDbContextTestSearchUser()
         {
             using (var db = new SovaDBContext())
-                Assert.AreEqual(2, db.SearchUsers.Count());
+                Assert.That(db.SearchUsers.Count().Equals(3));
         }
         [Test]
         public void SovaDbContextTestTag()
         {
             using (var db = new SovaDBContext())
-                Assert.AreEqual(1874, db.Tags.Count());
-        }
-        [Test]
-        public void SovaDbContextTestTagPost()
-        {
-            using (var db = new SovaDBContext())
-                Assert.AreEqual(6813, db.TagPosts.Count());
+                Assert.That(db.Tags.Count().Equals(1874));
         }
         [Test]
         public void SovaDbContextTestUser()
         {
             using (var db = new SovaDBContext())
-                Assert.AreEqual(16827, db.Users.Count());
+                Assert.That(db.Users.Count().Equals(16827));
         }
     }
 }

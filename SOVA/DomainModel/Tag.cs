@@ -9,6 +9,6 @@ namespace DomainModel
         public int Id { get; set; }
         public string Body { get; set; }
 
-        public virtual IEnumerable<Post> Posts { get; set; } 
+        public virtual ICollection<Post> Posts { get; set; } 
     }
 }

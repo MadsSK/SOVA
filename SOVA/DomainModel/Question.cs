@@ -10,9 +10,6 @@ namespace DomainModel
         public DateTime CloseDate { get; set; }
         public int AcceptedAnswerId { get; set; }
 
-        [ForeignKey("AcceptedAnswerId")]
-        public virtual Answer Answer { get; set; }   
-
-        public virtual IEnumerable<Answer> Answers { get; set; }
+        public virtual ICollection<Answer> Answers { get; set; }
     }
 }

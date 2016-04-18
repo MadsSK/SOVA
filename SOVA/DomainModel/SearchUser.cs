@@ -9,8 +9,8 @@ namespace DomainModel
         public int Id { get; set; }
         public string MacAdresse { get; set; }
 
-        public virtual IEnumerable<Post> Posts { get; set; }
-        public virtual IEnumerable<Annotation> Annotations { get; set; }
-        public virtual IEnumerable<Search> Searches { get; set; }
+        public virtual ICollection<Post> Posts { get; set; }
+        public virtual ICollection<Annotation> Annotations { get; set; }
+        public virtual ICollection<Search> Searches { get; set; }
     }
 }

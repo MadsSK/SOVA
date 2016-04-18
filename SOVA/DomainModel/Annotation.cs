@@ -8,8 +8,8 @@ namespace DomainModel
         [Key]
         public int Id { get; set; }
         public string Body { get; set; }
-        public int PostId { get; set; }
-        public int CommentId { get; set; }
+        public int? PostId { get; set; }
+        public int? CommentId { get; set; }
         public int SearchUserId { get; set; }
 
         [ForeignKey("PostId")]

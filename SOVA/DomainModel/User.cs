@@ -13,7 +13,7 @@ namespace DomainModel
         public string Location { get; set; }
         public int Age { get; set; }
 
-        public virtual IEnumerable<Post> Posts { get; set; }
-        public virtual IEnumerable<Comment> Comments { get; set; }
+        public virtual ICollection<Post> Posts { get; set; }
+        public virtual ICollection<Comment> Comments { get; set; }
     }
 }

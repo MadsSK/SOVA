@@ -17,10 +17,10 @@ namespace DomainModel
         [ForeignKey("UserId")]
         public User User { get; set; } 
 
-        public virtual IEnumerable<Tag> Tags { get; set; }
-        public virtual IEnumerable<Comment> Comments { get; set; }
-        public virtual IEnumerable<Annotation> Annotations { get; set; } 
-        public virtual IEnumerable<SearchUser> SearchUsers { get; set; }
-        public virtual IEnumerable<Post> LinkedPosts { get; set; }
+        public virtual ICollection<Tag> Tags { get; set; }
+        public virtual ICollection<Comment> Comments { get; set; }
+        public virtual ICollection<Annotation> Annotations { get; set; } 
+        public virtual ICollection<SearchUser> SearchUsers { get; set; }
+        public virtual ICollection<Post> LinkedPosts { get; set; }
     }
 }
