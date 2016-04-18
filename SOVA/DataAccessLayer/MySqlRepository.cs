@@ -104,7 +104,7 @@ namespace DataAccessLayer
             using (var db = new SovaDBContext())
             {
                 return db.Comments
-                    .Where(c => c.Text.Contains(searchString))
+                    .Where(c => c.Body.Contains(searchString))
                     .ToList();
             }
         }
@@ -162,11 +162,11 @@ namespace DataAccessLayer
             }
         }
 
-        public IEnumerable<SearchUser> GetSearchUsers(string searchString)
+        public IEnumerable<SearchUser> GetSearchUsersByMacAdresse(string macAdresse)
         {
             using (var db = new SovaDBContext())
             {
-                return db.SearchUsers.Where(su => su.Id)
+                return db.SearchUsers.Where(su => su.MacAdresse == macAdresse)
                     .ToList();
             }
         }
