@@ -35,6 +35,7 @@ namespace MySqlDatabase
             /*****************************
                 Annotaiton
             *****************************/
+            //Renaming
             modelBuilder.Entity<Annotation>().ToTable("annotation");
             modelBuilder.Entity<Annotation>().Property(a => a.Id)
                 .HasColumnName("annotation_id");
@@ -60,6 +61,7 @@ namespace MySqlDatabase
             /*****************************
                 Answer
             *****************************/
+            //Renaming
             modelBuilder.Entity<Answer>().ToTable("answers");
             modelBuilder.Entity<Answer>().Property(a => a.QuestionId)
                 .HasColumnName("ParentId");
@@ -72,6 +74,7 @@ namespace MySqlDatabase
             /*****************************
                 Comment
             *****************************/
+            //Renaming
             modelBuilder.Entity<Comment>().ToTable("comments");
             modelBuilder.Entity<Comment>().Property(c => c.Id).HasColumnName("commentid");
             modelBuilder.Entity<Comment>().Property(c => c.Score).HasColumnName("commentscore");
@@ -95,6 +98,7 @@ namespace MySqlDatabase
             /*****************************
                 Post
             *****************************/
+            //Renaming
             modelBuilder.Entity<Post>().ToTable("posts");
             modelBuilder.Entity<Post>().Property(p => p.UserId).HasColumnName("owneruserid");
             //One-To-Many
@@ -143,6 +147,7 @@ namespace MySqlDatabase
             /*****************************
                 Questions
             *****************************/
+            //Renaming
             modelBuilder.Entity<Question>().ToTable("questions");
             //One-To-One
             modelBuilder.Entity<Question>()
@@ -153,28 +158,90 @@ namespace MySqlDatabase
                 .HasMany<Answer>(q => (ICollection<Answer>) q.Answers)
                 .WithRequired(a => a.Question)
                 .HasForeignKey(a => a.QuestionId);
-            
 
+            /*****************************
+                Search
+            *****************************/
+            //Renaming
             modelBuilder.Entity<Search>().ToTable("search_history");
             modelBuilder.Entity<Search>().Property(s => s.Id).HasColumnName("search_id");
             modelBuilder.Entity<Search>().Property(s => s.SearchUserId).HasColumnName("search_user_id");
             modelBuilder.Entity<Search>().Property(s => s.SearchString).HasColumnName("search_string");
             modelBuilder.Entity<Search>().Property(s => s.DateTime).HasColumnName("search_date_time");
+            //Many-To-One
+            modelBuilder.Entity<Search>()
+                .HasRequired<SearchUser>(s => s.SearchUser)
+                .WithMany(su => (ICollection<Search>)su.Searches)
+                .HasForeignKey(s => s.SearchUserId);
 
+            /*****************************
+                SearchUser
+            *****************************/
+            //Renaming
             modelBuilder.Entity<SearchUser>().ToTable("search_user");
             modelBuilder.Entity<SearchUser>().Property(sh => sh.Id).HasColumnName("search_user_id");
-            modelBuilder.Entity<SearchUser>().Property(sh => sh.MacAdresse).HasColumnName("mac_adresse");
+            modelBuilder.Entity<SearchUser>()
+                .Property(sh => sh.MacAdresse)
+                .HasColumnName("mac_adresse");
+            //One-To-Many
+            modelBuilder.Entity<SearchUser>()
+                .HasMany<Annotation>(su => (ICollection<Annotation>)su.Annotations)
+                .WithRequired(a => a.SearchUser)
+                .HasForeignKey(a => a.SearchUserId);
+            //One-To-Many
+            modelBuilder.Entity<SearchUser>()
+                .HasMany<Search>(su => (ICollection<Search>)su.Searches)
+                .WithRequired(s => s.SearchUser)
+                .HasForeignKey(s => s.SearchUserId);
+            //Many-To-Many
+            modelBuilder.Entity<SearchUser>()
+                .HasMany<Post>(su => (ICollection<Post>)su.Posts)
+                .WithMany(p => (ICollection<SearchUser>) p.SearchUsers)
+                .Map(f =>
+                {
+                    f.MapLeftKey("post_id");
+                    f.MapRightKey("search_user_id");
+                    f.ToTable("favorites");
+                });
 
+            /*****************************
+                Tag
+            *****************************/
+            //Renaming
             modelBuilder.Entity<Tag>().ToTable("tags");
             modelBuilder.Entity<Tag>().Property(t => t.Id).HasColumnName("tag_id");
             modelBuilder.Entity<Tag>().Property(t => t.Body).HasColumnName("tag");
+            //Many-To-Many
+            modelBuilder.Entity<Tag>()
+                .HasMany<Post>(t => (ICollection<Post>)t.Posts)
+                .WithMany(p => (ICollection<Tag>)p.Tags)
+                .Map(f =>
+                {
+                    f.MapLeftKey("tag_id");
+                    f.MapRightKey("post_id");
+                    f.ToTable("tags_posts");
+                });
 
+            /*****************************
+                User
+            *****************************/
+            //Renaming
             modelBuilder.Entity<User>().ToTable("users");
             modelBuilder.Entity<User>().Property(u => u.Id).HasColumnName("userid");
             modelBuilder.Entity<User>().Property(u => u.DisplayName).HasColumnName("userdisplayname");
             modelBuilder.Entity<User>().Property(u => u.CreationDate).HasColumnName("usercreationdate");
             modelBuilder.Entity<User>().Property(u => u.Location).HasColumnName("userlocation");
             modelBuilder.Entity<User>().Property(u => u.Age).HasColumnName("userage");
+            //One-To-Many
+            modelBuilder.Entity<User>()
+                .HasMany<Post>(u => (ICollection<Post>)u.Posts)
+                .WithRequired(p => p.User)
+                .HasForeignKey(p => p.UserId);
+            modelBuilder.Entity<User>()
+                .HasMany<Comment>(u => (ICollection<Comment>)u.Comments)
+                .WithRequired(c => c.User)
+                .HasForeignKey(c => c.UserId);
+
 
             base.OnModelCreating(modelBuilder);
         }
