@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web.Http;
+﻿using System.Web.Http;
 using Newtonsoft.Json.Serialization;
 using Web.Util;
 
@@ -17,13 +14,13 @@ namespace Web
             config.MapHttpAttributeRoutes();
 
             config.Routes.MapHttpRoute(
-                name: Config.PostsRoute,
+                name: Config.AnnotationsRoute,
                 routeTemplate: "api/v1.0.0/annotations/{id}",
                 defaults: new { controller = "Annotations", id = RouteParameter.Optional }
             );
 
             config.Routes.MapHttpRoute(
-                name: Config.PostsRoute,
+                name: Config.AnswersRoute,
                 routeTemplate: "api/v1.0.0/answers/{id}",
                 defaults: new { controller = "Answers", id = RouteParameter.Optional }
             );
@@ -35,37 +32,31 @@ namespace Web
             );
 
             config.Routes.MapHttpRoute(
-                name: Config.PostsRoute,
-                routeTemplate: "api/v1.0.0/posts/{id}",
-                defaults: new { controller = "Posts", id = RouteParameter.Optional }
-            );
-
-            config.Routes.MapHttpRoute(
-                name: Config.PostsRoute,
+                name: Config.QuestionsRoute,
                 routeTemplate: "api/v1.0.0/questions/{id}",
                 defaults: new { controller = "Questions", id = RouteParameter.Optional }
             );
             
             config.Routes.MapHttpRoute(
-                name: Config.CommentsRoute,
+                name: Config.SearchesRoute,
                 routeTemplate: "api/v1.0.0/searches/{id}",
                 defaults: new { controller = "Searches", id = RouteParameter.Optional }
             );
 
             config.Routes.MapHttpRoute(
-                name: Config.CommentsRoute,
+                name: Config.SearchUsersRoute,
                 routeTemplate: "api/v1.0.0/searchusers/{id}",
                 defaults: new { controller = "SearchUsers", id = RouteParameter.Optional }
             );
 
             config.Routes.MapHttpRoute(
-                name: Config.CommentsRoute,
+                name: Config.TagsRoute,
                 routeTemplate: "api/v1.0.0/tags/{id}",
                 defaults: new { controller = "Tags", id = RouteParameter.Optional }
             );
 
             config.Routes.MapHttpRoute(
-                name: Config.CommentsRoute,
+                name: Config.UsersRoute,
                 routeTemplate: "api/v1.0.0/users/{id}",
                 defaults: new { controller = "Users", id = RouteParameter.Optional }
             );

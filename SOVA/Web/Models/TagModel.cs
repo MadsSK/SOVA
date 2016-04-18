@@ -5,13 +5,9 @@ using System.Web;
 
 namespace Web.Models
 {
-    public class CommentModel
+    public class TagModel
     {
         public string Url { get; set; }
-        public int Score { get; set; }
         public string Body { get; set; }
-        public DateTime CreateDate { get; set; }
-        public int PostId { get; set; }
-        public int UserId { get; set; }
     }
 }

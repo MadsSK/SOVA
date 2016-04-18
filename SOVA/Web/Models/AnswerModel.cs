@@ -1,16 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+using System.Collections;
+
 
 namespace Web.Models
 {
-    public class PostModel
+    public class AnswerModel
     {
         public string Url { get; set; }
         public DateTime CreationDate { get; set; }
         public int Score { get; set; }
         public string Body { get; set; }
-        public int OwnerUserId { get; set; }
+        public int UserId { get; set; }
+        public int QuestionId { get; set; }
     }
 }
