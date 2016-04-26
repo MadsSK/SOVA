@@ -16,5 +16,7 @@ namespace Web.Util
         public const string SearchUsersRoute = "SearchUserApi";
         public const string TagsRoute = "TagApi";
         public const string UsersRoute = "UserApi";
+
+        public const int DefaultPageSize = 10;
     }
 }

@@ -2,6 +2,7 @@
 using System.Web.Http;
 using DataAccessLayer;
 using Web.Models;
+using Web.Util;
 
 namespace Web.Controllers
 {
@@ -11,18 +12,19 @@ namespace Web.Controllers
 
         public IHttpActionResult Get()
         {
-            var comments = _repository.GetComments().Select(p => ModelFactory.Map(p, Url));
-
-            var result = GetAll(comments);
+            var result = _repository.GetAllQuestions().Select(p => ModelFactory.Map(p, Url));
 
             return Ok(result);
         }
 
         public IHttpActionResult Get(string searchString)
         {
-            var comments = _repository.GetComments(searchString).Select(p => ModelFactory.Map(p, Url));
+            var result = _repository.SearchQuestions(searchString).Select(q => ModelFactory.Map(q, Url));
 
-            var result = GetAll(comments);
+            if (result == null)
+            {
+                return NotFound();
+            }
 
             return Ok(result);
         }
@@ -30,14 +32,42 @@ namespace Web.Controllers
 
         public IHttpActionResult Get(int id)
         {
-            var commentModel = ModelFactory.Map(_repository.FindComment(id), Url);
+            var result = ModelFactory.Map(_repository.GetQuestion(id), Url);
 
-            if (commentModel == null)
+            if (result == null)
             {
                 return NotFound();
             }
 
-            return Ok(commentModel);
+            return Ok(result);
+        }
+
+        public IHttpActionResult Get(int page = 0, int pagesize = Config.DefaultPageSize)
+        {
+            var data = _repository.GetQuestions(pagesize, page * pagesize).Select(q => ModelFactory.Map(q, Url));
+
+            var result = GetWithPaging(
+                data,
+                pagesize,
+                page,
+                _repository.GetNumbersOfQuestions(),
+                Config.QuestionsRoute);
+
+            return Ok(result);
+        }
+
+        public IHttpActionResult Get(string searchString, int page = 0, int pagesize = Config.DefaultPageSize)
+        {
+            var data = _repository.SearchQuestionsWithPaging(searchString, pagesize, page * pagesize).Select(q => ModelFactory.Map(q, Url));
+
+            var result = GetWithPaging(
+                data,
+                pagesize,
+                page,
+                _repository.GetNumbersOfQuestions(),
+                Config.QuestionsRoute);
+
+            return Ok(result);
         }
     }
 }

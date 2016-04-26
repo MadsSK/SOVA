@@ -9,55 +9,56 @@ namespace Web
         public static void Register(HttpConfiguration config)
         {
             // Web API configuration and services
+            string version = "v1.0.0/";
 
             // Web API routes
             config.MapHttpAttributeRoutes();
 
             config.Routes.MapHttpRoute(
                 name: Config.AnnotationsRoute,
-                routeTemplate: "api/v1.0.0/annotations/{id}",
+                routeTemplate: "api/" + version + "annotations/{id}",
                 defaults: new { controller = "Annotations", id = RouteParameter.Optional }
             );
 
             config.Routes.MapHttpRoute(
                 name: Config.AnswersRoute,
-                routeTemplate: "api/v1.0.0/answers/{id}",
+                routeTemplate: "api/" + version + "answers/{id}",
                 defaults: new { controller = "Answers", id = RouteParameter.Optional }
             );
 
             config.Routes.MapHttpRoute(
                 name: Config.CommentsRoute,
-                routeTemplate: "api/v1.0.0/comments/{id}",
+                routeTemplate: "api/" + version + "comments/{id}",
                 defaults: new { controller = "Comments", id = RouteParameter.Optional }
             );
 
             config.Routes.MapHttpRoute(
                 name: Config.QuestionsRoute,
-                routeTemplate: "api/v1.0.0/questions/{id}",
+                routeTemplate: "api/" + version + "questions/{id}",
                 defaults: new { controller = "Questions", id = RouteParameter.Optional }
             );
             
             config.Routes.MapHttpRoute(
                 name: Config.SearchesRoute,
-                routeTemplate: "api/v1.0.0/searches/{id}",
+                routeTemplate: "api/" + version + "searches/{id}",
                 defaults: new { controller = "Searches", id = RouteParameter.Optional }
             );
 
             config.Routes.MapHttpRoute(
                 name: Config.SearchUsersRoute,
-                routeTemplate: "api/v1.0.0/searchusers/{id}",
+                routeTemplate: "api/" + version + "searchusers/{id}",
                 defaults: new { controller = "SearchUsers", id = RouteParameter.Optional }
             );
 
             config.Routes.MapHttpRoute(
                 name: Config.TagsRoute,
-                routeTemplate: "api/v1.0.0/tags/{id}",
+                routeTemplate: "api/" + version + "tags/{id}",
                 defaults: new { controller = "Tags", id = RouteParameter.Optional }
             );
 
             config.Routes.MapHttpRoute(
                 name: Config.UsersRoute,
-                routeTemplate: "api/v1.0.0/users/{id}",
+                routeTemplate: "api/" + version + "users/{id}",
                 defaults: new { controller = "Users", id = RouteParameter.Optional }
             );
 

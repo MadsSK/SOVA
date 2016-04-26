@@ -34,7 +34,7 @@ namespace DataAccessLayerUnitTestProject
         {
             Assert.That(
                 _repository.FindComment(120)
-                    .Text.Equals(
+                    .Body.Equals(
                         @"I'd almost hope people not know about this feature. Far preferable that they organise their code into smaller, more meaningful methods and simply use `return`, in most cases. There is a great furore at the moment around this language construct being added to PHP6."));
         }
 
@@ -64,14 +64,7 @@ namespace DataAccessLayerUnitTestProject
                        @"I'd almost hope people not know about this feature. Far preferable that they organise their code into smaller, more meaningful methods and simply use `return`, in most cases. There is a great furore at the moment around this language construct being added to PHP6.",
                     CreateDate = new DateTime(2008, 09, 07, 15, 28, 46),
                     UserId = 1820
-                }), _repository.FindComment(120).Text);
-        }
-
-        [Test]
-        public void GetCommentsTest()
-        {
-            Assert.That(_repository.GetComments("java").Count().Equals(1069), _repository.GetPosts("java").Count().ToString());
-
+                }), _repository.FindComment(120).Body);
         }
     }
 }
