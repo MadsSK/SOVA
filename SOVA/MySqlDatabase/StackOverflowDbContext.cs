@@ -7,7 +7,7 @@ namespace MySqlDatabase
     {
         public StackOverflowDbContext() : base(ConnectionStringContainer.NameString)
         {
-        
+
         }
 
         /******************************************
