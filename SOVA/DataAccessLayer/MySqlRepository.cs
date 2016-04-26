@@ -16,7 +16,7 @@ namespace DataAccessLayer
         **************************************/
         public Annotation FindAnnotation(int id)
         {
-            using (var db = new SovaDBContext())
+            using (var db = new StackOverflowDbContext())
             {
                 return db.Annotations.FirstOrDefault(a => a.Id == id);
             }
@@ -24,7 +24,7 @@ namespace DataAccessLayer
 
         public IEnumerable<Annotation> GetAnnotations(string searchString)
         {
-            using (var db = new SovaDBContext())
+            using (var db = new StackOverflowDbContext())
             {
                 return db.Annotations
                     .Where(a => a.Body.Contains(searchString))
@@ -37,7 +37,7 @@ namespace DataAccessLayer
         **************************************/
         public Answer GetAnswer(int id)
         {
-            using (var db = new SovaDBContext())
+            using (var db = new StackOverflowDbContext())
             {
                 return db.Answers.FirstOrDefault(a => a.Id == id);
             }
@@ -45,7 +45,7 @@ namespace DataAccessLayer
 
         IEnumerable<Answer> IRepository.GetAnswers(string searchString)
         {
-            using (var db = new SovaDBContext())
+            using (var db = new StackOverflowDbContext())
             {
                 return db.Answers
                     .Where(a => a.Body.Contains(searchString))
@@ -59,7 +59,7 @@ namespace DataAccessLayer
         **************************************/
         public Comment FindComment(int id)
         {
-            using (var db = new SovaDBContext())
+            using (var db = new StackOverflowDbContext())
             {
                 return db.Comments.FirstOrDefault(c => c.Id == id);
             }
@@ -67,7 +67,7 @@ namespace DataAccessLayer
 
         public IEnumerable<Comment> GetComments()
         {
-            using (var db = new SovaDBContext())
+            using (var db = new StackOverflowDbContext())
             {
                 return db.Comments.ToList();
             }
@@ -75,7 +75,7 @@ namespace DataAccessLayer
 
         public IEnumerable<Comment> GetComments(string searchString)
         {
-            using (var db = new SovaDBContext())
+            using (var db = new StackOverflowDbContext())
             {
                 return db.Comments
                     .Where(c => c.Body.Contains(searchString))
@@ -88,7 +88,7 @@ namespace DataAccessLayer
         **************************************/
         public IEnumerable<Question> GetAllQuestions()
         {
-            using (var db = new SovaDBContext())
+            using (var db = new StackOverflowDbContext())
             {
                 return db.Questions
                     .OrderBy(q => q.Id)
@@ -98,7 +98,7 @@ namespace DataAccessLayer
 
         public Question GetQuestion(int id)
         {
-            using (var db = new SovaDBContext())
+            using (var db = new StackOverflowDbContext())
             {
                 return db.Questions.FirstOrDefault(q => q.Id == id);
             }
@@ -106,7 +106,7 @@ namespace DataAccessLayer
 
         public IEnumerable<Question> SearchQuestions(string searchString)
         {
-            using (var db = new SovaDBContext())
+            using (var db = new StackOverflowDbContext())
             {
                 return db.Questions
                     .Where(q => q.Body.Contains(searchString))
@@ -116,7 +116,7 @@ namespace DataAccessLayer
 
         public IEnumerable<Question> GetQuestions(int limit, int offset)
         {
-            using (var db = new SovaDBContext())
+            using (var db = new StackOverflowDbContext())
             {
                 return db.Questions
                     .OrderBy(q => q.Id)
@@ -128,7 +128,7 @@ namespace DataAccessLayer
 
         public IEnumerable<Question> SearchQuestionsWithPaging(string searchString, int limit, int offset)
         {
-            using (var db = new SovaDBContext())
+            using (var db = new StackOverflowDbContext())
             {
                 return db.Questions
                     .Where(q => q.Body.Contains(searchString))
@@ -141,7 +141,7 @@ namespace DataAccessLayer
 
         public int GetNumbersOfQuestions()
         {
-            using (var db = new SovaDBContext())
+            using (var db = new StackOverflowDbContext())
             {
                 return db.Questions.Count();
             }
@@ -152,7 +152,7 @@ namespace DataAccessLayer
         **************************************/
         public Search FindSearch(int id)
         {
-            using (var db = new SovaDBContext())
+            using (var db = new StackOverflowDbContext())
             {
                 return db.Searchs.FirstOrDefault(s => s.Id == id);
             }
@@ -164,7 +164,7 @@ namespace DataAccessLayer
         **************************************/
         public SearchUser FindSearchUser(int id)
         {
-            using (var db = new SovaDBContext())
+            using (var db = new StackOverflowDbContext())
             {
                 return db.SearchUsers.FirstOrDefault(su => su.Id == id);
             }
@@ -172,7 +172,7 @@ namespace DataAccessLayer
 
         public IEnumerable<SearchUser> GetSearchUsersByMacAdresse(string macAdresse)
         {
-            using (var db = new SovaDBContext())
+            using (var db = new StackOverflowDbContext())
             {
                 return db.SearchUsers.Where(su => su.MacAdresse == macAdresse)
                     .ToList();
@@ -184,7 +184,7 @@ namespace DataAccessLayer
         **************************************/
         public Tag FindTag(int id)
         {
-            using (var db = new SovaDBContext())
+            using (var db = new StackOverflowDbContext())
             {
                 return db.Tags.FirstOrDefault(t => t.Id == id);
             }
@@ -192,7 +192,7 @@ namespace DataAccessLayer
 
         public IEnumerable<Tag> GetTags(string searchString)
         {
-            using (var db = new SovaDBContext())
+            using (var db = new StackOverflowDbContext())
             {
                 return db.Tags
                     .Where(t => t.Body.Contains(searchString))
@@ -205,7 +205,7 @@ namespace DataAccessLayer
         **************************************/
         public User FindUser(int id)
         {
-            using (var db = new SovaDBContext())
+            using (var db = new StackOverflowDbContext())
             {
                 return db.Users.FirstOrDefault(u => u.Id == id);
             }
@@ -213,7 +213,7 @@ namespace DataAccessLayer
 
         public IEnumerable<User> GetUsers(string searchString)
         {
-            using (var db = new SovaDBContext())
+            using (var db = new StackOverflowDbContext())
             {
                 return db.Users
                     .Where(u => u.DisplayName.Contains(searchString))

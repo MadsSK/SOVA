@@ -9,9 +9,21 @@ namespace Web.Controllers
     {
         private readonly IRepository _repository = new MySqlRepository();
 
+        public IHttpActionResult Get(int id)
+        {
+            var answerModel = ModelFactory.Map(_repository.GetAnswer(id), Url);
+
+            if (answerModel == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(answerModel);
+        }
+        /*
         public IHttpActionResult Get()
         {
-            var comments = _repository.GetComments().Select(p => ModelFactory.Map(p, Url));
+            var comments = _repository.GetAnswers().Select(p => ModelFactory.Map(p, Url));
 
             var result = GetAll(comments);
 
@@ -26,18 +38,6 @@ namespace Web.Controllers
 
             return Ok(result);
         }
-
-
-        public IHttpActionResult Get(int id)
-        {
-            var commentModel = ModelFactory.Map(_repository.FindComment(id), Url);
-
-            if (commentModel == null)
-            {
-                return NotFound();
-            }
-
-            return Ok(commentModel);
-        }
+        */
     }
 }

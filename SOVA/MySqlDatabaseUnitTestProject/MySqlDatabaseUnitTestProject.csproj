@@ -71,7 +71,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="SovaDbContextTest.cs" />
+    <Compile Include="StackOverflowDbContextTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

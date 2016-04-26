@@ -62,6 +62,7 @@ namespace Web
                 defaults: new { controller = "Users", id = RouteParameter.Optional }
             );
 
+
             config.Formatters.JsonFormatter.SerializerSettings.ContractResolver
                 = new CamelCasePropertyNamesContractResolver();
             config.Formatters.Remove(config.Formatters.XmlFormatter);
