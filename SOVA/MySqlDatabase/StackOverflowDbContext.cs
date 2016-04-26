@@ -3,15 +3,15 @@ using DomainModel;
 
 namespace MySqlDatabase
 {
-    public class MovieDBContext : DbContext
+    public class StackOverflowDbContext : DbContext
     {
-        public MovieDBContext() : base("madssk")
+        public StackOverflowDbContext() : base(ConnectionStringContainer.NameString)
         {
-
+        
         }
 
         /******************************************
-            StackOverflow tabels
+            StackOverflow tables
         ******************************************/
         public DbSet<Answer> Answers { get; set; }
         public DbSet<Comment> Comments { get; set; }
@@ -23,7 +23,7 @@ namespace MySqlDatabase
         public DbSet<User> Users { get; set; }
 
         /******************************************
-            Our Annotaion tabels
+            Our Annotation tabels
         ******************************************/
         public DbSet<Annotation> Annotations { get; set; }
         public DbSet<Favorit> Favorites { get; set; }
