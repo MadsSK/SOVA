@@ -2,6 +2,7 @@
 using System.Web.Http;
 using DataAccessLayer;
 using Web.Models;
+using Web.Util;
 
 namespace Web.Controllers
 {
@@ -9,13 +10,15 @@ namespace Web.Controllers
     {
         private readonly IRepository _repository = new MySqlRepository();
 
+        /*
         public IHttpActionResult Get()
         {
             var result = _repository.GetAllQuestions().Select(p => ModelFactory.Map(p, Url));
 
             return Ok(result);
         }
-        /*
+
+        
         public IHttpActionResult Get(string searchString)
         {
             var result = _repository.SearchQuestions(searchString).Select(q => ModelFactory.Map(q, Url));
@@ -27,8 +30,21 @@ namespace Web.Controllers
 
             return Ok(result);
         }
+        */
+        public IHttpActionResult Get(string searchString = "", int page = 0, int pagesize = Config.DefaultPageSize)
+        {
+            var data = _repository.SearchQuestionsWithPaging(searchString, pagesize, page * pagesize).Select(q => ModelFactory.Map(q, Url));
 
+            var result = GetWithPaging(
+                data,
+                pagesize,
+                page,
+                _repository.GetNumberOfQuestionsWtihSearch(),
+                Config.QuestionsRoute);
 
+            return Ok(result);
+        }
+        
         public IHttpActionResult Get(int id)
         {
             var result = ModelFactory.Map(_repository.GetQuestion(id), Url);
@@ -39,35 +55,6 @@ namespace Web.Controllers
             }
 
             return Ok(result);
-        }
-
-        public IHttpActionResult Get(int page = 0, int pagesize = Config.DefaultPageSize)
-        {
-            var data = _repository.GetQuestions(pagesize, page * pagesize).Select(q => ModelFactory.Map(q, Url));
-
-            var result = GetWithPaging(
-                data,
-                pagesize,
-                page,
-                _repository.GetNumbersOfQuestions(),
-                Config.QuestionsRoute);
-
-            return Ok(result);
-        }
-
-        public IHttpActionResult Get(string searchString, int page = 0, int pagesize = Config.DefaultPageSize)
-        {
-            var data = _repository.SearchQuestionsWithPaging(searchString, pagesize, page * pagesize).Select(q => ModelFactory.Map(q, Url));
-
-            var result = GetWithPaging(
-                data,
-                pagesize,
-                page,
-                _repository.GetNumbersOfQuestions(),
-                Config.QuestionsRoute);
-
-            return Ok(result);
-        }
-        */
+        }       
     }
 }

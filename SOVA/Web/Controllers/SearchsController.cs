@@ -10,6 +10,20 @@ namespace Web.Controllers
     {
         private readonly IRepository _repository = new MySqlRepository();
 
+        public IHttpActionResult Get(int page = 0, int pagesize = Config.DefaultPageSize)
+        {
+            var data = _repository.GetSearchsWithPaging(pagesize, page * pagesize).Select(s => ModelFactory.Map(s, Url));
+
+            var result = GetWithPaging(
+                data,
+                pagesize,
+                page,
+                _repository.GetNumberOfSearchs(),
+                Config.QuestionsRoute);
+
+            return Ok(result);
+        }
+
         public IHttpActionResult Get(int id)
         {
             var result = ModelFactory.Map(_repository.FindSearch(id), Url);
@@ -42,19 +56,7 @@ namespace Web.Controllers
             return Ok(result);
         }
 
-        public IHttpActionResult Get(int page = 0, int pagesize = Config.DefaultPageSize)
-        {
-            var data = _repository.GetQuestions(pagesize, page * pagesize).Select(q => ModelFactory.Map(q, Url));
-
-            var result = GetWithPaging(
-                data,
-                pagesize,
-                page,
-                _repository.GetNumbersOfQuestions(),
-                Config.QuestionsRoute);
-
-            return Ok(result);
-        }
+        
 
         public IHttpActionResult Get(string searchString, int page = 0, int pagesize = Config.DefaultPageSize)
         {

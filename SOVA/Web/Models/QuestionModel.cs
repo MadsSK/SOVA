@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 
 
 namespace Web.Models
@@ -12,7 +13,16 @@ namespace Web.Models
         public string Body { get; set; }
         public int UserId { get; set; }
         public string Title { get; set; }
-        public DateTime CloseDate { get; set; }
+        public DateTime? ClosedDate { get; set; }
         public int AcceptedAnswerId { get; set; }
+
+        
+        /*
+        public virtual ICollection<AnswerModel> Answers { get; set; }
+        public virtual ICollection<TagModel> Tags { get; set; }
+        public virtual ICollection<CommentModel> Comments { get; set; }
+        public virtual ICollection<AnnotationModel> Annotations { get; set; }
+        public virtual ICollection<SearchUserModel> SearchUsers{ get; set; }
+        */
     }
 }

@@ -10,7 +10,6 @@ namespace Web.Util
         public const string AnnotationsRoute = "AnnotationApi";
         public const string AnswersRoute = "AnswerApi";
         public const string CommentsRoute = "CommentApi";
-        public const string PostsRoute = "PostApi";
         public const string QuestionsRoute = "QuestionApi";
         public const string SearchesRoute = "SearchApi";
         public const string SearchUsersRoute = "SearchUserApi";

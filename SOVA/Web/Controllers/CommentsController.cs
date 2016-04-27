@@ -2,12 +2,28 @@
 using System.Web.Http;
 using DataAccessLayer;
 using Web.Models;
+using Web.Util;
 
 namespace Web.Controllers
 {
     public class CommentsController : BaseApiController
     {
         private readonly IRepository _repository = new MySqlRepository();
+
+        public IHttpActionResult Get(int page = 0, int pagesize = Config.DefaultPageSize)
+        {
+            var data = _repository.GetCommentsWithPaging(pagesize, page * pagesize).Select(c => ModelFactory.Map(c, Url));
+
+            var result = GetWithPaging(
+                data,
+                pagesize,
+                page,
+                _repository.GetNumberOfComments(),
+                Config.CommentsRoute);
+
+            return Ok(result);
+        }
+
 
         public IHttpActionResult Get(int id)
         {

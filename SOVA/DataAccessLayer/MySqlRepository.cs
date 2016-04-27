@@ -22,12 +22,42 @@ namespace DataAccessLayer
             }
         }
 
+        public IEnumerable<Annotation> GetAllAnnotations()
+        {
+            using (var db = new StackOverflowDbContext())
+            {
+                return db.Annotations
+                    .OrderBy(a => a.Id)
+                    .ToList();
+            }
+        }
+
+        public int GetNumberOfAnnotations()
+        {
+            using (var db = new StackOverflowDbContext())
+            {
+                return db.Annotations.Count();
+            }
+        }
+
         public IEnumerable<Annotation> GetAnnotations(string searchString)
         {
             using (var db = new StackOverflowDbContext())
             {
                 return db.Annotations
                     .Where(a => a.Body.Contains(searchString))
+                    .ToList();
+            }
+        }
+
+        public IEnumerable<Annotation> GetAnnotationsWithPaging(int limit, int offset)
+        {
+            using (var db = new StackOverflowDbContext())
+            {
+                return db.Annotations
+                    .OrderBy(q => q.Id)
+                    .Skip(offset)
+                    .Take(limit)
                     .ToList();
             }
         }
@@ -43,12 +73,32 @@ namespace DataAccessLayer
             }
         }
 
+        public int GetNumberOfAnswers()
+        {
+            using (var db = new StackOverflowDbContext())
+            {
+                return db.Answers.Count();
+            }
+        }
+
         IEnumerable<Answer> IRepository.GetAnswers(string searchString)
         {
             using (var db = new StackOverflowDbContext())
             {
                 return db.Answers
                     .Where(a => a.Body.Contains(searchString))
+                    .ToList();
+            }
+        }
+
+        public IEnumerable<Answer> GetAnswersWithPaging(int limit, int offset)
+        {
+            using (var db = new StackOverflowDbContext())
+            {
+                return db.Answers
+                    .OrderBy(p => p.Id)
+                    .Skip(offset)
+                    .Take(limit)
                     .ToList();
             }
         }
@@ -62,6 +112,14 @@ namespace DataAccessLayer
             using (var db = new StackOverflowDbContext())
             {
                 return db.Comments.FirstOrDefault(c => c.Id == id);
+            }
+        }
+
+        public int GetNumberOfComments()
+        {
+            using (var db = new StackOverflowDbContext())
+            {
+                return db.Comments.Count();
             }
         }
 
@@ -79,6 +137,18 @@ namespace DataAccessLayer
             {
                 return db.Comments
                     .Where(c => c.Body.Contains(searchString))
+                    .ToList();
+            }
+        }
+
+        public IEnumerable<Comment> GetCommentsWithPaging(int limit, int offset)
+        {
+            using (var db = new StackOverflowDbContext())
+            {
+                return db.Comments
+                    .OrderBy(q => q.Id)
+                    .Skip(offset)
+                    .Take(limit)
                     .ToList();
             }
         }
@@ -114,7 +184,7 @@ namespace DataAccessLayer
             }
         }
 
-        public IEnumerable<Question> GetQuestions(int limit, int offset)
+        public IEnumerable<Question> GetQuestionsWithPaging(int limit, int offset)
         {
             using (var db = new StackOverflowDbContext())
             {
@@ -139,7 +209,7 @@ namespace DataAccessLayer
             }
         }
 
-        public int GetNumbersOfQuestions()
+        public int GetNumberOfQuestions()
         {
             using (var db = new StackOverflowDbContext())
             {
@@ -147,9 +217,27 @@ namespace DataAccessLayer
             }
         }
 
+        public int GetNumberOfQuestionsWithSearch(string searchString)
+        {
+            using (var db = new StackOverflowDbContext())
+            {
+                return db.Questions
+                    .Where(q => q.Body.Contains(searchString))
+                    .Count();
+            }
+        }
+
         /**************************************
             Search
         **************************************/
+        public int GetNumberOfSearchs()
+        {
+            using (var db = new StackOverflowDbContext())
+            {
+                return db.Searchs.Count();
+            }
+        }
+
         public Search FindSearch(int id)
         {
             using (var db = new StackOverflowDbContext())
@@ -158,6 +246,17 @@ namespace DataAccessLayer
             }
         }
 
+        public IEnumerable<Search> GetSearchsWithPaging(int limit, int offset)
+        {
+            using (var db = new StackOverflowDbContext())
+            {
+                return db.Searchs
+                    .OrderBy(q => q.Id)
+                    .Skip(offset)
+                    .Take(limit)
+                    .ToList();
+            }
+        }
 
         /**************************************
             SearchUser
