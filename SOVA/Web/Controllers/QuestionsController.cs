@@ -11,14 +11,6 @@ namespace Web.Controllers
         private readonly IRepository _repository = new MySqlRepository();
 
         /*
-        public IHttpActionResult Get()
-        {
-            var result = _repository.GetAllQuestions().Select(p => ModelFactory.Map(p, Url));
-
-            return Ok(result);
-        }
-
-        
         public IHttpActionResult Get(string searchString)
         {
             var result = _repository.SearchQuestions(searchString).Select(q => ModelFactory.Map(q, Url));
@@ -35,11 +27,12 @@ namespace Web.Controllers
         {
             var data = _repository.SearchQuestionsWithPaging(searchString, pagesize, page * pagesize).Select(q => ModelFactory.Map(q, Url));
 
-            var result = GetWithPaging(
+            var result = SearchWithPaging(
                 data,
+                searchString,
                 pagesize,
                 page,
-                _repository.GetNumberOfQuestionsWtihSearch(),
+                _repository.GetNumberOfQuestionsSearchResults(searchString),
                 Config.QuestionsRoute);
 
             return Ok(result);

@@ -33,7 +33,7 @@ namespace DataAccessLayer
         IEnumerable<Question> GetQuestionsWithPaging(int limit, int offset);
         IEnumerable<Question> SearchQuestionsWithPaging(string searchString, int limit, int offset);
         int GetNumberOfQuestions();
-        int GetNumberOfQuestionsWtihSearch();
+        int GetNumberOfQuestionsSearchResults(string searchString);
 
         //Search
         Search FindSearch(int id);

@@ -241,10 +241,11 @@ namespace MySqlDatabase
 
             base.OnModelCreating(modelBuilder);
         }
-
+        /*
         public void Dispose()
         {
             throw new NotImplementedException();
         }
+        */
     }
 }

@@ -217,16 +217,16 @@ namespace DataAccessLayer
             }
         }
 
-        public int GetNumberOfQuestionsWithSearch(string searchString)
+        public int GetNumberOfQuestionsSearchResults(string searchString)
         {
             using (var db = new StackOverflowDbContext())
             {
-                return db.Questions
-                    .Where(q => q.Body.Contains(searchString))
-                    .Count();
+                var result = db.Questions
+                    .Where(q => q.Body.Contains(searchString));
+                return result.Count();
             }
         }
-
+        
         /**************************************
             Search
         **************************************/
