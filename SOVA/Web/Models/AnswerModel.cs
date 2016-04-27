@@ -1,4 +1,5 @@
 ﻿using System;
+using DomainModel;
 
 
 namespace Web.Models
@@ -10,6 +11,6 @@ namespace Web.Models
         public int Score { get; set; }
         public string Body { get; set; }
         public int UserId { get; set; }
-        public int QuestionId { get; set; }
+        public Question Question { get; set; }
     }
 }

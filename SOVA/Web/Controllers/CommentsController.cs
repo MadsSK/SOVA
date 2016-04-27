@@ -9,10 +9,14 @@ namespace Web.Controllers
     {
         private readonly IRepository _repository = new MySqlRepository();
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public IHttpActionResult Get()
         {
             var comments = _repository.GetComments().Select(p => ModelFactory.Map(p, Url));
-
+            
             var result = GetAll(comments);
 
             return Ok(result);
