@@ -229,6 +229,7 @@ namespace DataAccessLayer
                 return db.Questions.Count();
             }
         }
+        
 
         public int GetNumberOfQuestionsWithSearch(string searchString)
         {

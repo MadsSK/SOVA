@@ -39,7 +39,7 @@ namespace Web.Controllers
                 data,
                 pagesize,
                 page,
-                _repository.GetNumberOfQuestionsWtihSearch(),
+                _repository.GetNumberOfQuestionsWithSearch(searchString),
                 Config.QuestionsRoute);
 
             return Ok(result);
