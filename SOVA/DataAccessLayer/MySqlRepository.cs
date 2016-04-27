@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.Entity;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using DomainModel;
@@ -11,6 +13,23 @@ namespace DataAccessLayer
 {
     public class MySqlRepository : IRepository
     {
+        /*************************************
+            All - trying to make generic Find method
+        *************************************/
+        /*
+        public Object FindObject(string _object, int id)
+        {
+            var type = Assembly.GetExecutingAssembly()
+                .GetTypes()
+                .FirstOrDefault(t => t.Name == _object + "s");
+            using (var db = new StackOverflowDbContext())
+            {
+                DbSet thisDbSet = db.Set(type);
+                return db.thisDbSet.FirstOrDefault(a => a.Id == id);
+            }
+        }
+        */
+
         /**************************************
             Annotation
         **************************************/

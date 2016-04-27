@@ -9,7 +9,7 @@ namespace Web
         public static void Register(HttpConfiguration config)
         {
             // Web API configuration and services
-            string version = "v1.0.0/";
+            const string version = "v1.0.0/";
 
             // Web API routes
             config.MapHttpAttributeRoutes();

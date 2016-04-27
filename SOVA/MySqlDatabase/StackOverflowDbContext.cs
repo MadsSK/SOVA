@@ -33,6 +33,7 @@ namespace MySqlDatabase
         {
             /*****************************
                 Annotaiton
+            
             *****************************/
             //Renaming
             modelBuilder.Entity<Annotation>().ToTable("annotation");
@@ -43,6 +44,7 @@ namespace MySqlDatabase
             modelBuilder.Entity<Annotation>()
                 .Property(a => a.SearchUserId)
                 .HasColumnName("search_user_id");
+            
             //Many-To-One
             modelBuilder.Entity<Annotation>()
                 .HasOptional<Post>(a => a.Post)
@@ -56,6 +58,7 @@ namespace MySqlDatabase
                 .HasRequired<SearchUser>(a => a.SearchUser)
                 .WithMany(s => s.Annotations)
                 .HasForeignKey(a => a.SearchUserId);
+            
 
             /*****************************
                 Answer
@@ -101,60 +104,13 @@ namespace MySqlDatabase
             //Renaming
             modelBuilder.Entity<Post>().ToTable("posts");
             modelBuilder.Entity<Post>().Property(p => p.UserId).HasColumnName("owneruserid");
-            //One-To-Many
-            modelBuilder.Entity<Post>()
-                .HasMany<Comment>(p => p.Comments)
-                .WithRequired(c => c.Post)
-                .HasForeignKey(c => c.PostId);
-            modelBuilder.Entity<Post>()
-                .HasMany<Annotation>(p => p.Annotations)
-                .WithOptional(a => a.Post)
-                .HasForeignKey(a => a.PostId);
-            //Many-To-Many
-            modelBuilder.Entity<Post>()
-                .HasMany<Tag>(p =>  p.Tags)
-                .WithMany(t => t.Posts)
-                .Map(tp =>
-                    {
-                        tp.MapLeftKey("tag_id");
-                        tp.MapRightKey("post_id");
-                        tp.ToTable("tags_posts");
-                    });
-            modelBuilder.Entity<Post>()
-                .HasMany<SearchUser>(p => p.SearchUsers)
-                .WithMany(s => s.Posts)
-                .Map(tp =>
-                {
-                    tp.MapLeftKey("post_id");
-                    tp.MapRightKey("search_user_id");
-                    tp.ToTable("favorites");
-                });
-            modelBuilder.Entity<Post>()
-                .HasMany<Post>(p => p.LinkedPosts)
-                .WithMany()
-                .Map(tp =>
-                {
-                    tp.MapLeftKey("linkpostid");
-                    tp.MapRightKey("id");
-                    tp.ToTable("linkedposts");
-                });
-            //Many-To-One
-            modelBuilder.Entity<Post>()
-                .HasRequired<User>(p => p.User)
-                .WithMany(u => u.Posts)
-                .HasForeignKey(p => p.UserId);
-
+            
             /*****************************
                 Question
             *****************************/
             //Renaming
             modelBuilder.Entity<Question>().ToTable("questions");
-            //One-To-Many
-            modelBuilder.Entity<Question>()
-                .HasMany<Answer>(q => q.Answers)
-                .WithRequired(a => a.Question)
-                .HasForeignKey(a => a.QuestionId);
-
+            
             /*****************************
                 Search
             *****************************/

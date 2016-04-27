@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using DomainModel;
 
@@ -6,6 +7,9 @@ namespace DataAccessLayer
 {
     public interface IRepository 
     {
+        //All
+        //Object FindObject(string _object, int id);
+
         //Annotation
         Annotation FindAnnotation(int id);
         IEnumerable<Annotation> GetAnnotationsWithPaging(int limit, int offset);

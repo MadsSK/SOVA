@@ -1,5 +1,8 @@
-﻿using System.Linq;
+﻿using System.Data.Entity;
+using System.Linq;
 using System.Web.Http;
+using System.Web.Http.Results;
+using System.Web.Razor.Generator;
 using DataAccessLayer;
 using Web.Models;
 using Web.Util;
@@ -37,7 +40,22 @@ namespace Web.Controllers
 
             return Ok(result);
         }
-        
+
+        public IHttpActionResult Get(string orderBy, string searchString = "", int page = 0, int pagesize = Config.DefaultPageSize)
+        {
+            var data = _repository.SearchQuestionsWithPaging(searchString, pagesize, page * pagesize).Select(q => ModelFactory.Map(q, Url));
+
+            var result = SearchWithPaging(
+                data,
+                searchString,
+                pagesize,
+                page,
+                _repository.GetNumberOfQuestionsSearchResults(searchString),
+                Config.QuestionsRoute);
+
+            return Ok(result);
+        }
+
         public IHttpActionResult Get(int id)
         {
             var result = ModelFactory.Map(_repository.GetQuestion(id), Url);
@@ -48,6 +66,15 @@ namespace Web.Controllers
             }
 
             return Ok(result);
-        }       
+        }
+        /*
+        public IHttpActionResult Create(QuestionModel question) 
+        {
+            
+        }
+        public IHttpActionResult Update(int id)
+        {
+
+        }*/
     }
 }
