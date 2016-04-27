@@ -33,7 +33,6 @@ namespace MySqlDatabase
         {
             /*****************************
                 Annotaiton
-            
             *****************************/
             //Renaming
             modelBuilder.Entity<Annotation>().ToTable("annotation");
@@ -75,9 +74,7 @@ namespace MySqlDatabase
             modelBuilder.Entity<Comment>().Property(c => c.Id).HasColumnName("commentid");
             modelBuilder.Entity<Comment>().Property(c => c.Score).HasColumnName("commentscore");
             modelBuilder.Entity<Comment>().Property(c => c.Body).HasColumnName("commenttext");
-            modelBuilder.Entity<Comment>().Property(c => c.CreateDate).HasColumnName("commentcreatedate");
-            modelBuilder.Entity<Comment>().HasKey(c => c.Id);
-            //One-To-Many
+            modelBuilder.Entity<Comment>().Property(c => c.CreateDate).HasColumnName("commentcreatedate");            //One-To-Many
             modelBuilder.Entity<Comment>()
                 .HasMany<Annotation>(c => c.Annotations)
                 .WithOptional(a => a.Comment);
@@ -107,11 +104,11 @@ namespace MySqlDatabase
                 .HasMany<Tag>(p => p.Tags)
                 .WithMany(t => t.Posts)
                 .Map(tp =>
-                {
-                    tp.MapLeftKey("tag_id");
-                    tp.MapRightKey("post_id");
-                    tp.ToTable("tags_posts");
-                });
+                    {
+                        tp.MapLeftKey("tag_id");
+                        tp.MapRightKey("post_id");
+                        tp.ToTable("tags_posts");
+                    });
             modelBuilder.Entity<Post>()
                 .HasMany<SearchUser>(p => p.SearchUsers)
                 .WithMany(s => s.Posts)
@@ -204,7 +201,6 @@ namespace MySqlDatabase
                     f.MapRightKey("post_id");
                     f.ToTable("tags_posts");
                 });
-
 
             /*****************************
                 User

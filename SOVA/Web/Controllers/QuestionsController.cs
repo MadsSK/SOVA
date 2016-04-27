@@ -55,7 +55,7 @@ namespace Web.Controllers
 
             return Ok(result);
         }
-
+        
         public IHttpActionResult Get(int id)
         {
             var result = ModelFactory.Map(_repository.GetQuestion(id), Url);
@@ -66,7 +66,7 @@ namespace Web.Controllers
             }
 
             return Ok(result);
-        }
+        }       
         /*
         public IHttpActionResult Create(QuestionModel question) 
         {

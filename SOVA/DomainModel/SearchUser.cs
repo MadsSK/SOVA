@@ -5,7 +5,6 @@ namespace DomainModel
 {
     public class SearchUser
     {
-        [Key]
         public int Id { get; set; }
         public string MacAdresse { get; set; }
 

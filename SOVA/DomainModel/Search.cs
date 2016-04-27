@@ -6,13 +6,11 @@ namespace DomainModel
 {
     public class Search
     {
-        [Key]
         public int Id { get; set; }
         public string SearchString { get; set; }
         public DateTime DateTime { get; set; }
         public int SearchUserId { get; set; }
 
-        [ForeignKey("SearchUserId")]
         public virtual SearchUser SearchUser { get; set; }
     }
 }
