@@ -14,7 +14,7 @@ namespace Web.Controllers
             var lastpage = total/pagesize;
 
             var prev = page <= 0 ? null : Url.Link(route, new { page = page - 1, pagesize});
-            var next = page >= lastpage ? null : Url.Link(route, new { page = page - 1, pagesize });
+            var next = page >= lastpage ? null : Url.Link(route, new { page = page + 1, pagesize });
 
             var result = new
             {

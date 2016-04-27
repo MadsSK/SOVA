@@ -2,6 +2,7 @@
 using System.Web.Http;
 using DataAccessLayer;
 using Web.Models;
+using Web.Util;
 
 namespace Web.Controllers
 {
@@ -9,24 +10,16 @@ namespace Web.Controllers
     {
         private readonly IRepository _repository = new MySqlRepository();
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
-        public IHttpActionResult Get()
+        public IHttpActionResult Get(int page = 0, int pagesize = Config.DefaultPageSize)
         {
-            var comments = _repository.GetComments().Select(p => ModelFactory.Map(p, Url));
-            
-            var result = GetAll(comments);
+            var data = _repository.GetCommentsWithPaging(pagesize, page * pagesize).Select(c => ModelFactory.Map(c, Url));
 
-            return Ok(result);
-        }
-
-        public IHttpActionResult Get(string searchString)
-        {
-            var comments = _repository.GetComments(searchString).Select(p => ModelFactory.Map(p, Url));
-
-            var result = GetAll(comments);
+            var result = GetWithPaging(
+                data,
+                pagesize,
+                page,
+                _repository.GetNumberOfComments(),
+                Config.CommentsRoute);
 
             return Ok(result);
         }
@@ -43,5 +36,24 @@ namespace Web.Controllers
 
             return Ok(commentModel);
         }
+        /*
+        public IHttpActionResult Get()
+        {
+            var comments = _repository.GetComments().Select(p => ModelFactory.Map(p, Url));
+
+            var result = GetAll(comments);
+
+            return Ok(result);
+        }
+
+        public IHttpActionResult Get(string searchString)
+        {
+            var comments = _repository.GetComments(searchString).Select(p => ModelFactory.Map(p, Url));
+
+            var result = GetAll(comments);
+
+            return Ok(result);
+        }
+        */
     }
 }

@@ -6,9 +6,35 @@ using Web.Util;
 
 namespace Web.Controllers
 {
-    public class QuestionsController : BaseApiController
+    public class SearchsController : BaseApiController
     {
         private readonly IRepository _repository = new MySqlRepository();
+
+        public IHttpActionResult Get(int page = 0, int pagesize = Config.DefaultPageSize)
+        {
+            var data = _repository.GetSearchsWithPaging(pagesize, page * pagesize).Select(s => ModelFactory.Map(s, Url));
+
+            var result = GetWithPaging(
+                data,
+                pagesize,
+                page,
+                _repository.GetNumberOfSearchs(),
+                Config.QuestionsRoute);
+
+            return Ok(result);
+        }
+
+        public IHttpActionResult Get(int id)
+        {
+            var result = ModelFactory.Map(_repository.FindSearch(id), Url);
+
+            if (result == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(result);
+        }
 
         /*
         public IHttpActionResult Get()
@@ -18,7 +44,6 @@ namespace Web.Controllers
             return Ok(result);
         }
 
-        
         public IHttpActionResult Get(string searchString)
         {
             var result = _repository.SearchQuestions(searchString).Select(q => ModelFactory.Map(q, Url));
@@ -30,8 +55,10 @@ namespace Web.Controllers
 
             return Ok(result);
         }
-        */
-        public IHttpActionResult Get(string searchString = "", int page = 0, int pagesize = Config.DefaultPageSize)
+
+        
+
+        public IHttpActionResult Get(string searchString, int page = 0, int pagesize = Config.DefaultPageSize)
         {
             var data = _repository.SearchQuestionsWithPaging(searchString, pagesize, page * pagesize).Select(q => ModelFactory.Map(q, Url));
 
@@ -39,22 +66,11 @@ namespace Web.Controllers
                 data,
                 pagesize,
                 page,
-                _repository.GetNumberOfQuestionsWtihSearch(),
+                _repository.GetNumbersOfQuestions(),
                 Config.QuestionsRoute);
 
             return Ok(result);
         }
-        
-        public IHttpActionResult Get(int id)
-        {
-            var result = ModelFactory.Map(_repository.GetQuestion(id), Url);
-
-            if (result == null)
-            {
-                return NotFound();
-            }
-
-            return Ok(result);
-        }       
+        */
     }
 }

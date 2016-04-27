@@ -6,27 +6,27 @@ using Web.Util;
 
 namespace Web.Controllers
 {
-    public class AnswersController : BaseApiController
+    public class AnnotationsController : BaseApiController
     {
         private readonly IRepository _repository = new MySqlRepository();
 
         public IHttpActionResult Get(int page = 0, int pagesize = Config.DefaultPageSize)
         {
-            var data = _repository.GetAnswersWithPaging(pagesize, pagesize * page).Select(a => ModelFactory.Map(a, Url));
+            var data = _repository.GetAnnotationsWithPaging(page, pagesize * page).Select(a => ModelFactory.Map(a, Url));
 
             var result = GetWithPaging(
                 data,
                 pagesize,
                 page,
-                _repository.GetNumberOfAnswers(),
-                Config.AnswersRoute);
+                _repository.GetNumberOfAnnotations(),
+                Config.AnnotationsRoute);
 
             return Ok(result);
         }
 
         public IHttpActionResult Get(int id)
         {
-            var result = ModelFactory.Map(_repository.GetAnswer(id), Url);
+            var result = ModelFactory.Map(_repository.FindAnnotation(id), Url);
 
             if (result == null)
             {

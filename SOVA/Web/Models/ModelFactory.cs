@@ -78,7 +78,7 @@ namespace Web.Models
             if (question == null) return null;
 
             var questionModel = QuestionMapper.Map<QuestionModel>(question);
-            questionModel.Url = urlHelper.Link(Config.PostsRoute, new {question.Id});
+            questionModel.Url = urlHelper.Link(Config.QuestionsRoute, new {question.Id});
 
             return questionModel;
         }
