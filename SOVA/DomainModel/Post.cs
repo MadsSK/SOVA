@@ -7,14 +7,12 @@ namespace DomainModel
 {
     public class Post
     {
-        //[Key]
         public int Id { get; set; }
         public DateTime CreationDate { get; set; }
         public int Score { get; set; }
         public string Body { get; set; }
         public int UserId { get; set; }
 
-        //[ForeignKey("UserId")]
         public User User { get; set; } 
 
         public virtual ICollection<Tag> Tags { get; set; }
