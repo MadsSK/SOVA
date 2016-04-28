@@ -1,5 +1,7 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Security.Policy;
 using System.Web.Http;
 using System.Web.Http.Routing;
@@ -18,17 +20,17 @@ namespace Web.Models
         private static readonly IMapper SearchMapper;
         private static readonly IMapper SearchUserMapper;
         private static readonly IMapper TagMapper;
-        private static readonly IMapper TagListMapper;
         private static readonly IMapper UserMapper;
+        private static readonly IMapper LinkedPostMapper;
         
         static ModelFactory()
         {
             var annotationCfg = new MapperConfiguration(cfg => cfg.CreateMap<Annotation, CommentModel>());
             AnnotationMapper = annotationCfg.CreateMapper();
-
+            
             var answerCfg = new MapperConfiguration(cfg => cfg.CreateMap<Answer, AnswerModel>());
             AnswerMapper = answerCfg.CreateMapper();
-
+            
             var commentCfg = new MapperConfiguration(cfg => cfg.CreateMap<Comment, CommentModel>());
             CommentMapper = commentCfg.CreateMapper();
 
@@ -43,12 +45,10 @@ namespace Web.Models
 
             var tagCfg = new MapperConfiguration(cfg => cfg.CreateMap<Tag, TagModel>());
             TagMapper = tagCfg.CreateMapper();
-
-            var tagListCfg = new MapperConfiguration(cfg => cfg.CreateMap<IList<Tag>, IList<TagModel>>());
-            TagListMapper = tagListCfg.CreateMapper();
-
+            
             var userCfg = new MapperConfiguration(cfg => cfg.CreateMap<User, UserModel>());
             UserMapper = userCfg.CreateMapper();
+
         }
 
         public static AnnotationModel Map(Annotation annotation, UrlHelper urlHelper)
@@ -86,6 +86,8 @@ namespace Web.Models
             if (question == null) return null;
 
             var tagModels = new List<TagModel>();
+            var commentModels = new List<CommentModel>();
+            var answerModels = new List<AnswerModel>();
 
             var questionModel = QuestionMapper.Map<QuestionModel>(question);
             foreach (var tag in question.Tags)
@@ -94,8 +96,24 @@ namespace Web.Models
                 tagModel.Url = urlHelper.Link(Config.TagsRoute, new { tag.Id });
                 tagModels.Add(tagModel);
             }
+            foreach (var comment in question.Comments)
+            {
+                var commentModel = CommentMapper.Map<CommentModel>(comment);
+                commentModel.Url = urlHelper.Link(Config.CommentsRoute, new { comment.Id });
+                commentModels.Add(commentModel);
+            }
+            foreach (var answer in question.Answers)
+            {
+                var answerModel = AnswerMapper.Map<AnswerModel>(answer);
+                answerModel.Url = urlHelper.Link(Config.AnswersRoute, new { answer.Id });
+                answerModels.Add(answerModel);
+            }
+            var linkpostUris = question.LinkedPosts.Select(linkedPost => urlHelper.Link(Config.AnswersRoute, new {linkedPost.Id})).ToList();
             questionModel.Url = urlHelper.Link(Config.QuestionsRoute, new {question.Id});
             questionModel.QuestionTags = tagModels;
+            questionModel.QuestionComments = commentModels;
+            questionModel.QuestionAnswers = answerModels;
+            questionModel.LinkPostUris = linkpostUris;
 
             return questionModel;
         }

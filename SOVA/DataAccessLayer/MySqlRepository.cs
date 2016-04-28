@@ -205,6 +205,11 @@ namespace DataAccessLayer
                 return db.Questions.
                     Where(q => q.Id == id)
                     .Include(q => q.Tags)
+                    .Include(q => q.Comments)
+                    .Include(q => q.Annotations)
+                    .Include(q => q.User)
+                    .Include(q => q.Answers)
+                    .Include(q => q.LinkedPosts)
                     .FirstOrDefault();
             }
         }

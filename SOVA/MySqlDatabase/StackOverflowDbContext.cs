@@ -123,8 +123,8 @@ namespace MySqlDatabase
                 .WithMany()
                 .Map(tp =>
                 {
-                    tp.MapLeftKey("linkpostid");
-                    tp.MapRightKey("id");
+                    tp.MapLeftKey("id");
+                    tp.MapRightKey("linkpostid");
                     tp.ToTable("linkedposts");
                 });
             //Many-To-One
