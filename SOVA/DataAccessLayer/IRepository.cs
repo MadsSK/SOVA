@@ -17,6 +17,14 @@ namespace DataAccessLayer
         IEnumerable<Annotation> GetAllAnnotations();
         int GetNumberOfAnnotations();
 
+        void Insert(Annotation annotation);
+
+        bool Update(Annotation annotation);
+
+        bool DeleteAnnotation(int id);
+
+        
+
         //Answer
         Answer GetAnswer(int id);
         int GetNumberOfAnswers();
@@ -54,5 +62,8 @@ namespace DataAccessLayer
         //User
         User FindUser(int id);
         IEnumerable<User> GetUsers(string searchString);
+
+
+        
     }
 }

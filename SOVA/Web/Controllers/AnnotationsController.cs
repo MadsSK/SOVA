@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using System.Web.Http;
 using DataAccessLayer;
+using DomainModel;
 using Web.Models;
 using Web.Util;
 
@@ -34,6 +35,43 @@ namespace Web.Controllers
             }
 
             return Ok(result);
+        }
+
+        public IHttpActionResult Post(AnnotationModel annotationModel)
+        {
+            var annotation = new Annotation
+            {
+                Body = annotationModel.Body,
+                MarkingStart = annotationModel.MarkingStart,
+                MarkingEnd = annotationModel.MarkingEnd,
+                PostId = annotationModel.PostId,
+                CommentId = annotationModel.CommentId,
+                SearchUserId = annotationModel.SearchUserId
+            };
+            _repository.Insert(annotation);
+            return Created(Config.AnnotationsRoute, ModelFactory.Map(annotation, Url));
+        }
+
+        public IHttpActionResult Delete(int id)
+        {
+            if (!_repository.DeleteAnnotation(id)) return NotFound();
+            return Ok();
+        }
+
+        public IHttpActionResult Put(int id, AnnotationModel annotationModel)
+        {
+            var annotation = new Annotation
+            {
+                Body = annotationModel.Body,
+                MarkingStart = annotationModel.MarkingStart,
+                MarkingEnd = annotationModel.MarkingEnd,
+                PostId = annotationModel.PostId,
+                CommentId = annotationModel.CommentId,
+                SearchUserId = annotationModel.SearchUserId
+            };
+
+            if (!_repository.Update(annotation)) return NotFound();
+            return Ok();
         }
     }
 }

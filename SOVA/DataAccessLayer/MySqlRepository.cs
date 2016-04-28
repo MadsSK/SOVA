@@ -72,6 +72,49 @@ namespace DataAccessLayer
             }
         }
 
+        public void Insert(Annotation annotation)
+        {
+            using (var db = new StackOverflowDbContext())
+            {
+                annotation.Id = db.Annotations.Max(a => a.Id) + 1;
+                db.Annotations.Add(annotation);
+                db.SaveChanges();
+            }
+        }
+
+        public bool Update(Annotation annotation)
+        {
+            using (var db = new StackOverflowDbContext())
+            {
+                var dbAnnotation = db.Annotations.FirstOrDefault(a => a.Id == annotation.Id);
+                if (dbAnnotation == null) return false;
+
+                dbAnnotation.Body = annotation.Body;
+                dbAnnotation.MarkingStart = annotation.MarkingStart;
+                dbAnnotation.MarkingEnd = annotation.MarkingEnd;
+                dbAnnotation.PostId = annotation.PostId;
+                dbAnnotation.CommentId = annotation.CommentId;
+                dbAnnotation.SearchUserId = annotation.SearchUserId;
+
+                db.SaveChanges();
+                return true;
+            }
+        }
+
+        public bool DeleteAnnotation(int id)
+        {
+            using (var db = new StackOverflowDbContext())
+            {
+                var annotation = db.Annotations.FirstOrDefault(a => a.Id == id);
+                if (annotation == null) return false;
+
+                db.Annotations.Remove(annotation);
+                db.SaveChanges();
+
+                return true;
+            }
+        }
+
         public IEnumerable<Annotation> GetAnnotations(string searchString)
         {
             using (var db = new StackOverflowDbContext())

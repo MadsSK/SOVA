@@ -12,6 +12,7 @@ namespace Web.Models
         public int Score { get; set; }
         public string Body { get; set; }
         public int UserId { get; set; }
+        public UserModel User { get; set; }
         public string Title { get; set; }
         public DateTime? ClosedDate { get; set; }
         public int AcceptedAnswerId { get; set; }

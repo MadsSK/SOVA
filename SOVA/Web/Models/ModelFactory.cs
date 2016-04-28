@@ -90,6 +90,9 @@ namespace Web.Models
             var answerModels = new List<AnswerModel>();
 
             var questionModel = QuestionMapper.Map<QuestionModel>(question);
+            /*var userModel = UserMapper.Map<UserModel>(question.User);
+            userModel.Url = urlHelper.Link(Config.UsersRoute, new { question.User.Id });
+            */
             foreach (var tag in question.Tags)
             {
                 var tagModel = TagMapper.Map<TagModel>(tag);
@@ -109,7 +112,9 @@ namespace Web.Models
                 answerModels.Add(answerModel);
             }
             var linkpostUris = question.LinkedPosts.Select(linkedPost => urlHelper.Link(Config.AnswersRoute, new {linkedPost.Id})).ToList();
+
             questionModel.Url = urlHelper.Link(Config.QuestionsRoute, new {question.Id});
+            //questionModel.User = userModel;
             questionModel.QuestionTags = tagModels;
             questionModel.QuestionComments = commentModels;
             questionModel.QuestionAnswers = answerModels;
