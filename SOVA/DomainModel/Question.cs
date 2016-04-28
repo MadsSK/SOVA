@@ -10,6 +10,6 @@ namespace DomainModel
         public DateTime? ClosedDate { get; set; }
         public int AcceptedAnswerId { get; set; }
 
-        public virtual ICollection<Answer> Answers { get; set; }
+        public virtual List<Answer> Answers { get; set; }
     }
 }

@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 
 
 namespace Web.Models
@@ -11,6 +13,6 @@ namespace Web.Models
         public string Body { get; set; }
         public int UserId { get; set; }
         public int QuestionId { get; set; }
-
+        public virtual List<TagModel> JSONTags { get; set; }
     }
 }

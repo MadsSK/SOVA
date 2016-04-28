@@ -1,4 +1,8 @@
-﻿using System.Web.Http.Routing;
+﻿using System.Collections;
+using System.Collections.Generic;
+using System.Security.Policy;
+using System.Web.Http;
+using System.Web.Http.Routing;
 using AutoMapper;
 using DomainModel;
 using Web.Util;
@@ -14,6 +18,7 @@ namespace Web.Models
         private static readonly IMapper SearchMapper;
         private static readonly IMapper SearchUserMapper;
         private static readonly IMapper TagMapper;
+        private static readonly IMapper TagListMapper;
         private static readonly IMapper UserMapper;
         
         static ModelFactory()
@@ -39,6 +44,9 @@ namespace Web.Models
             var tagCfg = new MapperConfiguration(cfg => cfg.CreateMap<Tag, TagModel>());
             TagMapper = tagCfg.CreateMapper();
 
+            var tagListCfg = new MapperConfiguration(cfg => cfg.CreateMap<IList<Tag>, IList<TagModel>>());
+            TagListMapper = tagListCfg.CreateMapper();
+
             var userCfg = new MapperConfiguration(cfg => cfg.CreateMap<User, UserModel>());
             UserMapper = userCfg.CreateMapper();
         }
@@ -59,7 +67,7 @@ namespace Web.Models
 
             var answerModel = AnswerMapper.Map<AnswerModel>(answer);
             answerModel.Url = urlHelper.Link(Config.AnswersRoute, new { answer.Id });
-
+            
             return answerModel;
         }
 
@@ -77,8 +85,17 @@ namespace Web.Models
         {
             if (question == null) return null;
 
+            var tagModels = new List<TagModel>();
+
             var questionModel = QuestionMapper.Map<QuestionModel>(question);
+            foreach (var tag in question.Tags)
+            {
+                var tagModel = TagMapper.Map<TagModel>(tag);
+                tagModel.Url = urlHelper.Link(Config.TagsRoute, new { tag.Id });
+                tagModels.Add(tagModel);
+            }
             questionModel.Url = urlHelper.Link(Config.QuestionsRoute, new {question.Id});
+            questionModel.QuestionTags = tagModels;
 
             return questionModel;
         }

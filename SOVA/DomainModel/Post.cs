@@ -15,10 +15,10 @@ namespace DomainModel
 
         public User User { get; set; } 
 
-        public virtual ICollection<Tag> Tags { get; set; }
-        public virtual ICollection<Comment> Comments { get; set; }
-        public virtual ICollection<Annotation> Annotations { get; set; } 
-        public virtual ICollection<SearchUser> SearchUsers { get; set; }
-        public virtual ICollection<Post> LinkedPosts { get; set; }
+        public virtual IList<Tag> Tags { get; set; }
+        public virtual IList<Comment> Comments { get; set; }
+        public virtual IList<Annotation> Annotations { get; set; } 
+        public virtual IList<SearchUser> SearchUsers { get; set; }
+        public virtual IList<Post> LinkedPosts { get; set; }
     }
 }

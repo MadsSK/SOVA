@@ -202,7 +202,10 @@ namespace DataAccessLayer
         {
             using (var db = new StackOverflowDbContext())
             {
-                return db.Questions.FirstOrDefault(q => q.Id == id);
+                return db.Questions.
+                    Where(q => q.Id == id)
+                    .Include(q => q.Tags)
+                    .FirstOrDefault();
             }
         }
 
@@ -212,6 +215,7 @@ namespace DataAccessLayer
             {
                 return db.Questions
                     .Where(q => q.Body.Contains(searchString))
+                    .Include(q => q.Tags)
                     .ToList();
             }
         }
@@ -222,6 +226,7 @@ namespace DataAccessLayer
             {
                 return db.Questions
                     .OrderBy(q => q.Id)
+                    .Include(q => q.Tags)
                     .Skip(offset)
                     .Take(limit)
                     .ToList();
@@ -235,6 +240,7 @@ namespace DataAccessLayer
                 return db.Questions
                     .Where(q => q.Body.Contains(searchString))
                     .OrderBy(q => q.Id)
+                    .Include(q => q.Tags)
                     .Skip(offset)
                     .Take(limit)
                     .ToList();

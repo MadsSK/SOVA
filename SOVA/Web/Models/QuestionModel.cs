@@ -16,10 +16,10 @@ namespace Web.Models
         public DateTime? ClosedDate { get; set; }
         public int AcceptedAnswerId { get; set; }
 
-        
+        public virtual IList<TagModel> QuestionTags { get; set; }
         /*
         public virtual ICollection<AnswerModel> Answers { get; set; }
-        public virtual ICollection<TagModel> Tags { get; set; }
+        
         public virtual ICollection<CommentModel> Comments { get; set; }
         public virtual ICollection<AnnotationModel> Annotations { get; set; }
         public virtual ICollection<SearchUserModel> SearchUsers{ get; set; }
