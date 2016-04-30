@@ -10,7 +10,7 @@ namespace Web.Controllers
     {
         private readonly IRepository _repository = new MySqlRepository();
 
-        public IHttpActionResult Get(int id)
+        public IHttpActionResult Get(int id = 0)
         {
             var result = ModelFactory.Map(_repository.FindTag(id), Url);
 
@@ -18,6 +18,22 @@ namespace Web.Controllers
             {
                 return NotFound();
             }
+
+            return Ok(result);
+        }
+
+        public IHttpActionResult Get(int questionId, int page = 0, int pagesize = Config.DefaultPageSize)
+        {
+            var data = _repository.GetTagsWithQuestionId(questionId, pagesize, page * pagesize).Select(q => ModelFactory.Map(q, Url));
+
+            if (!data.Any()) return NotFound();
+
+            var result = GetWithPaging(
+                data,
+                pagesize,
+                page,
+                _repository.GetNumbersOfTagsWithQuestionId(questionId),
+                Config.TagsRoute);
 
             return Ok(result);
         }

@@ -156,7 +156,16 @@ namespace DataAccessLayer
             }
         }
 
-        IEnumerable<Answer> IRepository.GetAnswers(string searchString)
+        public int GetNumberOfAnswersWithQuestionId(int questionId)
+        {
+            using (var db = new StackOverflowDbContext())
+            {
+                return db.Answers
+                    .Count(c => c.QuestionId == questionId);
+            }
+        }
+
+        public IEnumerable<Answer> GetAnswers(string searchString)
         {
             using (var db = new StackOverflowDbContext())
             {
@@ -178,7 +187,44 @@ namespace DataAccessLayer
             }
         }
 
+        public IEnumerable<Answer> GetAnswersWithPaging(int Id, int limit, int offset)
+        {
+            using (var db = new StackOverflowDbContext())
+            {
+                return db.Answers
+                    .Where(p => p.Id == Id)
+                    .OrderBy(p => p.Id)
+                    .Skip(offset)
+                    .Take(limit)
+                    .ToList();
+            }
+        }
 
+        public IEnumerable<Answer> GetAnswersWithQuestionId(int questionId, int limit, int offset)
+        {
+            using (var db = new StackOverflowDbContext())
+            {
+                return db.Answers
+                    .Where(c => c.QuestionId == questionId)
+                    .OrderBy(c => c.Id)
+                    .Skip(offset)
+                    .Take(limit)
+                    .ToList();
+            }
+        }
+
+        public IEnumerable<Answer> GetAnswersWithLinkedPostId(int linkedPostId, int limit, int offset)
+        {
+            using (var db = new StackOverflowDbContext())
+            {
+                return db.Answers
+                    .Where(a => a.LinkedPosts.Any(lp => lp.Id == linkedPostId))
+                    .OrderBy(p => p.Id)
+                    .Skip(offset)
+                    .Take(limit)
+                    .ToList();
+            }
+        }
         /**************************************
             Comment
         **************************************/
@@ -195,6 +241,15 @@ namespace DataAccessLayer
             using (var db = new StackOverflowDbContext())
             {
                 return db.Comments.Count();
+            }
+        }
+
+        public int GetNumberOfCommentsWithQuestionId(int questionId)
+        {
+            using (var db = new StackOverflowDbContext())
+            {
+                return db.Comments
+                    .Count(c => c.PostId == questionId);
             }
         }
 
@@ -227,6 +282,32 @@ namespace DataAccessLayer
                     .ToList();
             }
         }
+
+        public IEnumerable<Comment> GetCommentsWithQuestionId(int questionId, int limit, int offset)
+        {
+            using (var db = new StackOverflowDbContext())
+            {
+                return db.Comments
+                    .Where(c => c.PostId == questionId)
+                    .OrderBy(c => c.Id)
+                    .Skip(offset)
+                    .Take(limit)
+                    .ToList();
+            }
+        }
+
+        /**************************************
+            Posts
+        **************************************/
+        public int GetNumberOfPosts(int postId)
+        {
+            using (var db = new StackOverflowDbContext())
+            {
+                return db.Posts
+                    .Count(p => p.Id == postId);
+            }
+        }
+        
 
         /**************************************
             Question
@@ -281,6 +362,19 @@ namespace DataAccessLayer
             }
         }
 
+        public IEnumerable<Question> GetQuestionsWithPaging(int Id, int limit, int offset)
+        {
+            using (var db = new StackOverflowDbContext())
+            {
+                return db.Questions
+                    .Where(p => p.Id == Id)
+                    .OrderBy(p => p.Id)
+                    .Skip(offset)
+                    .Take(limit)
+                    .ToList();
+            }
+        }
+
         public IEnumerable<Question> SearchQuestionsWithPaging(string searchString, int limit, int offset)
         {
             using (var db = new StackOverflowDbContext())
@@ -289,6 +383,24 @@ namespace DataAccessLayer
                     .Where(q => q.Body.Contains(searchString))
                     .OrderBy(q => q.Id)
                     .Include(q => q.Tags)
+                    .Include(q => q.Comments)
+                    .Include(q => q.Annotations)
+                    .Include(q => q.User)
+                    .Include(q => q.Answers)
+                    .Include(q => q.LinkedPosts)
+                    .Skip(offset)
+                    .Take(limit)
+                    .ToList();
+            }
+        }
+
+        public IEnumerable<Question> GetQuestionsWithLinkPostId(int linkedPostId, int limit, int offset)
+        {
+            using (var db = new StackOverflowDbContext())
+            {
+                return db.Questions
+                    .Where(q => q.LinkedPosts.Any(lp => lp.Id == linkedPostId))
+                    .OrderBy(q => q.Id)
                     .Skip(offset)
                     .Take(limit)
                     .ToList();
@@ -308,9 +420,8 @@ namespace DataAccessLayer
         {
             using (var db = new StackOverflowDbContext())
             {
-                var result = db.Questions
-                    .Where(q => q.Body.Contains(searchString));
-                return result.Count();
+                return db.Questions
+                    .Count(q => q.Body.Contains(searchString));
             }
         }
         
@@ -386,6 +497,28 @@ namespace DataAccessLayer
             }
         }
 
+        public IEnumerable<Tag> GetTagsWithQuestionId(int questionId, int limit, int offset)
+        {
+            using (var db = new StackOverflowDbContext())
+            {
+                return db.Tags
+                    .Where(t => t.Posts.Any(p => p.Id == questionId))
+                    .OrderBy(q => q.Id)
+                    .Skip(offset)
+                    .Take(limit)
+                    .ToList();
+            }
+        }
+
+        public int GetNumbersOfTagsWithQuestionId(int questionId)
+        {
+            using (var db = new StackOverflowDbContext())
+            {
+                return db.Tags
+                    .Count(t => t.Posts.Any(p => p.Id == questionId));
+            }
+        }
+
         /**************************************
             User
         **************************************/
@@ -404,6 +537,29 @@ namespace DataAccessLayer
                 return db.Users
                     .Where(u => u.DisplayName.Contains(searchString))
                     .ToList();
+            }
+        }
+
+        public IEnumerable<User> SearchUsersWithPaging(string searchString, int limit, int offset)
+        {
+            using (var db = new StackOverflowDbContext())
+            {
+                return db.Users
+                    .Where(q => q.DisplayName.Contains(searchString))
+                    .OrderBy(q => q.Id)
+                    .Skip(offset)
+                    .Take(limit)
+                    .ToList();
+            }
+        }
+
+        public int GetNumberOfUsersSearchResults(string searchString)
+        {
+            using (var db = new StackOverflowDbContext())
+            {
+                var result = db.Users
+                    .Where(q => q.DisplayName.Contains(searchString));
+                return result.Count();
             }
         }
     }

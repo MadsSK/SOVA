@@ -10,6 +10,21 @@ namespace Web.Controllers
     {
         private readonly IRepository _repository = new MySqlRepository();
 
+        public IHttpActionResult Get(string searchString = "", int page = 0, int pagesize = Config.DefaultPageSize)
+        {
+            var data = _repository.SearchUsersWithPaging(searchString, pagesize, page * pagesize).Select(u => ModelFactory.Map(u, Url));
+
+            var result = SearchWithPaging(
+                data,
+                searchString,
+                pagesize,
+                page,
+                _repository.GetNumberOfUsersSearchResults(searchString),
+                Config.UsersRoute);
+
+            return Ok(result);
+        }
+
         public IHttpActionResult Get(int id)
         {
             var result = ModelFactory.Map(_repository.FindUser(id), Url);
@@ -44,28 +59,14 @@ namespace Web.Controllers
 
         public IHttpActionResult Get(int page = 0, int pagesize = Config.DefaultPageSize)
         {
-            var data = _repository.GetQuestions(pagesize, page * pagesize).Select(q => ModelFactory.Map(q, Url));
+            var data = _repository.GetUsers(pagesize, page * pagesize).Select(u => ModelFactory.Map(u, Url));
 
             var result = GetWithPaging(
                 data,
                 pagesize,
                 page,
-                _repository.GetNumbersOfQuestions(),
-                Config.QuestionsRoute);
-
-            return Ok(result);
-        }
-
-        public IHttpActionResult Get(string searchString, int page = 0, int pagesize = Config.DefaultPageSize)
-        {
-            var data = _repository.SearchQuestionsWithPaging(searchString, pagesize, page * pagesize).Select(q => ModelFactory.Map(q, Url));
-
-            var result = GetWithPaging(
-                data,
-                pagesize,
-                page,
-                _repository.GetNumbersOfQuestions(),
-                Config.QuestionsRoute);
+                _repository.GetNumbersOfUsers(),
+                Config.UsersRoute);
 
             return Ok(result);
         }

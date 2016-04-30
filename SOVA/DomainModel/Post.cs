@@ -13,7 +13,7 @@ namespace DomainModel
         public string Body { get; set; }
         public int UserId { get; set; }
 
-        public User User { get; set; } 
+        public virtual User User { get; set; } 
 
         public virtual ICollection<Tag> Tags { get; set; }
         public virtual ICollection<Comment> Comments { get; set; }

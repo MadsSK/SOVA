@@ -9,7 +9,7 @@ namespace Web.Controllers
     public class CommentsController : BaseApiController
     {
         private readonly IRepository _repository = new MySqlRepository();
-
+        
         public IHttpActionResult Get(int page = 0, int pagesize = Config.DefaultPageSize)
         {
             var data = _repository.GetCommentsWithPaging(pagesize, page * pagesize).Select(c => ModelFactory.Map(c, Url));
@@ -35,6 +35,22 @@ namespace Web.Controllers
             }
 
             return Ok(commentModel);
+        }
+
+        public IHttpActionResult Get(int questionId, int page = 0, int pagesize = Config.DefaultPageSize)
+        {
+            var data = _repository.GetCommentsWithQuestionId(questionId, pagesize, page * pagesize).Select(q => ModelFactory.Map(q, Url));
+
+            if (!data.Any()) return NotFound();
+
+            var result = GetWithPaging(
+                data,
+                pagesize,
+                page,
+                _repository.GetNumberOfCommentsWithQuestionId(questionId),
+                Config.CommentsRoute);
+
+            return Ok(result);
         }
         /*
         public IHttpActionResult Get()

@@ -13,5 +13,13 @@ namespace Web.Models
         public int? PostId { get; set; }
         public int? CommentId { get; set; }
         public int SearchUserId { get; set; }
+
+        /*
+        public virtual PostModel Post { get; set; }
+
+        public virtual CommentModel Comment { get; set; }
+
+        public virtual SearchUserModel SearchUser { get; set; }
+        */
     }
 }

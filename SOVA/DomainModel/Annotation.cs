@@ -13,10 +13,10 @@ namespace DomainModel
         public int? CommentId { get; set; }
         public int SearchUserId { get; set; }
 
-        public Post Post { get; set; }
+        public virtual Post Post { get; set; }
 
-        public Comment Comment { get; set; }
+        public virtual Comment Comment { get; set; }
 
-        public SearchUser SearchUser { get; set; }
+        public virtual SearchUser SearchUser { get; set; }
     }
 }

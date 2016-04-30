@@ -35,5 +35,21 @@ namespace Web.Controllers
 
             return Ok(result);
         }
+
+        public IHttpActionResult Get(int questionId, int page = 0, int pagesize = Config.DefaultPageSize)
+        {
+            var data = _repository.GetAnswersWithQuestionId(questionId, pagesize, page * pagesize).Select(q => ModelFactory.Map(q, Url));
+
+            if (!data.Any()) return NotFound();
+
+            var result = GetWithPaging(
+                data,
+                pagesize,
+                page,
+                _repository.GetNumberOfAnswersWithQuestionId(questionId),
+                Config.CommentsRoute);
+
+            return Ok(result);
+        }
     }
 }

@@ -36,17 +36,20 @@ namespace MySqlDatabase
                 Annotaiton
             *****************************/
             //Renaming
-            modelBuilder.Entity<Annotation>().ToTable("annotation");
+            modelBuilder.Entity<Annotation>().ToTable("annotations");
             modelBuilder.Entity<Annotation>().Property(a => a.Id)
-                .HasColumnName("annotation_id");
-            modelBuilder.Entity<Annotation>()
-                .Property(a => a.Id)
-                .HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
+                .HasColumnName("annotation_id");          
             modelBuilder.Entity<Annotation>().Property(a => a.Body)
                 .HasColumnName("annotation_body");
+            modelBuilder.Entity<Annotation>().Property(a => a.MarkingStart).HasColumnName("annotation_marking_start");
+            modelBuilder.Entity<Annotation>().Property(a => a.MarkingEnd).HasColumnName("annotation_marking_end");
             modelBuilder.Entity<Annotation>()
                 .Property(a => a.SearchUserId)
                 .HasColumnName("search_user_id");
+            //Canceling autoincrementing primary key id
+            modelBuilder.Entity<Annotation>()
+                .Property(a => a.Id)
+                .HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
             //Many-To-One
             modelBuilder.Entity<Annotation>()
                 .HasOptional<Post>(a => a.Post)
@@ -127,8 +130,8 @@ namespace MySqlDatabase
                 .WithMany()
                 .Map(tp =>
                 {
-                    tp.MapLeftKey("id");
-                    tp.MapRightKey("linkpostid");
+                    tp.MapLeftKey("linkpostid");
+                    tp.MapRightKey("id");
                     tp.ToTable("linkedposts");
                 });
             //Many-To-One

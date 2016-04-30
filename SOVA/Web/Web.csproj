@@ -158,6 +158,7 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\LinkedPostsController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Controllers\TagsController.cs" />
     <Compile Include="Controllers\SearchUsersController.cs" />
@@ -165,7 +166,7 @@
     <Compile Include="Controllers\BaseApiController.cs" />
     <Compile Include="Controllers\AnnotationsController.cs" />
     <Compile Include="Controllers\QuestionsController.cs" />
-    <Compile Include="Controllers\AnswerController.cs" />
+    <Compile Include="Controllers\AnswersController.cs" />
     <Compile Include="Controllers\CommentsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

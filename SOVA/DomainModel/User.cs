@@ -10,7 +10,7 @@ namespace DomainModel
         public string DisplayName { get; set; }
         public DateTime CreationDate { get; set; }
         public string Location { get; set; }
-        public int Age { get; set; }
+        public int? Age { get; set; }
 
         public virtual ICollection<Post> Posts { get; set; }
         public virtual ICollection<Comment> Comments { get; set; }

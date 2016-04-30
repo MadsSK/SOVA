@@ -39,6 +39,7 @@ namespace Web.Controllers
 
         public IHttpActionResult Post(AnnotationModel annotationModel)
         {
+            if (annotationModel==null)return BadRequest("Annotation contains no values");
             var annotation = new Annotation
             {
                 Body = annotationModel.Body,

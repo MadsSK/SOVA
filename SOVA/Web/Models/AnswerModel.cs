@@ -11,8 +11,13 @@ namespace Web.Models
         public DateTime CreationDate { get; set; }
         public int Score { get; set; }
         public string Body { get; set; }
-        public int UserId { get; set; }
-        public int QuestionId { get; set; }
-        public virtual List<TagModel> JSONTags { get; set; }
+        public string UserUri { get; set; }
+
+        public string QuestionUri { get; set; }
+
+        public string TagsUri { get; set; }
+        public string CommentsUri { get; set; }
+        public string LinkPostUri { get; set; }
+        
     }
 }
