@@ -10,9 +10,20 @@ namespace Web.Controllers
     {
         private readonly IRepository _repository = new MySqlRepository();
 
+        public IHttpActionResult Get(int id)
+        {
+            var result = ModelFactory.Map(_repository.GetAnswer(id), Url);
+
+            if (result == null){return NotFound();}
+
+            return Ok(result);
+        }
+
         public IHttpActionResult Get(int page = 0, int pagesize = Config.DefaultPageSize)
         {
             var data = _repository.GetAnswersWithPaging(pagesize, pagesize * page).Select(a => ModelFactory.Map(a, Url));
+
+            if (!data.Any()){return NotFound();}
 
             var result = GetWithPaging(
                 data,
@@ -24,21 +35,9 @@ namespace Web.Controllers
             return Ok(result);
         }
 
-        public IHttpActionResult Get(int id)
+        public IHttpActionResult Get(int answerId, int page = 0, int pagesize = Config.DefaultPageSize)
         {
-            var result = ModelFactory.Map(_repository.GetAnswer(id), Url);
-
-            if (result == null)
-            {
-                return NotFound();
-            }
-
-            return Ok(result);
-        }
-
-        public IHttpActionResult Get(int questionId, int page = 0, int pagesize = Config.DefaultPageSize)
-        {
-            var data = _repository.GetAnswersWithQuestionId(questionId, pagesize, page * pagesize).Select(q => ModelFactory.Map(q, Url));
+            var data = _repository.GetCommentsWithAnswerId(answerId, pagesize, page * pagesize).Select(a => ModelFactory.Map(a, _repository.IsPostAQuestion(a.PostId), Url));
 
             if (!data.Any()) return NotFound();
 
@@ -46,7 +45,23 @@ namespace Web.Controllers
                 data,
                 pagesize,
                 page,
-                _repository.GetNumberOfAnswersWithQuestionId(questionId),
+                _repository.GetNumberOfCommentsWithAnswerId(answerId),
+                Config.CommentsRoute);
+
+            return Ok(result);
+        }
+
+        public IHttpActionResult Get(int answerId, int searchUserId, int page = 0, int pagesize = Config.DefaultPageSize)
+        {
+            var data = _repository.GetAnnotationsWithPostIdSearchUserId(answerId, searchUserId, pagesize, page * pagesize).Select(q => ModelFactory.Map(q, false, Url));
+
+            if (!data.Any()) return NotFound();
+
+            var result = GetWithPaging(
+                data,
+                pagesize,
+                page,
+                _repository.GetNumberOfAnnotationsWithPostIdSearchUserId(answerId, searchUserId),
                 Config.CommentsRoute);
 
             return Ok(result);

@@ -13,7 +13,9 @@ namespace Web.Controllers
 
         public IHttpActionResult Get(int page = 0, int pagesize = Config.DefaultPageSize)
         {
-            var data = _repository.GetAnnotationsWithPaging(page, pagesize * page).Select(a => ModelFactory.Map(a, Url));
+            var data = _repository.GetAnnotationsWithPaging(page, pagesize * page).Select(a => ModelFactory.Map(a, _repository.IsPostAQuestion(a.PostId), Url));
+
+            if (!data.Any()){return NotFound();}
 
             var result = GetWithPaging(
                 data,
@@ -27,19 +29,50 @@ namespace Web.Controllers
 
         public IHttpActionResult Get(int id)
         {
-            var result = ModelFactory.Map(_repository.FindAnnotation(id), Url);
 
-            if (result == null)
-            {
-                return NotFound();
-            }
+            var result = _repository.FindAnnotation(id);
+            var annotationModel = ModelFactory.Map(result, _repository.IsPostAQuestion(result.PostId), Url);
+
+            if (annotationModel == null){return NotFound();}
+
+            return Ok(annotationModel);
+        }
+
+        public IHttpActionResult Get(string Route, int postId, int searchUserId, int page = 0, int pagesize = Config.DefaultPageSize)
+        {
+            var data = _repository.GetAnnotationsWithPostIdSearchUserId(postId, searchUserId, pagesize, page * pagesize).Select(a => ModelFactory.Map(a, _repository.IsPostAQuestion(a.PostId), Url));
+
+            if (!data.Any()) return NotFound();
+
+            var result = GetWithPaging(
+                data,
+                pagesize,
+                page,
+                _repository.GetNumberOfAnnotationsWithPostIdSearchUserId(postId, searchUserId),
+                Route);
+
+            return Ok(result);
+        }
+        
+        public IHttpActionResult Get(int commentId, int searchUserId, int page = 0, int pagesize = Config.DefaultPageSize)
+        {
+            var data = _repository.GetAnnotationsWithCommentIdSearchUserId(commentId, searchUserId, pagesize, page * pagesize).Select(a => ModelFactory.Map(a, _repository.IsPostAQuestion(a.PostId), Url));
+
+            if (!data.Any()) return NotFound();
+
+            var result = GetWithPaging(
+                data,
+                pagesize,
+                page,
+                _repository.GetNumberOfAnnotationsWithCommentIdSearchUserId(commentId, searchUserId),
+                Config.CommentsAnnotationsRoute);
 
             return Ok(result);
         }
 
-        public IHttpActionResult Post(AnnotationModel annotationModel)
+        public IHttpActionResult Post(AnnotationEditModel annotationModel)
         {
-            if (annotationModel==null)return BadRequest("Annotation contains no values");
+            if (annotationModel == null)return BadRequest("Annotation contains no values");
             var annotation = new Annotation
             {
                 Body = annotationModel.Body,
@@ -50,7 +83,10 @@ namespace Web.Controllers
                 SearchUserId = annotationModel.SearchUserId
             };
             _repository.Insert(annotation);
-            return Created(Config.AnnotationsRoute, ModelFactory.Map(annotation, Url));
+
+            var question = _repository.IsPostAQuestion(annotationModel.PostId);
+
+            return Created(Config.AnnotationsRoute, ModelFactory.Map(annotation, question, Url));
         }
 
         public IHttpActionResult Delete(int id)
@@ -59,7 +95,7 @@ namespace Web.Controllers
             return Ok();
         }
 
-        public IHttpActionResult Put(int id, AnnotationModel annotationModel)
+        public IHttpActionResult Put(int id, AnnotationEditModel annotationModel)
         {
             var annotation = new Annotation
             {

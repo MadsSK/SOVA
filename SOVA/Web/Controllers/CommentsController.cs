@@ -9,10 +9,22 @@ namespace Web.Controllers
     public class CommentsController : BaseApiController
     {
         private readonly IRepository _repository = new MySqlRepository();
-        
+
+        public IHttpActionResult Get(int id)
+        {
+            var result = _repository.FindComment(id);
+            var commentModel = ModelFactory.Map(result, _repository.IsPostAQuestion(result.PostId), Url);
+
+            if (commentModel == null){return NotFound();}
+
+            return Ok(commentModel);
+        }
+
         public IHttpActionResult Get(int page = 0, int pagesize = Config.DefaultPageSize)
         {
-            var data = _repository.GetCommentsWithPaging(pagesize, page * pagesize).Select(c => ModelFactory.Map(c, Url));
+            var data = _repository.GetCommentsWithPaging(pagesize, page * pagesize).Select(c => ModelFactory.Map(c, _repository.IsPostAQuestion(c.PostId), Url));
+
+            if (!data.Any()) { return NotFound();}
 
             var result = GetWithPaging(
                 data,
@@ -24,19 +36,23 @@ namespace Web.Controllers
             return Ok(result);
         }
 
-
-        public IHttpActionResult Get(int id)
+        public IHttpActionResult Get(int commentId, int searchUserId, int page = 0, int pagesize = Config.DefaultPageSize)
         {
-            var commentModel = ModelFactory.Map(_repository.FindComment(id), Url);
+            var data = _repository.GetAnnotationsWithCommentIdSearchUserId(commentId, searchUserId, pagesize, page * pagesize).Select(a => ModelFactory.Map(a, false, Url));
 
-            if (commentModel == null)
-            {
-                return NotFound();
-            }
+            if (!data.Any()) return NotFound();
 
-            return Ok(commentModel);
+            var result = GetWithPaging(
+                data,
+                pagesize,
+                page,
+                _repository.GetNumberOfAnnotationsWithCommentIdSearchUserId(commentId, searchUserId),
+                Config.CommentsRoute);
+
+            return Ok(result);
         }
 
+        /*
         public IHttpActionResult Get(int questionId, int page = 0, int pagesize = Config.DefaultPageSize)
         {
             var data = _repository.GetCommentsWithQuestionId(questionId, pagesize, page * pagesize).Select(q => ModelFactory.Map(q, Url));
@@ -52,7 +68,23 @@ namespace Web.Controllers
 
             return Ok(result);
         }
-        /*
+
+        public IHttpActionResult Get(int questionId, int answerId, int page = 0, int pagesize = Config.DefaultPageSize)
+        {
+            var data = _repository.GetCommentsWithQuestionIdAnswerId(questionId, answerId, pagesize, page * pagesize).Select(q => ModelFactory.Map(q, Url));
+
+            if (!data.Any()) return NotFound();
+
+            var result = GetWithPaging(
+                data,
+                pagesize,
+                page,
+                _repository.GetNumberOfCommentsWithQuestionIdAnswerId(questionId, answerId),
+                Config.CommentsRoute);
+
+            return Ok(result);
+        }
+        
         public IHttpActionResult Get()
         {
             var comments = _repository.GetComments().Select(p => ModelFactory.Map(p, Url));

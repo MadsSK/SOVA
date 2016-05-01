@@ -22,7 +22,7 @@ namespace Web.Models
         {
             var annotationCfg = new MapperConfiguration(cfg => cfg.CreateMap<Annotation, AnnotationModel>());
             AnnotationMapper = annotationCfg.CreateMapper();
-            
+
             var answerCfg = new MapperConfiguration(cfg => cfg.CreateMap<Answer, AnswerModel>());
             AnswerMapper = answerCfg.CreateMapper();
             
@@ -46,12 +46,27 @@ namespace Web.Models
 
         }
 
-        public static AnnotationModel Map(Annotation annotation, UrlHelper urlHelper)
+        public static AnnotationModel Map(Annotation annotation, bool question, UrlHelper urlHelper)
         {
             if (annotation == null) return null;
 
             var annotationModel = AnnotationMapper.Map<AnnotationModel>(annotation);
-                annotationModel.Url = urlHelper.Link(Config.AnnotationsRoute, new {annotation.Id});
+            annotationModel.Url = urlHelper.Link(Config.AnnotationsRoute, new {annotation.Id});
+            if (question && annotation.PostId != null)
+            {
+                annotationModel.QuestionUri = urlHelper.Link(Config.QuestionsRoute, new { Id = annotation.PostId });
+                annotationModel.AnswerUri = null;
+            }
+            else if (!question && annotation.PostId != null)
+            {
+                annotationModel.QuestionUri = null;
+                annotationModel.AnswerUri = urlHelper.Link(Config.AnswersRoute, new { Id = annotation.PostId });
+            }
+            if (annotation.CommentId != null)
+            {
+                annotationModel.CommentUri = urlHelper.Link(Config.CommentsRoute, new {Id = annotation.CommentId});
+            }
+            annotationModel.SearchUserUri = urlHelper.Link(Config.SearchUsersRoute, new {Id = annotation.SearchUserId});
 
             return annotationModel;
         }
@@ -62,16 +77,30 @@ namespace Web.Models
 
             var answerModel = AnswerMapper.Map<AnswerModel>(answer);
             answerModel.Url = urlHelper.Link(Config.AnswersRoute, new { answer.Id });
-            
+            answerModel.UserUri = urlHelper.Link(Config.UsersRoute, new { Id = answer.UserId });
+            answerModel.QuestionUri = urlHelper.Link(Config.QuestionsRoute, new { Id = answer.QuestionId });
+            answerModel.CommentsUri = urlHelper.Link(Config.AnswersCommentsRoute, new {answerId = answer.Id});
+
             return answerModel;
         }
 
-        public static CommentModel Map(Comment comment, UrlHelper urlHelper)
+        public static CommentModel Map(Comment comment, bool question, UrlHelper urlHelper)
         {
             if (comment == null) return null;
 
             var commentModel = CommentMapper.Map<CommentModel>(comment);
             commentModel.Url = urlHelper.Link(Config.CommentsRoute, new { comment.Id });
+            if (question)
+            {
+                commentModel.QuestionUri = urlHelper.Link(Config.QuestionsRoute, new { Id = comment.PostId });
+                commentModel.AnswerUri = null;
+            }
+            if (!question)
+            {
+                commentModel.QuestionUri = null;
+                commentModel.AnswerUri = urlHelper.Link(Config.AnswersRoute, new { Id = comment.PostId });
+            }
+            commentModel.UserUri = urlHelper.Link(Config.UsersRoute, new { Id = comment.UserId });
 
             return commentModel;
         }
@@ -88,7 +117,7 @@ namespace Web.Models
             questionModel.CommentsUri = urlHelper.Link(Config.QuestionsCommentsRoute, new { questionId = question.Id });
             questionModel.LinkedPostsUri = urlHelper.Link(Config.QuestionsLinkedPostsRoute, new { questionId = question.Id });
             questionModel.AnswersUri = urlHelper.Link(Config.QuestionsAnswersRoute, new { questionId = question.Id });
-
+            
             return questionModel;
         }
 
@@ -98,6 +127,7 @@ namespace Web.Models
 
             var searchModel = SearchMapper.Map<SearchModel>(search);
             searchModel.Url = urlHelper.Link(Config.SearchesRoute, new { search.Id });
+            searchModel.SearchUserUri = urlHelper.Link(Config.SearchUsersRoute, new {search.SearchUserId});
 
             return searchModel;
         }
@@ -108,6 +138,7 @@ namespace Web.Models
 
             var searchUserModel = SearchUserMapper.Map<SearchUserModel>(searchUser);
             searchUserModel.Url = urlHelper.Link(Config.SearchUsersRoute, new { searchUser.Id });
+            searchUserModel.AnnotationsUri = urlHelper.Link(Config.SearchUsersAnnotationsRoute, new { searchUserId = searchUser.Id });
 
             return searchUserModel;
         }
@@ -118,6 +149,7 @@ namespace Web.Models
 
             var tagModel = TagMapper.Map<TagModel>(tag);
             tagModel.Url = urlHelper.Link(Config.TagsRoute, new { tag.Id });
+            tagModel.QuestionsUri = urlHelper.Link(Config.TagsQuestionsRoute, new {tagId = tag.Id});
 
             return tagModel;
         }

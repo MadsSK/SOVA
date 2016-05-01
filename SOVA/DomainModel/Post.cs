@@ -18,7 +18,7 @@ namespace DomainModel
         public virtual ICollection<Tag> Tags { get; set; }
         public virtual ICollection<Comment> Comments { get; set; }
         public virtual ICollection<Annotation> Annotations { get; set; } 
-        public virtual ICollection<SearchUser> SearchUsers { get; set; }
+        public virtual ICollection<SearchUser> Favorites { get; set; }
         public virtual ICollection<Post> LinkedPosts { get; set; }
     }
 }

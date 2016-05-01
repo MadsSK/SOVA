@@ -15,9 +15,7 @@ namespace Web.Models
 
         public string QuestionUri { get; set; }
 
-        public string TagsUri { get; set; }
         public string CommentsUri { get; set; }
-        public string LinkPostUri { get; set; }
         
     }
 }

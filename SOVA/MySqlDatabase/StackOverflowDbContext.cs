@@ -117,8 +117,8 @@ namespace MySqlDatabase
                         tp.ToTable("tags_posts");
                     });
             modelBuilder.Entity<Post>()
-                .HasMany<SearchUser>(p => p.SearchUsers)
-                .WithMany(s => s.Posts)
+                .HasMany<SearchUser>(p => p.Favorites)
+                .WithMany(s => s.Favorites)
                 .Map(tp =>
                 {
                     tp.MapLeftKey("post_id");
@@ -185,8 +185,8 @@ namespace MySqlDatabase
                 .WithRequired(s => s.SearchUser);
             //Many-To-Many
             modelBuilder.Entity<SearchUser>()
-                .HasMany<Post>(su => su.Posts)
-                .WithMany(p => p.SearchUsers)
+                .HasMany<Post>(su => su.Favorites)
+                .WithMany(p => p.Favorites)
                 .Map(f =>
                 {
                     f.MapLeftKey("post_id");
