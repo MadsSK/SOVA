@@ -11,7 +11,12 @@ namespace Web.Controllers
 {
     public class AnnotationsController : BaseApiController
     {
-        private readonly IRepository _repository = new MySqlRepository();
+        private readonly IRepository _repository;
+        
+        public AnnotationsController(IRepository _repository)
+        {
+            this._repository = _repository;
+        }
 
         public IHttpActionResult Get(int page = 0, int pagesize = Config.DefaultPageSize)
         {
@@ -46,13 +51,13 @@ namespace Web.Controllers
         {
             bool question = true;
             var result = _repository.FindQuestionAnnotation(id);
-            
+
             if (result == null)
             {
                 result = _repository.FindAnswerAnnotation(id);
                 question = false;
                 if (result == null)
-                {
+            {
                     result = _repository.FindCommentAnnotation(id);
                 }
             }
@@ -86,7 +91,7 @@ namespace Web.Controllers
         {
             if (!_repository.DeleteAnnotation(id)) return NotFound();
             return Ok();
-        }
+            }
 
         public IHttpActionResult Put(int id, AnnotationModel annotationModel)
         {

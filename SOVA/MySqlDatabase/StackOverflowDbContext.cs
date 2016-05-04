@@ -38,7 +38,7 @@ namespace MySqlDatabase
             //Renaming
             modelBuilder.Entity<Annotation>().ToTable("annotations");
             modelBuilder.Entity<Annotation>().Property(a => a.Id)
-                .HasColumnName("annotation_id");          
+                .HasColumnName("annotation_id");
             modelBuilder.Entity<Annotation>().Property(a => a.Body)
                 .HasColumnName("annotation_body");
             modelBuilder.Entity<Annotation>().Property(a => a.MarkingStart).HasColumnName("annotation_marking_start");
@@ -155,9 +155,6 @@ namespace MySqlDatabase
             //Renaming
             modelBuilder.Entity<Search>().ToTable("search_history");
             modelBuilder.Entity<Search>().Property(s => s.Id).HasColumnName("search_id");
-            modelBuilder.Entity<Annotation>()
-                .Property(a => a.Id)
-                .HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
             modelBuilder.Entity<Search>().Property(s => s.SearchUserId).HasColumnName("search_user_id");
             modelBuilder.Entity<Search>().Property(s => s.SearchString).HasColumnName("search_string");
             modelBuilder.Entity<Search>().Property(s => s.DateTime).HasColumnName("search_date_time");
