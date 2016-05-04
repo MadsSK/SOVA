@@ -8,11 +8,17 @@ namespace Web.Controllers
 {
     public class AnnotationsController : BaseApiController
     {
-        private readonly IRepository _repository = new MySqlRepository();
+        private readonly IRepository _repository;
+        
+        public AnnotationsController(IRepository _repository)
+        {
+            this._repository = _repository;
+        }
 
         public IHttpActionResult Get(int page = 0, int pagesize = Config.DefaultPageSize)
         {
-            var data = _repository.GetAnnotationsWithPaging(page, pagesize * page).Select(a => ModelFactory.Map(a, Url));
+            var data = _repository.GetAnnotationsWithPaging(page, pagesize * page)
+                .Select(a => ModelFactory.Map(a, Url));
 
             var result = GetWithPaging(
                 data,

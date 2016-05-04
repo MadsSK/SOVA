@@ -8,20 +8,9 @@ using System.Threading.Tasks;
 using DomainModel;
 using MySqlDatabase;
 
-/*
- * Issues right now:
- * - It seems that our data access layer is only used in the domain model test project, not the actual
- *   domain model.
- * - 
- */
-
 namespace DataAccessLayer
 {
 
-    /// <summary>
-    /// Uses a combination of object models from the domain layer and mapping from the database layer
-    /// to define how data should be accessed by methods in the web layer.
-    /// </summary>
     public class MySqlRepository : IRepository
     {
         /**************************************

@@ -8,7 +8,12 @@ namespace Web.Controllers
 {
     public class AnswersController : BaseApiController
     {
-        private readonly IRepository _repository = new MySqlRepository();
+        private readonly IRepository _repository;
+
+        public AnswersController(IRepository _repository)
+        {
+            this._repository = _repository;
+        }
 
         public IHttpActionResult Get(int page = 0, int pagesize = Config.DefaultPageSize)
         {

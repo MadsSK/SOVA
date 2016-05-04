@@ -8,7 +8,12 @@ namespace Web.Controllers
 {
     public class CommentsController : BaseApiController
     {
-        private readonly IRepository _repository = new MySqlRepository();
+        private readonly IRepository _repository;
+
+        public CommentsController(IRepository _repository)
+        {
+            this._repository = _repository;
+        }
 
         public IHttpActionResult Get(int page = 0, int pagesize = Config.DefaultPageSize)
         {

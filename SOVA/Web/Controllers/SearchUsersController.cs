@@ -8,7 +8,12 @@ namespace Web.Controllers
 {
     public class SearchUsersController : BaseApiController
     {
-        private readonly IRepository _repository = new MySqlRepository();
+        private readonly IRepository _repository;
+
+        public SearchUsersController(IRepository _repository)
+        {
+            this._repository = _repository;
+        }
 
         public IHttpActionResult Get(int id)
         {
