@@ -1,17 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DomainModel
 {
-    public partial class SearchUser
+    public class SearchUser
     {
         public int Id { get; set; }
         public string MacAdresse { get; set; }
-        public virtual ICollection<Favorit> Favorits { get; set; }
+
+        public virtual ICollection<Post> Favorites { get; set; }
+        public virtual ICollection<Annotation> Annotations { get; set; }
+        public virtual ICollection<Search> Searches { get; set; }
     }
 }

@@ -63,6 +63,7 @@
   <ItemGroup>
     <Compile Include="MysqlDatabaseTestClass.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StackOverflowDbContextTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataAccessLayer\DataAccessLayer.csproj">
