@@ -9,13 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccessLayer", "DataAcce
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MySqlDatabase", "MySqlDatabase\MySqlDatabase.csproj", "{CA32631A-46D4-44EC-A2E5-918DEE4B1C6F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccessLayerUnitTestProject", "DataAccessLayerUnitTestProject\DataAccessLayerUnitTestProject.csproj", "{CEEF0381-1FA5-4A9B-8318-2E6F6457DB7E}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DomainModel", "DomainModel\DomainModel.csproj", "{FBBF6B6F-63C7-4E28-BF14-2FBB77E43DDE}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DomainModelUnitTestProject", "DomainModelUnitTestProject\DomainModelUnitTestProject.csproj", "{BFB7CAD2-922B-4B1A-887E-31DDD69D6E13}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MySqlDatabaseUnitTestProject", "MySqlDatabaseUnitTestProject\MySqlDatabaseUnitTestProject.csproj", "{C4FE0BDD-2AB9-4169-965D-72AC84187F26}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,22 +29,10 @@ Global
 		{CA32631A-46D4-44EC-A2E5-918DEE4B1C6F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CA32631A-46D4-44EC-A2E5-918DEE4B1C6F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CA32631A-46D4-44EC-A2E5-918DEE4B1C6F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CEEF0381-1FA5-4A9B-8318-2E6F6457DB7E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CEEF0381-1FA5-4A9B-8318-2E6F6457DB7E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CEEF0381-1FA5-4A9B-8318-2E6F6457DB7E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CEEF0381-1FA5-4A9B-8318-2E6F6457DB7E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{FBBF6B6F-63C7-4E28-BF14-2FBB77E43DDE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{FBBF6B6F-63C7-4E28-BF14-2FBB77E43DDE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FBBF6B6F-63C7-4E28-BF14-2FBB77E43DDE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FBBF6B6F-63C7-4E28-BF14-2FBB77E43DDE}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BFB7CAD2-922B-4B1A-887E-31DDD69D6E13}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BFB7CAD2-922B-4B1A-887E-31DDD69D6E13}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BFB7CAD2-922B-4B1A-887E-31DDD69D6E13}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BFB7CAD2-922B-4B1A-887E-31DDD69D6E13}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C4FE0BDD-2AB9-4169-965D-72AC84187F26}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C4FE0BDD-2AB9-4169-965D-72AC84187F26}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C4FE0BDD-2AB9-4169-965D-72AC84187F26}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C4FE0BDD-2AB9-4169-965D-72AC84187F26}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
