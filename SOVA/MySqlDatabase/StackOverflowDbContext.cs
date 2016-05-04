@@ -179,7 +179,6 @@ namespace MySqlDatabase
             modelBuilder.Entity<SearchUser>()
                 .HasMany<Annotation>(su => su.Annotations)
                 .WithRequired(a => a.SearchUser);
-            //One-To-Many
             modelBuilder.Entity<SearchUser>()
                 .HasMany<Search>(su => su.Searches)
                 .WithRequired(s => s.SearchUser);

@@ -59,7 +59,7 @@ namespace Web.Controllers
 
         public IHttpActionResult Get(int questionId, int searchUserId, int page = 0, int pagesize = Config.DefaultPageSize)
         {
-            var data = _repository.GetAnnotationsWithPostIdSearchUserId(questionId, searchUserId, pagesize, page * pagesize).Select(q => ModelFactory.Map(q, true, Url));
+            var data = _repository.GetAnnotationsOnQuestionWithQuestionIdSearchUserId(questionId, searchUserId, pagesize, page * pagesize).Select(q => ModelFactory.Map(q, true, Url));
 
             if (!data.Any()) return NotFound();
 
@@ -67,13 +67,12 @@ namespace Web.Controllers
                 data,
                 pagesize,
                 page,
-                _repository.GetNumberOfAnnotationsWithPostIdSearchUserId(questionId, searchUserId),
+                _repository.GetNumberOfAnnotationsOnQuestionWithQuestionIdSearchUserId(questionId, searchUserId),
                 Config.TagsRoute);
 
             return Ok(result);
         }
 
-        /*
         public IHttpActionResult Get(string searchString = "", int page = 0, int pagesize = Config.DefaultPageSize)
         {
             var data = _repository.SearchQuestionsWithPaging(searchString, pagesize, page * pagesize).Select(q => ModelFactory.Map(q, Url));
@@ -100,14 +99,5 @@ namespace Web.Controllers
 
             return Ok(result);
         }        
-        
-        public IHttpActionResult Create(QuestionModel question) 
-        {
-            
-        }
-        public IHttpActionResult Update(int id)
-        {
-
-        }*/
     }
 }

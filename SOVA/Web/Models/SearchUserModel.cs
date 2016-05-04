@@ -9,6 +9,8 @@ namespace Web.Models
     {
         public string Url { get; set; }
         public string MacAdresse { get; set; }
-        public string AnnotationsUri { get; set; }
+        public string AnnotationsUrl { get; set; }
+        public string FavoritesUrl { get; set; }
+        public string SearchsUrl { get; set; }
     }
 }

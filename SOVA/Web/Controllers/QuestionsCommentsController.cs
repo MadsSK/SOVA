@@ -27,7 +27,7 @@ namespace Web.Controllers
                 pagesize,
                 page,
                 _repository.GetNumberOfCommentsWithQuestionId(questionId),
-                Config.TagsRoute);
+                Config.QuestionsCommentsRoute);
 
             return Ok(result);
         }

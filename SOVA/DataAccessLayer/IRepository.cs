@@ -8,16 +8,14 @@ namespace DataAccessLayer
     public interface IRepository 
     {
         // Annotation
-        bool IsPostAQuestion(int? postId);
-        Annotation FindAnnotation(int id);
+        Annotation FindQuestionAnnotation(int id);
+        Annotation FindAnswerAnnotation(int id);
+        Annotation FindCommentAnnotation(int id);
         int GetNumberOfAnnotations();
-        int GetNumberOfAnnotationsWithPostIdSearchUserId(int postId, int searchUserId);      
         int GetNumberOfAnnotationsWithCommentIdSearchUserId(int commentId, int searchUserId);
-        IEnumerable<Annotation> GetAnnotationsWithPaging(int limit, int offset);
         IEnumerable<Annotation> GetAnnotations(string searchString);
-        IEnumerable<Annotation> GetAllAnnotations();
-        IEnumerable<Annotation> GetAnnotationsWithPostIdSearchUserId(int postId, int searchUserId, int limit, int offset);
         IEnumerable<Annotation> GetAnnotationsWithCommentIdSearchUserId(int commentId, int searchUserId, int limit, int offset);
+        IEnumerable<Annotation> GetAnnotationsWithPaging(int limit, int offset);
         
         // Annotation - CRUD
         void Insert(Annotation annotation);
@@ -29,39 +27,41 @@ namespace DataAccessLayer
         int GetNumberOfAnswers();
         int GetNumberOfAnswersWithQuestionId(int questionId);
         int GetNumberOfCommentsWithAnswerId(int answerId);
+        int GetNumberOfAnnotationsWithAnswerIdSearchUserId(int answerId, int searchUserId);
         IEnumerable<Comment> GetCommentsWithAnswerId(int answerId, int limit, int offset);
         IEnumerable<Answer> GetAnswers(string searchString);
         IEnumerable<Answer> GetAnswersWithPaging(int limit, int offset);
-        IEnumerable<Answer> GetAnswersWithPaging(int Id, int limit, int offset);
         IEnumerable<Answer> GetAnswersWithQuestionId(int questionId, int limit, int offset);
         IEnumerable<Answer> GetAnswersWithLinkedPostId(int linkedPostId, int limit, int offset);
+        IEnumerable<Annotation> GetAnnotationsWithAnswerIdSearchUserId(int answerId, int searchUserId, int limit, int offset);
 
         // Comment
         Comment FindComment(int id);
+        Comment FindCommentOnQuestion(int commentId);
+        Comment FindCommentOnAnswer(int answerId);
         int GetNumberOfComments();
         int GetNumberOfCommentsWithQuestionId(int questionId);
-        int GetNumberOfCommentsWithQuestionIdAnswerId(int questionId, int answerId);
         IEnumerable<Comment> GetComments();
         IEnumerable<Comment> GetComments(string searchString);
         IEnumerable<Comment> GetCommentsWithPaging(int limit, int offset);
         IEnumerable<Comment> GetCommentsWithQuestionId(int questionId, int limit, int offset);
-        IEnumerable<Comment> GetCommentsWithQuestionIdAnswerId(int questionId, int answerId, int limit, int offset);
-
-        //Post
-        int GetNumberOfPosts(int questionId);
+        
+        // LinkedPost
+        int GetNumberOfLinkedPosts(int questionId);
 
         // Question
         Question GetQuestion(int id);
+        int GetNumberOfQuestions();
         int GetNumberOfQuestionsWithTagId(int tagId);
+        int GetNumberOfQuestionsSearchResults(string searchString);
+        int GetNumberOfAnnotationsOnQuestionWithQuestionIdSearchUserId(int questionId, int searchUserId);
         IEnumerable<Question> GetAllQuestions();
         IEnumerable<Question> SearchQuestions(string searchString);
         IEnumerable<Question> GetQuestionsWithPaging(int limit, int offset);
-        IEnumerable<Question> GetQuestionsWithPaging(int Id, int limit, int offset);
         IEnumerable<Question> SearchQuestionsWithPaging(string searchString, int limit, int offset);
         IEnumerable<Question> GetQuestionsWithLinkPostId(int linkedPostId, int limit, int offset);
         IEnumerable<Question> GetQuestionsWithTagId(int tagId, int limit, int offset);
-        int GetNumberOfQuestions();
-        int GetNumberOfQuestionsSearchResults(string searchString);
+        IEnumerable<Annotation> GetAnnotationsOnQuestionWithQuestionIdSearchUserId(int questionId, int searchUserId, int limit, int Offset);
 
         // Search
         Search FindSearch(int id);
@@ -72,8 +72,9 @@ namespace DataAccessLayer
         int GetNumberOfSearchUsers();
         int GetNumberOfAnnotationsWithSearchUserId(int searchUserId);
         SearchUser FindSearchUser(int id);
-        int GetNumberOfFavoritesWithSearchUserId(int searchUserId);
+        int GetNumberOfSearchsWithSearchUserId(int searchUserId);
         IEnumerable<SearchUser> GetAllSearchUsers(int limit, int offset);
+        IEnumerable<Search> GetSearchsWithSearchUserId(int searchUserId, int limit, int offset);
         IEnumerable<Annotation> GetAnnotationsWithSearchUserId(int searchUserId, int limit, int offset);
         
         // Search User - CRUD
@@ -88,16 +89,15 @@ namespace DataAccessLayer
         IEnumerable<Tag> GetTags(int limit, int offset);
         IEnumerable<Tag> GetTagsWithQuestionId(int questionId, int limit, int offset);
         
-
         // User
         User FindUser(int id);
         int GetNumbersOfUsers();
+        int GetNumbersOfAnswersWithUserId(int userId);
+        int GetNumbersOfQuestionsWithUserId(int userId);
+        int GetNumbersOfCommentsWithUserId(int userId);
         IEnumerable<User> GetUsers(int limit, int offset);
-        // User - NOT used
-        IEnumerable<User> SearchUsersWithPaging(string searchString, int limit, int offset);
-        int GetNumberOfUsersSearchResults(string searchString);
-
-
-        
-    }
+        IEnumerable<Answer> GetAnswersWithUserId(int userId, int limit, int offset);
+        IEnumerable<Question> GetQuestionsWithUserId(int userId, int limit, int offset);
+        IEnumerable<Comment> GetCommentsWithUserId(int userId, int limit, int offset);
+        }
 }

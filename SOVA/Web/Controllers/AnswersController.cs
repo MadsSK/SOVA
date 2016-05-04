@@ -37,7 +37,7 @@ namespace Web.Controllers
 
         public IHttpActionResult Get(int answerId, int page = 0, int pagesize = Config.DefaultPageSize)
         {
-            var data = _repository.GetCommentsWithAnswerId(answerId, pagesize, page * pagesize).Select(a => ModelFactory.Map(a, _repository.IsPostAQuestion(a.PostId), Url));
+            var data = _repository.GetCommentsWithAnswerId(answerId, pagesize, page * pagesize).Select(a => ModelFactory.Map(a, false, Url));
 
             if (!data.Any()) return NotFound();
 
@@ -53,7 +53,7 @@ namespace Web.Controllers
 
         public IHttpActionResult Get(int answerId, int searchUserId, int page = 0, int pagesize = Config.DefaultPageSize)
         {
-            var data = _repository.GetAnnotationsWithPostIdSearchUserId(answerId, searchUserId, pagesize, page * pagesize).Select(q => ModelFactory.Map(q, false, Url));
+            var data = _repository.GetAnnotationsWithAnswerIdSearchUserId(answerId, searchUserId, pagesize, page * pagesize).Select(q => ModelFactory.Map(q, false, Url));
 
             if (!data.Any()) return NotFound();
 
@@ -61,7 +61,7 @@ namespace Web.Controllers
                 data,
                 pagesize,
                 page,
-                _repository.GetNumberOfAnnotationsWithPostIdSearchUserId(answerId, searchUserId),
+                _repository.GetNumberOfAnnotationsWithAnswerIdSearchUserId(answerId, searchUserId),
                 Config.CommentsRoute);
 
             return Ok(result);

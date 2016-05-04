@@ -10,17 +10,13 @@ namespace Web.Models
         public string Body { get; set; }
         public int MarkingStart { get; set; }
         public int MarkingEnd { get; set; }
-        public string QuestionUri { get; set; }
-        public string AnswerUri { get; set; }
-        public string CommentUri { get; set; }
-        public string SearchUserUri { get; set; }
+        public int? PostId { get; set; }
+        public int? CommentId { get; set; }
+        public int SearchUserId { get; set; }
+        public string QuestionUrl { get; set; }
+        public string AnswerUrl { get; set; }
+        public string CommentUrl { get; set; }
+        public string SearchUserUrl { get; set; }
 
-        /*
-        public virtual PostModel Post { get; set; }
-
-        public virtual CommentModel Comment { get; set; }
-
-        public virtual SearchUserModel SearchUser { get; set; }
-        */
     }
 }

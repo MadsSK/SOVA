@@ -34,21 +34,5 @@ namespace Web.Controllers
 
             return Ok(result);
         }
-
-        public IHttpActionResult Get(int searchUserId, int page = 0, int pagesize = Config.DefaultPageSize)
-        {
-            var data = _repository.GetAnnotationsWithSearchUserId(searchUserId, pagesize, page * pagesize).Select(a => ModelFactory.Map(a, _repository.IsPostAQuestion(a.PostId), Url));
-
-            if (!data.Any()) return NotFound();
-
-            var result = GetWithPaging(
-                data,
-                pagesize,
-                page,
-                _repository.GetNumberOfAnnotationsWithSearchUserId(searchUserId),
-                Config.SearchUsersRoute);
-
-            return Ok(result);
-        }
     }
 }

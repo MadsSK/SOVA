@@ -107,13 +107,19 @@ namespace Web
             config.Routes.MapHttpRoute(
                 name: Config.SearchUsersAnnotationsRoute,
                 routeTemplate: "api/" + version + "searchusers/{searchUserId}/annotations",
-                defaults: new { controller = "SearchUsers", searchUserId = "" }
+                defaults: new { controller = "SearchUsersAnnotations", searchUserId = "" }
             );
 
             config.Routes.MapHttpRoute(
                 name: Config.SearchUsersFavoritesRoute,
                 routeTemplate: "api/" + version + "searchusers/{searchUserId}/favorites",
-                defaults: new { controller = "SearchUsers", searchUserId = "" }
+                defaults: new { controller = "SearchUsersFavorites", searchUserId = "" }
+            );
+
+            config.Routes.MapHttpRoute(
+                name: Config.SearchUsersSearchsRoute,
+                routeTemplate: "api/" + version + "searchusers/{searchUserId}/searchs",
+                defaults: new { controller = "SearchUsersSearchs", searchUserId = "" }
             );
 
             // Tags Routes
@@ -134,6 +140,24 @@ namespace Web
                 name: Config.UsersRoute,
                 routeTemplate: "api/" + version + "users/{id}",
                 defaults: new { controller = "Users", id = RouteParameter.Optional }
+            );
+
+            config.Routes.MapHttpRoute(
+                name: Config.UsersAnswersRoute,
+                routeTemplate: "api/" + version + "users/{userId}answers",
+                defaults: new { controller = "UsersAnswers", userId = ""}
+            );
+
+            config.Routes.MapHttpRoute(
+                name: Config.UsersQuestionsRoute,
+                routeTemplate: "api/" + version + "users/{userId}questions",
+                defaults: new { controller = "UsersQuestions", userId = "" }
+            );
+
+            config.Routes.MapHttpRoute(
+                name: Config.UsersCommentsRoute,
+                routeTemplate: "api/" + version + "users/{userId}comments",
+                defaults: new { controller = "UsersComments", userId = "" }
             );
 
             config.Formatters.JsonFormatter.SerializerSettings.ContractResolver

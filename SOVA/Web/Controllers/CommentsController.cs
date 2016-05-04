@@ -1,4 +1,7 @@
-﻿using System.Linq;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using System.Web.Http;
 using DataAccessLayer;
 using Web.Models;
@@ -12,19 +15,40 @@ namespace Web.Controllers
 
         public IHttpActionResult Get(int id)
         {
-            var result = _repository.FindComment(id);
-            var commentModel = ModelFactory.Map(result, _repository.IsPostAQuestion(result.PostId), Url);
+            bool question = true;
+            var result = _repository.FindCommentOnQuestion(id);
 
-            if (commentModel == null){return NotFound();}
+            if (result == null)
+            {
+                result = _repository.FindCommentOnAnswer(id);
+                question = false;
+            }
+            var commentModel = ModelFactory.Map(result, question, Url);
+
+            if (commentModel == null) { return NotFound(); }
 
             return Ok(commentModel);
         }
 
         public IHttpActionResult Get(int page = 0, int pagesize = Config.DefaultPageSize)
         {
-            var data = _repository.GetCommentsWithPaging(pagesize, page * pagesize).Select(c => ModelFactory.Map(c, _repository.IsPostAQuestion(c.PostId), Url));
+            List<CommentModel> data = new List<CommentModel>();
+            var comments = _repository.GetCommentsWithPaging(pagesize, pagesize*page);
 
-            if (!data.Any()) { return NotFound();}
+            if (!comments.Any()) { return NotFound(); }
+
+            foreach (var comment in comments)
+            {
+                if (_repository.GetQuestion(comment.PostId) != null)
+                {
+                    data.Add(ModelFactory.Map(comment, true, Url));
+                        
+                }
+                else
+                {
+                    data.Add(ModelFactory.Map(comment, false, Url));
+                }
+            }
 
             var result = GetWithPaging(
                 data,

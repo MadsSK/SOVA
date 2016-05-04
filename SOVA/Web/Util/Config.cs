@@ -29,6 +29,7 @@
         public const string SearchUsersRoute = "SearchUserApi";
         public const string SearchUsersAnnotationsRoute = "SearchUserAnnotationApi";
         public const string SearchUsersFavoritesRoute = "SearchUsersFavoritesRoute";
+        public const string SearchUsersSearchsRoute = "SearchUserSearchApi";
 
         // Tags
         public const string TagsRoute = "TagApi";
@@ -36,8 +37,11 @@
 
         // Users
         public const string UsersRoute = "UserApi";
+        public const string UsersAnswersRoute = "UserAnswerApi";
+        public const string UsersQuestionsRoute = "UserQuestionApi";
+        public const string UsersCommentsRoute = "UserCommentApi";
 
         public const int DefaultPageSize = 10;
-
+        
     }
 }

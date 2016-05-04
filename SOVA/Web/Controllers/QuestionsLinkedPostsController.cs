@@ -31,7 +31,7 @@ namespace Web.Controllers
                 data,
                 pagesize,
                 page,
-                _repository.GetNumberOfPosts(questionId),
+                _repository.GetNumberOfLinkedPosts(questionId),
                 Config.QuestionsLinkedPostsRoute);
 
             return Ok(result);

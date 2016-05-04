@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Web.Http;
 using DataAccessLayer;
 using DomainModel;
@@ -13,9 +15,22 @@ namespace Web.Controllers
 
         public IHttpActionResult Get(int page = 0, int pagesize = Config.DefaultPageSize)
         {
-            var data = _repository.GetAnnotationsWithPaging(page, pagesize * page).Select(a => ModelFactory.Map(a, _repository.IsPostAQuestion(a.PostId), Url));
+            List<AnnotationModel> data = new List<AnnotationModel>();
+            var annotations = _repository.GetAnnotationsWithPaging(page, pagesize*page);
 
-            if (!data.Any()){return NotFound();}
+            if (!annotations.Any()){return NotFound();}
+
+            foreach (var annotation in annotations)
+            {
+                if (_repository.GetQuestion((int)annotation.PostId) != null)
+                {
+                    data.Add(ModelFactory.Map(annotation, true, Url));
+                }
+                else
+                {
+                    data.Add(ModelFactory.Map(annotation, false, Url));
+                }
+            }
 
             var result = GetWithPaging(
                 data,
@@ -29,48 +44,26 @@ namespace Web.Controllers
 
         public IHttpActionResult Get(int id)
         {
-
-            var result = _repository.FindAnnotation(id);
-            var annotationModel = ModelFactory.Map(result, _repository.IsPostAQuestion(result.PostId), Url);
+            bool question = true;
+            var result = _repository.FindQuestionAnnotation(id);
+            
+            if (result == null)
+            {
+                result = _repository.FindAnswerAnnotation(id);
+                question = false;
+                if (result == null)
+                {
+                    result = _repository.FindCommentAnnotation(id);
+                }
+            }
+            var annotationModel = ModelFactory.Map(result, question, Url);
 
             if (annotationModel == null){return NotFound();}
 
             return Ok(annotationModel);
         }
 
-        public IHttpActionResult Get(string Route, int postId, int searchUserId, int page = 0, int pagesize = Config.DefaultPageSize)
-        {
-            var data = _repository.GetAnnotationsWithPostIdSearchUserId(postId, searchUserId, pagesize, page * pagesize).Select(a => ModelFactory.Map(a, _repository.IsPostAQuestion(a.PostId), Url));
-
-            if (!data.Any()) return NotFound();
-
-            var result = GetWithPaging(
-                data,
-                pagesize,
-                page,
-                _repository.GetNumberOfAnnotationsWithPostIdSearchUserId(postId, searchUserId),
-                Route);
-
-            return Ok(result);
-        }
-        
-        public IHttpActionResult Get(int commentId, int searchUserId, int page = 0, int pagesize = Config.DefaultPageSize)
-        {
-            var data = _repository.GetAnnotationsWithCommentIdSearchUserId(commentId, searchUserId, pagesize, page * pagesize).Select(a => ModelFactory.Map(a, _repository.IsPostAQuestion(a.PostId), Url));
-
-            if (!data.Any()) return NotFound();
-
-            var result = GetWithPaging(
-                data,
-                pagesize,
-                page,
-                _repository.GetNumberOfAnnotationsWithCommentIdSearchUserId(commentId, searchUserId),
-                Config.CommentsAnnotationsRoute);
-
-            return Ok(result);
-        }
-
-        public IHttpActionResult Post(AnnotationEditModel annotationModel)
+        public IHttpActionResult Post(AnnotationModel annotationModel)
         {
             if (annotationModel == null)return BadRequest("Annotation contains no values");
             var annotation = new Annotation
@@ -84,7 +77,7 @@ namespace Web.Controllers
             };
             _repository.Insert(annotation);
 
-            var question = _repository.IsPostAQuestion(annotationModel.PostId);
+            bool question = _repository.GetQuestion((int) annotationModel.PostId) != null;
 
             return Created(Config.AnnotationsRoute, ModelFactory.Map(annotation, question, Url));
         }
@@ -95,7 +88,7 @@ namespace Web.Controllers
             return Ok();
         }
 
-        public IHttpActionResult Put(int id, AnnotationEditModel annotationModel)
+        public IHttpActionResult Put(int id, AnnotationModel annotationModel)
         {
             var annotation = new Annotation
             {

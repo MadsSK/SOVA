@@ -12,15 +12,15 @@ namespace Web.Models
         public int Score { get; set; }
         public string Title { get; set; }
         public string Body { get; set; }
-        public string UserUri { get; set; }
+        public string UserUrl { get; set; }
 
         public DateTime? ClosedDate { get; set; }
         public int AcceptedAnswerId { get; set; }
 
-        public string TagsUri { get; set; }
-        public string CommentsUri { get; set; }
-        public string LinkedPostsUri { get; set; }
+        public string TagsUrl { get; set; }
+        public string CommentsUrl { get; set; }
+        public string LinkedPostsUrl { get; set; }
 
-        public string AnswersUri { get; set; }
+        public string AnswersUrl { get; set; }
     }
 }
