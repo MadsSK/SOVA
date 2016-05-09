@@ -8,7 +8,12 @@ namespace Web.Controllers
 {
     public class TagsController : BaseApiController
     {
-        private readonly IRepository _repository = new MySqlRepository();
+        private readonly IRepository _repository;
+
+        public TagsController(IRepository _repository)
+        {
+            this._repository = _repository;
+        }
 
         public IHttpActionResult Get(int id)
         {
