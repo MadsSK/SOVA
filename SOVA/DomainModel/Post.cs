@@ -2,22 +2,23 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DomainModel
 {
-    public partial class Post
+    public class Post
     {
         public int Id { get; set; }
         public DateTime CreationDate { get; set; }
         public int Score { get; set; }
         public string Body { get; set; }
-        public DateTime CloseDate { get; set; }
-        public string Title { get; set; }
-        public int OwnerUserId { get; set; }
-        public virtual ICollection<Favorit> Favorits { get; set; }
-        public virtual ICollection<TagPost> TagPosts { get; set; }
+        public int UserId { get; set; }
+
+        public virtual User User { get; set; } 
+
+        public virtual ICollection<Tag> Tags { get; set; }
+        public virtual ICollection<Comment> Comments { get; set; }
+        public virtual ICollection<Annotation> Annotations { get; set; } 
+        public virtual ICollection<SearchUser> Favorites { get; set; }
+        public virtual ICollection<Post> LinkedPosts { get; set; }
     }
 }

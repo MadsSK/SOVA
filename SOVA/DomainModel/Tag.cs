@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace DomainModel
 {
@@ -10,6 +7,7 @@ namespace DomainModel
     {
         public int Id { get; set; }
         public string Body { get; set; }
-        public virtual ICollection<TagPost> TagPosts { get; set; } 
+
+        public virtual ICollection<Post> Posts { get; set; } 
     }
 }
