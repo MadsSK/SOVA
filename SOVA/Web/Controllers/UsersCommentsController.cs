@@ -9,7 +9,6 @@ namespace Web.Controllers
 {
     public class UsersCommentsController : BaseApiController
     {
-        private int answersPage = 0;
         private readonly IRepository _repository = new MySqlRepository();
 
         public IHttpActionResult Get(int userId, int page = 0, int pagesize = Config.DefaultPageSize)

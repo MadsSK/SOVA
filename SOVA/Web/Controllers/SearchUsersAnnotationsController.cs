@@ -9,8 +9,6 @@ namespace Web.Controllers
 {
     public class SearchUsersAnnotationsController : BaseApiController
     {
-        private int answersPage = 0;
-        private int commentsPage = 0;
         private readonly IRepository _repository = new MySqlRepository();
 
         public IHttpActionResult Get(int searchUserId, int page = 0, int pagesize = Config.DefaultPageSize)
