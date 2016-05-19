@@ -78,7 +78,7 @@ namespace Web.Controllers
             return Ok(result);
         }
 
-        public IHttpActionResult Get(string searchString = "", int page = 0, int pagesize = Config.DefaultPageSize)
+        public IHttpActionResult Get(string searchString, int page = 0, int pagesize = Config.DefaultPageSize)
         {
             var data = _repository.SearchQuestionsWithPaging(searchString, pagesize, page * pagesize).Select(q => ModelFactory.Map(q, Url));
 

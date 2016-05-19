@@ -32,8 +32,8 @@ namespace UnitTestProject
             var controller = new AnnotationsController(DALRepMock.Object);
 
             // Act
-            var response = controller.Get() as OkNegotiatedContentResult<List<Annotation>>;
-
+            var response = controller.Get();
+            Console.WriteLine(response);
             // Assert
             Assert.NotNull(response);
         }

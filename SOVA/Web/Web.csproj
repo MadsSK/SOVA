@@ -179,6 +179,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\UnityConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\QuestionsTagsController.cs" />
     <Compile Include="Controllers\QuestionsLinkedPostsController.cs" />
     <Compile Include="Controllers\QuestionsCommentsController.cs" />
@@ -190,7 +191,7 @@
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Controllers\TagsController.cs" />
     <Compile Include="Controllers\SearchUsersController.cs" />
-    <Compile Include="Controllers\SearchsController.cs" />
+    <Compile Include="Controllers\SearchesController.cs" />
     <Compile Include="Controllers\BaseApiController.cs" />
     <Compile Include="Controllers\AnnotationsController.cs" />
     <Compile Include="Controllers\QuestionsController.cs" />
@@ -199,6 +200,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\HomeModel.cs" />
     <Compile Include="Models\AnnotationModel.cs" />
     <Compile Include="Models\AnswerModel.cs" />
     <Compile Include="Models\TagModel.cs" />
