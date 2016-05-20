@@ -190,8 +190,9 @@
     <Content Include="scripts\app\components\questions\questions.html" />
     <Content Include="scripts\app\components\questions\questionsViewModel.js" />
     <Content Include="scripts\app\components\topbarmenu\topbarmenu.html" />
-    <Content Include="scripts\app\components\topbarmenu\topbarmenuviewmodel.js" />
+    <Content Include="scripts\app\components\topbarmenu\topbarmenuViewModel.js" />
     <Content Include="scripts\app\config.js" />
+    <Content Include="scripts\app\dataservice.js" />
     <Content Include="scripts\app\viewModel.js" />
     <Content Include="scripts\lib\ai.0.15.0-build58334.js" />
     <Content Include="scripts\lib\ai.0.15.0-build58334.min.js" />
