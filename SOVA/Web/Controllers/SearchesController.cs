@@ -6,11 +6,11 @@ using Web.Util;
 
 namespace Web.Controllers
 {
-    public class SearchsController : BaseApiController
+    public class SearchesController : BaseApiController
     {
         private readonly IRepository _repository;
 
-        public SearchsController(IRepository _repository)
+        public SearchesController(IRepository _repository)
         {
             this._repository = _repository;
         }
@@ -18,6 +18,8 @@ namespace Web.Controllers
         public IHttpActionResult Get(int page = 0, int pagesize = Config.DefaultPageSize)
         {
             var data = _repository.GetSearchsWithPaging(pagesize, page * pagesize).Select(s => ModelFactory.Map(s, Url));
+
+            if (!data.Any()){return NotFound();}
 
             var result = GetWithPaging(
                 data,

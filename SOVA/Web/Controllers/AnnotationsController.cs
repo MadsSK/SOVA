@@ -21,9 +21,9 @@ namespace Web.Controllers
         public IHttpActionResult Get(int page = 0, int pagesize = Config.DefaultPageSize)
         {
             List<AnnotationModel> data = new List<AnnotationModel>();
-            var annotations = _repository.GetAnnotationsWithPaging(page, pagesize*page);
-
-            if (!annotations.Any()){return NotFound();}
+            var annotations = _repository.GetAnnotationsWithPaging(pagesize, pagesize*page);
+            
+            if (!annotations.Any() || annotations == null){return NotFound();}
 
             foreach (var annotation in annotations)
             {
@@ -36,7 +36,7 @@ namespace Web.Controllers
                     data.Add(ModelFactory.Map(annotation, false, Url));
                 }
             }
-
+            
             var result = GetWithPaging(
                 data,
                 pagesize,

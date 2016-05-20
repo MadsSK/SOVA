@@ -486,9 +486,18 @@ namespace DataAccessLayer
             }
         }
 
-        public IEnumerable<Annotation> GetAnnotationsOnQuestionWithQuestionIdSearchUserId(int questionId, int searchUserId, int limit, int Offset)
+        public IEnumerable<Annotation> GetAnnotationsOnQuestionWithQuestionIdSearchUserId(int questionId, int searchUserId, int limit, int offset)
         {
-            throw new NotImplementedException();
+            using (var db = new StackOverflowDbContext())
+            {
+                return db.Annotations
+                    .Where(a => a.SearchUserId == searchUserId)
+                    .Where(a => a.PostId == questionId)
+                    .OrderBy(t => t.Id)
+                    .Skip(offset)
+                    .Take(limit)
+                    .ToList();
+            }
         }
 
         public int GetNumberOfQuestions()

@@ -46,10 +46,11 @@ namespace MySqlDatabase
             modelBuilder.Entity<Annotation>()
                 .Property(a => a.SearchUserId)
                 .HasColumnName("search_user_id");
+            /*
             //Canceling autoincrementing primary key id
             modelBuilder.Entity<Annotation>()
                 .Property(a => a.Id)
-                .HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
+                .HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);*/
             //Many-To-One
             modelBuilder.Entity<Annotation>()
                 .HasOptional<Post>(a => a.Post)
