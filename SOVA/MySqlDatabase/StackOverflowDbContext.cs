@@ -186,8 +186,8 @@ namespace MySqlDatabase
                 .WithMany(p => p.Favorites)
                 .Map(f =>
                 {
-                    f.MapLeftKey("post_id");
-                    f.MapRightKey("search_user_id");
+                    f.MapLeftKey("search_user_id");
+                    f.MapRightKey("post_id");
                     f.ToTable("favorites");
                 });
 

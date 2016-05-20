@@ -225,6 +225,7 @@
     <Compile Include="Controllers\QuestionsTagsController.cs" />
     <Compile Include="Controllers\QuestionsLinkedPostsController.cs" />
     <Compile Include="Controllers\QuestionsCommentsController.cs" />
+    <Compile Include="Controllers\SearchUsersFavoritesController.cs" />
     <Compile Include="Controllers\SearchUsersSearchsController.cs" />
     <Compile Include="Controllers\SearchUsersAnnotationsController.cs" />
     <Compile Include="Controllers\UsersCommentsController.cs" />

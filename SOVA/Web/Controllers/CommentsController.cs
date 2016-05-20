@@ -40,7 +40,7 @@ namespace Web.Controllers
             List<CommentModel> data = new List<CommentModel>();
             var comments = _repository.GetCommentsWithPaging(pagesize, pagesize*page);
 
-            if (!comments.Any()) { return NotFound(); }
+            if (!comments.Any() || comments == null) { return NotFound(); }
 
             foreach (var comment in comments)
             {
