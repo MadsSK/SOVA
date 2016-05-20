@@ -14,44 +14,44 @@ require(['knockout', 'app/viewmodel', 'app/config'], function (ko, viewmodel, co
 
     // Annotations
     ko.components.register(config.annotationsComponent, {
-        viewModel: { require: 'app/components/menuannotations/annotations' },
+        viewModel: { require: 'app/components/menuannotations/annotationsViewModel' },
         template: { require: 'text!app/components/annotations/annotations.html' }
     });
 
 
     // Favorites
     ko.components.register(config.favoritesComponent, {
-        viewModel: { require: 'app/components/favorites/favorites' },
+        viewModel: { require: 'app/components/favorites/favoritesViewModel' },
         template: { require: 'text!app/components/favorites/favorites.html' }
     });
 
     // Full page post
     ko.components.register(config.fullPagePostComponent, {
-        viewModel: { require: 'app/components/fullpagepost/fullpagepost' },
+        viewModel: { require: 'app/components/fullpagepost/fullpagepostViewModel' },
         template: { require: 'text!app/components/fullpagepost/fullpagepost.html' }
     });
 
     // List element
     ko.components.register(config.listElementComponent, {
-        viewModel: { require: 'app/components/listelement/listelement' },
+        viewModel: { require: 'app/components/listelement/listelementViewModel' },
         template: { require: 'text!app/components/listelement/listelement.html' }
     });
 
     // List of elements with the search bar (essentially, main element)
     ko.components.register(config.listOfElementsWithSearchComponent, {
-        viewModel: { require: 'app/components/listofelementswithsearch/listofelementswithsearch' },
+        viewModel: { require: 'app/components/listofelementswithsearch/listofelementswithsearchViewModel' },
         template: { require: 'text!app/components/listofelementswithsearch/listofelementswithsearch.html' }
     });
 
     // Questions
     ko.components.register(config.questionsComponent, {
-        viewModel: { require: 'app/components/questions/questions' },
+        viewModel: { require: 'app/components/questions/questionsViewModel' },
         template: { require: 'text!app/components/questions/questions.html' }
     });
 
     // Top bar menu
     ko.components.register(config.menuComponent, {
-        viewModel: { require: 'app/components/topbarmenu/topbarmenu' },
+        viewModel: { require: 'app/components/topbarmenu/topbarmenuViewModel' },
         template: { require: 'text!app/components/topbarmenu/topbarmenu.html' }
     });
 
