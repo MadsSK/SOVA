@@ -16,7 +16,7 @@ namespace Web.Controllers
             List<AnnotationModel> data = new List<AnnotationModel>();
             var annotations = _repository.GetAnnotationsWithSearchUserId(searchUserId, page, pagesize * page);
 
-            if (!annotations.Any()) { return NotFound(); }
+            if (!annotations.Any() || annotations == null) { return NotFound(); }
 
             foreach (var annotation in annotations)
             {
@@ -29,8 +29,6 @@ namespace Web.Controllers
                     data.Add(ModelFactory.Map(annotation, false, Url));
                 }
             }
-
-            if (!data.Any()) { return NotFound(); }
 
             var result = GetWithPaging(
                 data,
