@@ -13,31 +13,32 @@
 require(['knockout', 'app/viewmodel', 'app/config'], function (ko, viewmodel, config) {
 
     // Annotations
-    ko.components.register(config.questionsComponent, {
+    ko.components.register(config.annotationsComponent, {
         viewModel: { require: 'app/components/menuannotations/annotations' },
         template: { require: 'text!app/components/annotations/annotations.html' }
     });
 
+
     // Favorites
-    ko.components.register(config.questionsComponent, {
+    ko.components.register(config.favoritesComponent, {
         viewModel: { require: 'app/components/favorites/favorites' },
         template: { require: 'text!app/components/favorites/favorites.html' }
     });
 
     // Full page post
-    ko.components.register(config.questionsComponent, {
+    ko.components.register(config.fullPagePostComponent, {
         viewModel: { require: 'app/components/fullpagepost/fullpagepost' },
         template: { require: 'text!app/components/fullpagepost/fullpagepost.html' }
     });
 
     // List element
-    ko.components.register(config.questionsComponent, {
+    ko.components.register(config.listElementComponent, {
         viewModel: { require: 'app/components/listelement/listelement' },
         template: { require: 'text!app/components/listelement/listelement.html' }
     });
 
     // List of elements with the search bar (essentially, main element)
-    ko.components.register(config.questionsComponent, {
+    ko.components.register(config.listOfElementsWithSearchComponent, {
         viewModel: { require: 'app/components/listofelementswithsearch/listofelementswithsearch' },
         template: { require: 'text!app/components/listofelementswithsearch/listofelementswithsearch.html' }
     });
@@ -49,7 +50,7 @@ require(['knockout', 'app/viewmodel', 'app/config'], function (ko, viewmodel, co
     });
 
     // Top bar menu
-    ko.components.register(config.questionsComponent, {
+    ko.components.register(config.menuComponent, {
         viewModel: { require: 'app/components/topbarmenu/topbarmenu' },
         template: { require: 'text!app/components/topbarmenu/topbarmenu.html' }
     });

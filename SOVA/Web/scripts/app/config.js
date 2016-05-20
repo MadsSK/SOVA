@@ -19,7 +19,7 @@
 
         // This one won't work because our favourites are stored on a per searchuser basis :C
         // We need a userId variable that holds the current user
-        favoritesUrl: server + frontEndVersion + "searchusers/" + userId + "/" + menuElements[1].toLowerCase(),
+        favoritesUrl: server + frontEndVersion + "searchusers/" + 1 + "/" + menuElements[1].toLowerCase(),
 
         
         // menu
