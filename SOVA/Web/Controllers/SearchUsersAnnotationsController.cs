@@ -14,7 +14,7 @@ namespace Web.Controllers
         public IHttpActionResult Get(int searchUserId, int page = 0, int pagesize = Config.DefaultPageSize)
         {
             List<AnnotationModel> data = new List<AnnotationModel>();
-            var annotations = _repository.GetAnnotationsWithSearchUserId(searchUserId, page, pagesize * page);
+            var annotations = _repository.GetAnnotationsWithSearchUserId(searchUserId, pagesize, pagesize * page);
 
             if (!annotations.Any() || annotations == null) { return NotFound(); }
 
