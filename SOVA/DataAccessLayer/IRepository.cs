@@ -76,7 +76,8 @@ namespace DataAccessLayer
         IEnumerable<SearchUser> GetAllSearchUsers(int limit, int offset);
         IEnumerable<Search> GetSearchsWithSearchUserId(int searchUserId, int limit, int offset);
         IEnumerable<Annotation> GetAnnotationsWithSearchUserId(int searchUserId, int limit, int offset);
-        
+        IEnumerable<Question> GetQuestionsWithSearchUserId(int searchUserId, int limit, int offset);
+
         // Search User - CRUD
         void Insert(SearchUser searchUser);
         bool Update(SearchUser searchUser);
@@ -95,9 +96,11 @@ namespace DataAccessLayer
         int GetNumbersOfAnswersWithUserId(int userId);
         int GetNumbersOfQuestionsWithUserId(int userId);
         int GetNumbersOfCommentsWithUserId(int userId);
+        int GetNumberOfFavoritesWithSearchUserId(int searchUserId);
         IEnumerable<User> GetUsers(int limit, int offset);
         IEnumerable<Answer> GetAnswersWithUserId(int userId, int limit, int offset);
         IEnumerable<Question> GetQuestionsWithUserId(int userId, int limit, int offset);
         IEnumerable<Comment> GetCommentsWithUserId(int userId, int limit, int offset);
-        }
+        
+    }
 }

@@ -140,7 +140,7 @@ namespace Web.Models
             searchUserModel.Url = urlHelper.Link(Config.SearchUsersRoute, new { searchUser.Id });
             searchUserModel.AnnotationsUrl = urlHelper.Link(Config.SearchUsersAnnotationsRoute, new { searchUserId = searchUser.Id });
             searchUserModel.FavoritesUrl = urlHelper.Link(Config.SearchUsersFavoritesRoute,
-                new {serachUserId = searchUser.Id});
+                new {searchUserId = searchUser.Id});
             searchUserModel.SearchsUrl = urlHelper.Link(Config.SearchUsersSearchsRoute,
                 new {searchUserId = searchUser.Id});
 

@@ -639,10 +639,8 @@ namespace DataAccessLayer
             using (var db = new StackOverflowDbContext())
             {
                 return db.Questions
-                    .Where(q => db.SearchUsers
-                    .Include(su => su.Favorites)
-                    .FirstOrDefault(su => su.Id == searchUserId)
-                    .Favorites.Any(f => q.Id == f.Id))
+                    .Where(q => q.Favorites.Any(f => f.Id == searchUserId))
+                    .OrderBy(q => q.Id)
                     .Skip(offset)
                     .Take(limit)
                     .ToList();
