@@ -1,4 +1,5 @@
-﻿define(['knockout', 'app/config'], function (ko, config) {
+﻿
+define(['knockout', 'app/config'], function (ko, config) {
     return (function () {
         var currentComponent = ko.observable(config.defaultMenuItem);
 

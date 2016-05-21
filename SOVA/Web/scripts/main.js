@@ -10,11 +10,19 @@
     });
 })();
 
-require(['knockout', 'app/viewmodel', 'app/config'], function (ko, viewmodel, config) {
+
+
+require(['knockout', 'app/viewmodel', 'app/config', 'app/app'], function (ko, viewmodel, config, app) {
+
+    // Top bar menu
+    ko.components.register(config.menuComponent, {
+        viewModel: { require: 'app/components/topbarmenu/topbarmenuViewModel' },
+        template: { require: 'text!app/components/topbarmenu/topbarmenu.html' }
+    });
 
     // Annotations
     ko.components.register(config.annotationsComponent, {
-        viewModel: { require: 'app/components/menuannotations/annotationsViewModel' },
+        viewModel: { require: 'app/components/annotations/annotationsViewModel' },
         template: { require: 'text!app/components/annotations/annotations.html' }
     });
 
@@ -49,11 +57,5 @@ require(['knockout', 'app/viewmodel', 'app/config'], function (ko, viewmodel, co
         template: { require: 'text!app/components/questions/questions.html' }
     });
 
-    // Top bar menu
-    ko.components.register(config.menuComponent, {
-        viewModel: { require: 'app/components/topbarmenu/topbarmenuViewModel' },
-        template: { require: 'text!app/components/topbarmenu/topbarmenu.html' }
-    });
-
-    ko.applyBindings(viewmodel);
+    ko.applyBindings(viewmodel, app);
 });

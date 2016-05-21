@@ -1,4 +1,4 @@
-﻿define([], function () {
+﻿define(['app/app'], function (app) {
     var server = 'http://localhost:55749';
 
     var frontEndVersion = "/api/v1.0.0/";
@@ -12,10 +12,17 @@
         "ListOfElementsWithSearch"          // 5
     ];
 
+    var searchuserid = 0;
+
+    app.ns.postbox.subscribe(function(value) {
+        searchuserid(value);
+    }, "SearchUserId");
+    
     return {
         // back-end routes
         questionsUrl: server + frontEndVersion + menuElements[0].toLowerCase(),
         annotationsUrl: server + frontEndVersion + menuElements[2].toLowerCase(),
+        searchUserAnnotationsUrl: server + frontEndVersion + "searchusers/" + searchuserid + "/" +menuElements[2].toLowerCase(),
 
         // This one won't work because our favourites are stored on a per searchuser basis :C
         // We need a userId variable that holds the current user
@@ -24,7 +31,7 @@
         
         // menu
         menuElements: menuElements,
-        defaultMenuItem: menuElements[0].toLowerCase(),        
+        defaultMenuItem: menuElements[2].toLowerCase(),        
 
 
         // components

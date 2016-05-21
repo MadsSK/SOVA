@@ -3,14 +3,19 @@
     <thead>
         <tr><th>Date</th><th>ShipAddress</th><th></th></tr>
     </thead>
-    <tbody data-bind="foreach: orders">
+    <tbody data-bind="foreach: annotations">
         <tr>
-            <td><a href="#" data-bind="text: orderDate"></a></td>
-            <td data-bind="text: shipAddress"></td>
-            <td>
-                <a href="#edit" class="btn btn-xs btn-primary"><span class="glyphicon glyphicon-edit"></span></a>
-                <a href="#delete" class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-trash"></span></a>
-            </td>
+            <td><a href="Url" data-bind="text: annotationUrl"></a></td>
+            <td data-bind="text: Body"></td>
+            <td data-bind="text: MarkingStart"></td>
+            <td data-bind="text: MarkingEnd"></td>
+            <td data-bind="text: PostId"></td>
+            <td data-bind="text: CommentId"></td>
+            <td data-bind="text: SearchUserId"></td>
+            <td data-bind="text: QuestionUrl"></td>
+            <td data-bind="text: AnswerUrl"></td>
+            <td data-bind="text: CommentUrl"></td>
+            <td data-bind="text: SearchUserUrl"></td>
         </tr>
     </tbody>
 </table>

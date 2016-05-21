@@ -177,6 +177,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="index.html" />
+    <Content Include="scripts\app\app.js" />
     <Content Include="scripts\app\components\annotations\annotations.html" />
     <Content Include="scripts\app\components\annotations\annotationsViewModel.js" />
     <Content Include="scripts\app\components\favorites\favorites.html" />
@@ -221,7 +222,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\UnityConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\HomieController.cs" />
     <Compile Include="Controllers\QuestionsTagsController.cs" />
     <Compile Include="Controllers\QuestionsLinkedPostsController.cs" />
     <Compile Include="Controllers\QuestionsCommentsController.cs" />

@@ -2,11 +2,11 @@
     return function(params) {
         var currentComponent = params.currentComponent;
 
-        var menuElements = ko.observableArray();
+        //var menuElements = ko.observableArray();
 
         return {
             menuElements: config.menuElements,
-            currentComponent: currentComponent,
+            currentComponent: currentComponent
         }
     };
 });

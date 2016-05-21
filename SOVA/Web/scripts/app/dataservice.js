@@ -1,5 +1,14 @@
-﻿define(['jquery', 'app/config'], function ($, conf) {
+﻿define(['jquery', 'app/config', 'app/app'], function ($, conf, app) {
     return {
-        // Fill with fun stuff
+        getSearchUserAnnotations: function (url, searchuserid, callback) {
+            if (callback == undefined) {
+                callback = url;
+                app.ns.postbox.notify(searchuserid, "searchUserId");
+                url = conf.searchUserAnnotationsUrl;
+            }
+            $.getJSON(url, function (data) {
+                callback(data);
+            });
+        },
     }
 });
