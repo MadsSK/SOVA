@@ -3,13 +3,19 @@
 
     var frontEndVersion = "/api/v1.0.0/";
 
+    // If you want to add additional menu elements, simply add them to this array, 
+    // then define functionality in the view model of the tobarmenu component
     var menuElements = [
         "Questions",                        // 0
         "Favorites",                        // 1
-        "Annotations",                      // 2
-        "FullPagePost",                     // 3
-        "ListElement",                      // 4
-        "ListOfElementsWithSearch"          // 5
+        "Annotations"                       // 2
+    ];
+
+    // Array for components that do not belong to the top bar menu
+    var nonMenuComponentElements = [
+        "FullPagePost",                     // 0
+        "ListElement",                      // 1
+        "ListOfElementsWithSearch"          // 2
     ];
     
     var searchuserid = 1;
@@ -40,8 +46,8 @@
         questionComponent: "question",
         favoritesComponent: menuElements[1].toLowerCase(),
         annotationsComponent: menuElements[2].toLowerCase(),
-        fullPagePostComponent: menuElements[3].toLowerCase(),
-        listElementComponent: menuElements[4].toLowerCase(),
-        listOfElementsWithSearchComponent: menuElements[5].toLowerCase()
+        fullPagePostComponent: nonMenuComponentElements[0].toLowerCase(),
+        listElementComponent: nonMenuComponentElements[1].toLowerCase(),
+        listOfElementsWithSearchComponent: nonMenuComponentElements[2].toLowerCase()
     }
 });

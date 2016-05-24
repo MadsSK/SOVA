@@ -5,10 +5,17 @@
             knockout: 'lib/knockout-3.4.0',
             jquery: 'lib/jquery-2.2.3.min',
             text: 'lib/text',
-            bootstrap: 'lib/bootstrap.min'
+            bootstrap: 'lib/bootstrap.min',
+            modernizer: 'lib/modernizr-2.8.3'
+        },
+
+        // Explicitly specify that bootstrap is dependant on jquery to avoid dependency errors
+        shim: {
+            "bootstrap": { "deps": ['jquery'] }
         }
     });
 })();
+
 
 var ns = ns || {};
 
@@ -26,7 +33,8 @@ ns.postbox = {
     }
 };
 
-require(['knockout', 'app/viewmodel', 'app/config'], function (ko, viewmodel, config) {
+require(['knockout', 'app/viewmodel', 'app/config', 'jquery', 'bootstrap', 'modernizer'],
+    function (ko, viewmodel, config, $, bs, md) {
 
     // Top bar menu
     ko.components.register(config.menuComponent, {
