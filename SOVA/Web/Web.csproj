@@ -188,13 +188,15 @@
     <Content Include="scripts\app\components\listelement\listelement.html" />
     <Content Include="scripts\app\components\listofelementswithsearch\listofelementswithsearchViewModel.js" />
     <Content Include="scripts\app\components\listofelementswithsearch\listofelementswithsearch.html" />
+    <Content Include="scripts\app\components\question\question.html" />
+    <Content Include="scripts\app\components\question\questionViewModel.js" />
     <Content Include="scripts\app\components\questions\questions.html" />
     <Content Include="scripts\app\components\questions\questionsViewModel.js" />
     <Content Include="scripts\app\components\topbarmenu\topbarmenu.html" />
     <Content Include="scripts\app\components\topbarmenu\topbarmenuViewModel.js" />
     <Content Include="scripts\app\config.js" />
     <Content Include="scripts\app\dataservice.js" />
-    <Content Include="scripts\app\viewModel.js" />
+    <Content Include="scripts\app\viewmodel.js" />
     <Content Include="scripts\lib\ai.0.15.0-build58334.js" />
     <Content Include="scripts\lib\ai.0.15.0-build58334.min.js" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

@@ -1,21 +1,25 @@
 ﻿<h1>Annotations</h1>
-<table class="table table-striped">
-    <thead>
-        <tr><th>Date</th><th>ShipAddress</th><th></th></tr>
-    </thead>
-    <tbody data-bind="foreach: annotations">
-        <tr>
-            <td><a href="Url" data-bind="text: annotationUrl"></a></td>
-            <td data-bind="text: Body"></td>
-            <td data-bind="text: MarkingStart"></td>
-            <td data-bind="text: MarkingEnd"></td>
-            <td data-bind="text: PostId"></td>
-            <td data-bind="text: CommentId"></td>
-            <td data-bind="text: SearchUserId"></td>
-            <td data-bind="text: QuestionUrl"></td>
-            <td data-bind="text: AnswerUrl"></td>
-            <td data-bind="text: CommentUrl"></td>
-            <td data-bind="text: SearchUserUrl"></td>
-        </tr>
-    </tbody>
-</table>
+<div>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Url</th>
+                <th>Marking</th>
+                <th>Body</th>
+            </tr>
+        </thead>
+        <tbody data-bind="foreach: data">
+            <tr>
+                <td data-bind="text: url"></td>
+                <td data-bind="text: body"></td>
+                <td data-bind="text: $parents[0].questionId"></td>
+            </tr>
+        </tbody>
+    </table>
+    <span>Total: </span>
+    <span data-bind="text: total"></span>
+    <span>Page: </span>
+    <span data-bind="text: page"></span>
+    <span data-bind="if: prev"><button data-bind="click: prevClick">Prev</button></span>
+    <span data-bind="if: next"><button data-bind="click: nextClick">Next</button></span>
+</div>

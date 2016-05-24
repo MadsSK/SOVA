@@ -10,9 +10,23 @@
     });
 })();
 
+var ns = ns || {};
 
+ns.postbox = {
+    subscribers: [],
+    subscribe: function (callback, topic) {
+        this.subscribers.push({ topic: topic, callback: callback });
+    },
+    notify: function (value, topic) {
+        for (var i = 0; i < this.subscribers.length; i++) {
+            if (this.subscribers[i].topic === topic) {
+                this.subscribers[i].callback(value);
+            }
+        }
+    }
+};
 
-require(['knockout', 'app/viewmodel', 'app/config', 'app/app'], function (ko, viewmodel, config, app) {
+require(['knockout', 'app/viewmodel', 'app/config'], function (ko, viewmodel, config) {
 
     // Top bar menu
     ko.components.register(config.menuComponent, {
@@ -57,5 +71,11 @@ require(['knockout', 'app/viewmodel', 'app/config', 'app/app'], function (ko, vi
         template: { require: 'text!app/components/questions/questions.html' }
     });
 
-    ko.applyBindings(viewmodel, app);
+    // Question
+    ko.components.register(config.questionComponent, {
+        viewModel: { require: 'app/components/question/questionViewModel' },
+        template: { require: 'text!app/components/question/question.html' }
+    });
+
+    ko.applyBindings(viewmodel);
 });

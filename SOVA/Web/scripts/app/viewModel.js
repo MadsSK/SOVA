@@ -5,7 +5,7 @@ define(['knockout', 'app/config'], function (ko, config) {
 
         return {
             currentComponent: currentComponent,
-            menuComponent: config.menuComponent
+            menuComponent: config.menuComponent,
         }
     });
 });

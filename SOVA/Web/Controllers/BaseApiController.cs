@@ -19,6 +19,7 @@ namespace Web.Controllers
             var result = new
             {
                 Total = total,
+                Page = page,
                 Prev = prev,
                 Next = next,
                 Data = data
