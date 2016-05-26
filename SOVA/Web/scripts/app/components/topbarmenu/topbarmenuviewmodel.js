@@ -2,14 +2,22 @@
     return function(params) {
         var currentComponent = params.currentComponent;
 
-        var backEndRoute = ko.observable();
+        var isMenuSelected = function(content) {
+            return content && currentComponent() === content.toLowerCase();
+        };
+        
+        var changeContent = function (content) {
+            if(content !== undefined)
+                currentComponent(content.toLowerCase());
+        };
 
-        var menuElements = ko.observableArray();
-
+        changeContent(config.defaultMenu);
+        
         return {
             menuElements: config.menuElements,
-            backEndRoute: ko.observable(config.questionsUrl),
-            currentComponent: currentComponent
+            currentComponent: currentComponent,
+            changeContent: changeContent,
+            isMenuSelected: isMenuSelected
         }
     };
 });

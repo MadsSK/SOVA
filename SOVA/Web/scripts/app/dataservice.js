@@ -5,8 +5,43 @@
                 callback = url;
                 url = conf.annotationsUrl;
             }
-            $.getJSON(url, function(data) {
+            $.getJSON(url, function (data) {
                 console.log("getAnnotations: " + data);
+                callback(data);
+            });
+        },
+        getAnswers: function (url, callback) {
+            if (url === undefined) {
+                return;
+            }
+            $.getJSON(url, function (data) {
+                console.log("getData: " + data);
+                callback(data);
+            });
+        }, getComments: function (url, callback) {
+            if (url === undefined) {
+                return;
+            }
+            $.getJSON(url, function (data) {
+                console.log("getData: " + data);
+                callback(data);
+            });
+        },
+        getData: function (url, callback) {
+            if (url == undefined) {
+                return;
+            }
+            $.getJSON(url, function (data) {
+                console.log("getData: " + data);
+                callback(data);
+            });
+        },
+        getTags: function (url, callback) {
+            if (url == undefined) {
+                return;
+            }
+            $.getJSON(url, function (data) {
+                console.log("getData: " + data);
                 callback(data);
             });
         },

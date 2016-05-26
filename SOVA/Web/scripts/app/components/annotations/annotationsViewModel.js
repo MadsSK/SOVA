@@ -1,39 +1,39 @@
 ﻿define(['knockout', 'app/dataservice'], function (ko, dataservice) {
     return function (params) {
-        var annotationdata = ko.observableArray();
+        var annotations = ko.observableArray();
         var questionId = "bla";
-        var annotationpage = ko.observable();
-        var annotationprev = ko.observable();
-        var annotationnext = ko.observable();
-        var annotationtotal = ko.observable();
+        var curpage = ko.observable();
+        var prevpage = ko.observable();
+        var nextpage = ko.observable();
+        var total = ko.observable();
         var callback = function(data) {
-            annotationdata(data.data);
-            annotationpage(data.page);
-            annotationprev(data.prev);
-            annotationnext(data.next);
-            annotationtotal(data.total);
+            annotations(data.data);
+            curpage(data.page);
+            prevpage(data.prev);
+            nextpage(data.next);
+            total(data.total);
         };
 
         dataservice.getAnnotations(callback);
 
-        annotationdata().forEach(function(entry) {
-            console.log(entry);
+        ko.utils.arrayForEach(annotations, function(annotation) {
+            console.log(annotation);
         });
-
+        
 
         return {
-            data: annotationdata,
+            data: annotations,
             prevClick: function () {
-                dataservice.getAnnotations(annotationprev, annotationdata);
+                dataservice.getAnnotations(prevpage, annotations);
             },
             nextClick: function () {
-                dataservice.getAnnotations(annotationnext, annotationdata);
+                dataservice.getAnnotations(nextpage, annotations);
             },
             questionId: questionId,
-            prev: annotationprev,
-            next: annotationnext,
-            total: annotationtotal,
-            page: annotationpage
+            prev: prevpage,
+            next: nextpage,
+            total: total,
+            page: curpage
 
         }
     };
