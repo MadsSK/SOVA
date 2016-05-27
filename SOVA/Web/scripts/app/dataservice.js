@@ -6,7 +6,6 @@
                 url = conf.annotationsUrl;
             }
             $.getJSON(url, function (data) {
-                console.log("getAnnotations: " + data);
                 callback(data);
             });
         },
@@ -15,7 +14,6 @@
                 return;
             }
             $.getJSON(url, function (data) {
-                console.log("getData: " + data);
                 callback(data);
             });
         },
@@ -24,7 +22,6 @@
                 return;
             }
             $.getJSON(url, function (data) {
-                console.log("getData: " + data);
                 callback(data);
             });
         },
@@ -33,7 +30,6 @@
                 return;
             }
             $.getJSON(url, function (data) {
-                console.log("getData: " + data);
                 callback(data);
             });
         },
@@ -42,7 +38,6 @@
                 return;
             }
             $.getJSON(url, function (data) {
-                console.log("getData: " + data);
                 callback(data);
             });
         },

@@ -20,9 +20,10 @@
         "User",                             // 3
         "Tags",                             // 4
         "Comments",                         // 5
-        "Answers"                           // 6
+        "Answers",                          // 6
+        "SearchBar"                         // 7
     ];
-    
+
     var searchuserid = 1;
 
     ns.postbox.subscribe(function(value) {
@@ -39,10 +40,10 @@
         // We need a userId variable that holds the current user
         favoritesUrl: server + frontEndVersion + "searchusers/" + 1 + "/" + menuElements[1].toLowerCase(),
 
-
+        
         // menu
         menuElements: menuElements,
-        defaultMenuItem: menuElements[0].toLowerCase(),
+        defaultMenuItem: menuElements[0].toLowerCase(),        
 
         // components
         menuComponent: "topbarmenu",
@@ -56,6 +57,7 @@
         userComponent: nonMenuComponentElements[3].toLowerCase(),
         tagsComponent: nonMenuComponentElements[4].toLowerCase(),
         commentsComponent: nonMenuComponentElements[5].toLowerCase(),
-        answersComponent: nonMenuComponentElements[6].toLowerCase()
+        answersComponent: nonMenuComponentElements[6].toLowerCase(),
+        searchBarComponent: nonMenuComponentElements[7].toLowerCase()
     }
 });

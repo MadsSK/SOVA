@@ -9,7 +9,7 @@
         var changeContent = function (content) {
             if (content !== undefined) {
                 currentComponent(content.toLowerCase());
-                ns.postbox.notify(content.toLowerCase(), "currentComponent");
+                ns.postbox.notify({ component: content.toLowerCase() }, "currentComponent");
             }
 
         };

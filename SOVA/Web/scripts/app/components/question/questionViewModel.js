@@ -9,21 +9,10 @@
         var answersComponent = ko.observable(config.answersComponent);
 
         dataservice.getQuestion(params.url, function (data) {
-            console.log("subscribe : " + data.url);
-            console.log("fdsdsfsdff");
             question(data);
             url(data.url);
         });
         
-        //ns.postbox.subscribe(function (value) {
-        //    dataservice.getQuestion(value, function (data) {
-        //        console.log("subscribe : " + data.url);
-        //        console.log("fdsdsfsdff");
-        //        question(data);
-        //        url(data.url);
-        //    });
-        //}, "questionurl", this);
-
         return {
             question: question,
             userComponent: userComponent,

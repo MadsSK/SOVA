@@ -13,10 +13,12 @@
 
 
 
+
         return {
             currentComponent: currentComponent,
             menuComponent: config.menuComponent,
-            paramsData: paramsData
+            paramsData: paramsData,
+            searchBarComponent: config.searchBarComponent
         }
     });
 });

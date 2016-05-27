@@ -28,8 +28,6 @@
         var pageNumber = questionspage;
 
         var gotoquestion = function (questionUrl) {
-            console.log("notify " + questionUrl);
-            //ns.postbox.notify(questionUrl, "questionurl");
             ns.postbox.notify({ component: config.questionComponent, url: questionUrl }, "currentComponent");
         };
 

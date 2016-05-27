@@ -24,7 +24,6 @@ var ns = ns || {};
 ns.postbox = {
     subscribers: [],
     subscribe: function (callback, topic, source) {
-        console.log("subscribe " + topic);// + " " + JSON.stringify(this.subscribers));
         var found = false;
         for (var i = 0; i < this.subscribers.length; i++) {
             if (this.subscribers[i].source === source && this.subscribers[i].topic === topic) {
@@ -121,9 +120,11 @@ require(['knockout', 'app/viewmodel', 'app/config'],
         template: { require: 'text!app/components/answers/answers.html' }
     });
 
-       
+    // Search bar
+    ko.components.register(config.searchBarComponent, {
+        viewModel: { require: 'app/components/searchbar/searchbarViewModel' },
+        template: { require: 'text!app/components/searchbar/searchbar.html' }
+    });
 
     ko.applyBindings(viewmodel);
-
-
 });
