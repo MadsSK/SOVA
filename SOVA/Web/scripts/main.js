@@ -62,5 +62,11 @@ require(['knockout', 'app/viewmodel', 'app/config', 'jquery', 'bootstrap', 'mode
         template: { require: 'text!app/components/topbarmenu/topbarmenu.html' }
     });
 
+    // Search bar
+    ko.components.register(config.searchBarComponent, {
+        viewModel: { require: 'app/components/searchbar/searchbarViewModel' },
+        template: { require: 'text!app/components/searchbar/searchbar.html' }
+    });
+
     ko.applyBindings(viewmodel);
 });

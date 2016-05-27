@@ -2,9 +2,11 @@
     return (function () {
         var currentComponent = ko.observable(config.defaultMenuItem);
 
+
         return {
             currentComponent: currentComponent,
-            menuComponent: config.menuComponent
+            menuComponent: config.menuComponent,
+            searchBarComponent: config.searchBarComponent
         }
     });
 });

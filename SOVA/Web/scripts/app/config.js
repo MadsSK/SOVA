@@ -15,7 +15,8 @@
     var nonMenuComponentElements = [
         "FullPagePost",                     // 0
         "ListElement",                      // 1
-        "ListOfElementsWithSearch"          // 2
+        "ListOfElementsWithSearch",         // 2
+        "SearchBar"                         // 3
     ];
 
     return {
@@ -27,10 +28,10 @@
         // We need a userId variable that holds the current user
         favoritesUrl: server + frontEndVersion + "searchusers/" + 1 + "/" + menuElements[1].toLowerCase(),
 
-        
+
         // menu
         menuElements: menuElements,
-        defaultMenuItem: menuElements[0].toLowerCase(),        
+        defaultMenuItem: menuElements[0].toLowerCase(),
 
 
         // components
@@ -40,6 +41,7 @@
         annotationsComponent: menuElements[2].toLowerCase(),
         fullPagePostComponent: nonMenuComponentElements[0].toLowerCase(),
         listElementComponent: nonMenuComponentElements[1].toLowerCase(),
-        listOfElementsWithSearchComponent: nonMenuComponentElements[2].toLowerCase()
-    }
+        listOfElementsWithSearchComponent: nonMenuComponentElements[2].toLowerCase(),
+        searchBarComponent: nonMenuComponentElements[3].toLowerCase()
+}
 });
