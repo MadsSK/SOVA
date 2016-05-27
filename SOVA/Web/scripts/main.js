@@ -19,10 +19,21 @@
 
 var ns = ns || {};
 
+
+
 ns.postbox = {
     subscribers: [],
-    subscribe: function (callback, topic) {
-        this.subscribers.push({ topic: topic, callback: callback });
+    subscribe: function (callback, topic, source) {
+        var found = false;
+        for (var i = 0; i < this.subscribers.length; i++) {
+            if (this.subscribers[i].source === source && this.subscribers[i].topic === topic) {
+                found = true;
+                this.subscribers[i].callback = callback;
+            }
+        }
+        if (!found) {
+            this.subscribers.push({ topic: topic, callback: callback, source: source });
+        }
     },
     notify: function (value, topic) {
         for (var i = 0; i < this.subscribers.length; i++) {
@@ -107,6 +118,12 @@ require(['knockout', 'app/viewmodel', 'app/config'],
     ko.components.register(config.answersComponent, {
         viewModel: { require: 'app/components/answers/answersViewModel' },
         template: { require: 'text!app/components/answers/answers.html' }
+    });
+
+    // Search bar
+    ko.components.register(config.searchBarComponent, {
+        viewModel: { require: 'app/components/searchbar/searchbarViewModel' },
+        template: { require: 'text!app/components/searchbar/searchbar.html' }
     });
 
     ko.applyBindings(viewmodel);

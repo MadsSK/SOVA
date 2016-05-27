@@ -6,7 +6,6 @@
                 url = conf.annotationsUrl;
             }
             $.getJSON(url, function (data) {
-                console.log("getAnnotations: " + data);
                 callback(data);
             });
         },
@@ -15,15 +14,14 @@
                 return;
             }
             $.getJSON(url, function (data) {
-                console.log("getData: " + data);
                 callback(data);
             });
-        }, getComments: function (url, callback) {
+        },
+        getComments: function (url, callback) {
             if (url === undefined) {
                 return;
             }
             $.getJSON(url, function (data) {
-                console.log("getData: " + data);
                 callback(data);
             });
         },
@@ -32,7 +30,6 @@
                 return;
             }
             $.getJSON(url, function (data) {
-                console.log("getData: " + data);
                 callback(data);
             });
         },
@@ -41,15 +38,10 @@
                 return;
             }
             $.getJSON(url, function (data) {
-                console.log("getData: " + data);
                 callback(data);
             });
         },
-        getQuestion: function (url, questionid, callback) {
-            if (callback == undefined) {
-                callback = url;
-                url = conf.questionsUrl + "/" + questionid;
-            }
+        getQuestion: function (url, callback) {
             $.getJSON(url, function (data) {
                 callback(data);
             });

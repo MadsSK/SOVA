@@ -202,6 +202,8 @@
     <Content Include="scripts\app\components\question\questionViewModel.js" />
     <Content Include="scripts\app\components\questions\questions.html" />
     <Content Include="scripts\app\components\questions\questionsViewModel.js" />
+	<Content Include="scripts\app\components\searchbar\searchbar.html" />
+    <Content Include="scripts\app\components\searchbar\searchbarViewModel.js" />
     <Content Include="scripts\app\components\topbarmenu\topbarmenu.html" />
     <Content Include="scripts\app\components\topbarmenu\topbarmenuViewModel.js" />
     <Content Include="scripts\app\config.js" />
@@ -227,6 +229,7 @@
     <Content Include="scripts\lib\plugins.js" />
     <Content Include="scripts\lib\r.js" />
     <Content Include="scripts\lib\require.js" />
+    <Content Include="scripts\lib\siteMagin.css" />
     <Content Include="scripts\lib\text.js" />
     <Content Include="scripts\main.js" />
     <Content Include="Web.config" />
