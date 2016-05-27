@@ -1,10 +1,25 @@
-﻿<!DOCTYPE html>
-<html>
-<head>
-    <title></title>
-	<meta charset="utf-8" />
-</head>
-<body>
-
-</body>
-</html>
+﻿<h1>Questions</h1>
+<div>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Url</th>
+                <th>Marking</th>
+                <th>Body</th>
+            </tr>
+        </thead>
+        <tbody data-bind="foreach: data">
+            <tr data-bind="click: $parent.gotoquestion.bind($parent, url)">
+                <td data-bind="text: url"></td>
+                <td data-bind="text: body"></td>
+                <td data-bind="text: $parents[0].questionId"></td>
+            </tr>
+       </tbody>
+    </table>
+    <span>Total: </span>
+    <span data-bind="text: total"></span>
+    <span>Page: </span>
+    <span data-bind="text: pageNumber"></span>
+    <span data-bind="if: prev"><button data-bind="click: prevClick">Prev</button></span>
+    <span data-bind="if: next"><button data-bind="click: nextClick">Next</button></span>
+</div>

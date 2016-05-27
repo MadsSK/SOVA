@@ -1,0 +1,11 @@
+﻿<h2>Comments</h2>
+<span data-bind="foreach: comments">
+    <h3>Comment</h3>
+    <span data-bind="text: url"></span>
+    <span data-bind="text: score"></span>
+    <span data-bind="html: body"></span>
+    <span data-bind="text: createDate"></span>
+    <span data-bind="component: {name: $parent.userComponent, params: {userUrl: userUrl}}"></span>
+</span>
+<span data-bind="text: total"></span>
+<span data-bind="if: more"><button data-bind="click: moreClick.bind($data, more)">More Comments</button></span>

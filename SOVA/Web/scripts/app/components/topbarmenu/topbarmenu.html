@@ -17,7 +17,9 @@
 			</ul>
 			<ul class="nav navbar-nav navbar-right" data-bind="foreach: menuElements">
 				<li>
-					<a data-bind="text: $data, attr: { href: 'http://localhost:55749/api/v1.0.0/questions' }"></a>
+				    <a href="#" data-bind="click: $parent.changeContent">
+				        <span data-bind="text: $data, css: {selectedMenu: $parent.isMenuSelected($data)}"></span>
+                    </a>
 				</li>
 			</ul>
 		</div><!-- /.navbar-collapse -->

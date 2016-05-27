@@ -1,0 +1,7 @@
+﻿<h1>Tags</h1>
+<span data-bind="foreach: tags">
+    <span data-bind="text: url"></span>
+    <span data-bind="text: body"></span>
+</span>
+<span data-bind="text: total"></span>
+<span data-bind="if: more"><button data-bind="click: moreClick">More Tags</button></span>
