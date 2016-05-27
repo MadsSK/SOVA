@@ -39,11 +39,10 @@
         // We need a userId variable that holds the current user
         favoritesUrl: server + frontEndVersion + "searchusers/" + 1 + "/" + menuElements[1].toLowerCase(),
 
-        
+
         // menu
         menuElements: menuElements,
-        defaultMenuItem: menuElements[3].toLowerCase(),        
-
+        defaultMenuItem: menuElements[0].toLowerCase(),
 
         // components
         menuComponent: "topbarmenu",

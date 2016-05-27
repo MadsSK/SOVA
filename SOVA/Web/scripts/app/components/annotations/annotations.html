@@ -4,13 +4,18 @@
         <thead>
             <tr>
                 <th>Url</th>
+                <th>Title</th>
                 <th>Marking</th>
                 <th>Body</th>
             </tr>
         </thead>
         <tbody data-bind="foreach: data">
-            <tr>
+            <tr data-bind="click: $parent.gotoquestion">
                 <td data-bind="text: url"></td>
+                <td data-bind="if: $parent.title"><span data-bind="text: $parent.title"></span></td>
+                <td data-bind="if: questionUrl"><span data-bind="text: questionUrl"></span></td>
+                <td data-bind="if: answerUrl"><span data-bind="text: answerUrl"></span></td>
+                <td data-bind="if: commentUrl"></td>
                 <td data-bind="text: body"></td>
                 <td data-bind="text: $parents[0].questionId"></td>
             </tr>

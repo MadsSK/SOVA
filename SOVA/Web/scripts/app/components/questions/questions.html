@@ -9,12 +9,12 @@
             </tr>
         </thead>
         <tbody data-bind="foreach: data">
-            <tr>
+            <tr data-bind="click: $parent.gotoquestion.bind($parent, url)">
                 <td data-bind="text: url"></td>
                 <td data-bind="text: body"></td>
                 <td data-bind="text: $parents[0].questionId"></td>
             </tr>
-        </tbody>
+       </tbody>
     </table>
     <span>Total: </span>
     <span data-bind="text: total"></span>

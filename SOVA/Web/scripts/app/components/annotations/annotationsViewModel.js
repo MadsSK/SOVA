@@ -1,4 +1,4 @@
-﻿define(['knockout', 'app/dataservice'], function (ko, dataservice) {
+﻿define(['knockout', 'app/dataservice', 'app/viewmodel'], function (ko, dataservice, viewmodel) {
     return function (params) {
         var annotations = ko.observableArray();
         var questionId = "bla";
@@ -20,6 +20,10 @@
             console.log(annotation);
         });
         
+        var gotoquestion = function(content) {
+            ns.postbox.notify(content, "currentComponent");
+        }
+
 
         return {
             data: annotations,
@@ -33,7 +37,9 @@
             prev: prevpage,
             next: nextpage,
             total: total,
-            page: curpage
+            page: curpage,
+            title: "hey hey",
+            gotoquestion: gotoquestion
 
         }
     };

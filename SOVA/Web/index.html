@@ -12,11 +12,11 @@
 <body>
 <header>
 	<div class="container-fluid">
-		<div data-bind="component: {name: menuComponent, params: {currentComponent: currentComponent}}"></div>
+		<div data-bind="component: menuComponent"></div>
 	</div>
 
     <div class="container-fluid">
-        <div data-bind="component: currentComponent"></div>
+        <div data-bind="component: {name: currentComponent, params: paramsData}"></div>
     </div>
 
     <script data-main="Scripts/main" src="Scripts/lib/require.js"></script>

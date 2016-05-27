@@ -19,10 +19,22 @@
 
 var ns = ns || {};
 
+
+
 ns.postbox = {
     subscribers: [],
-    subscribe: function (callback, topic) {
-        this.subscribers.push({ topic: topic, callback: callback });
+    subscribe: function (callback, topic, source) {
+        console.log("subscribe " + topic);// + " " + JSON.stringify(this.subscribers));
+        var found = false;
+        for (var i = 0; i < this.subscribers.length; i++) {
+            if (this.subscribers[i].source === source && this.subscribers[i].topic === topic) {
+                found = true;
+                this.subscribers[i].callback = callback;
+            }
+        }
+        if (!found) {
+            this.subscribers.push({ topic: topic, callback: callback, source: source });
+        }
     },
     notify: function (value, topic) {
         for (var i = 0; i < this.subscribers.length; i++) {
@@ -109,5 +121,9 @@ require(['knockout', 'app/viewmodel', 'app/config'],
         template: { require: 'text!app/components/answers/answers.html' }
     });
 
+       
+
     ko.applyBindings(viewmodel);
+
+
 });

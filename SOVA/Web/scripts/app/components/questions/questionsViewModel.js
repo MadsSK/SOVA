@@ -1,4 +1,4 @@
-﻿define(['knockout', 'app/dataservice'], function (ko, dataservice) {
+﻿define(['knockout', 'app/dataservice', 'app/config'], function (ko, dataservice, config) {
     return function (params) {
         var questionsdata = ko.observableArray();
         var questionId = "bla";
@@ -6,7 +6,9 @@
         var questionsnext = ko.observable();
         var questionstotal = ko.observable();
         var questionspage = ko.observable();
-        var callback = function(data) {
+        var questionComponent = ko.observable(config.questionComponent);
+        
+        var callback = function (data) {
             questionsdata(data.data);
             questionspage(data.page);
             questionsprev(data.prev);
@@ -19,11 +21,17 @@
         var prevClick = function () {
             dataservice.getQuestions(questionsprev(), callback);
         };
-        var nextClick = function () {
+        var nextClick = function() {
             dataservice.getQuestions(questionsnext(), callback);
         };
 
         var pageNumber = questionspage;
+
+        var gotoquestion = function (questionUrl) {
+            console.log("notify " + questionUrl);
+            //ns.postbox.notify(questionUrl, "questionurl");
+            ns.postbox.notify({ component: config.questionComponent, url: questionUrl }, "currentComponent");
+        };
 
         return {
             data: questionsdata,
@@ -33,7 +41,9 @@
             prev: questionsprev,
             next: questionsnext,
             total: questionstotal,
-            pageNumber: pageNumber
+            pageNumber: pageNumber,
+            gotoquestion: gotoquestion,
+            questionComponent: questionComponent
         }
     };
 });
