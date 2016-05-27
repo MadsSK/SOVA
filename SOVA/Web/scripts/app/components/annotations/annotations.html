@@ -1,16 +1,25 @@
 ﻿<h1>Annotations</h1>
-<table class="table table-striped">
-    <thead>
-        <tr><th>Date</th><th>ShipAddress</th><th></th></tr>
-    </thead>
-    <tbody data-bind="foreach: orders">
-        <tr>
-            <td><a href="#" data-bind="text: orderDate"></a></td>
-            <td data-bind="text: shipAddress"></td>
-            <td>
-                <a href="#edit" class="btn btn-xs btn-primary"><span class="glyphicon glyphicon-edit"></span></a>
-                <a href="#delete" class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-trash"></span></a>
-            </td>
-        </tr>
-    </tbody>
-</table>
+<div>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Url</th>
+                <th>Marking</th>
+                <th>Body</th>
+            </tr>
+        </thead>
+        <tbody data-bind="foreach: data">
+            <tr>
+                <td data-bind="text: url"></td>
+                <td data-bind="text: body"></td>
+                <td data-bind="text: $parents[0].questionId"></td>
+            </tr>
+        </tbody>
+    </table>
+    <span>Total: </span>
+    <span data-bind="text: total"></span>
+    <span>Page: </span>
+    <span data-bind="text: page"></span>
+    <span data-bind="if: prev"><button data-bind="click: prevClick">Prev</button></span>
+    <span data-bind="if: next"><button data-bind="click: nextClick">Next</button></span>
+</div>

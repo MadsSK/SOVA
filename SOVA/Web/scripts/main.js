@@ -2,7 +2,7 @@
     requirejs.config({
         baseUrl: 'Scripts',
         paths: {
-            knockout: 'lib/knockout-3.4.0',
+            knockout: 'lib/knockout-3.4.0.debug',
             jquery: 'lib/jquery-2.2.3.min',
             text: 'lib/text',
             bootstrap: 'lib/bootstrap.min',
@@ -16,12 +16,35 @@
     });
 })();
 
-require(['knockout', 'app/viewmodel', 'app/config', 'jquery', 'bootstrap', 'modernizer'],
-    function (ko, viewmodel, config, $, bs, md) {
+
+var ns = ns || {};
+
+ns.postbox = {
+    subscribers: [],
+    subscribe: function (callback, topic) {
+        this.subscribers.push({ topic: topic, callback: callback });
+    },
+    notify: function (value, topic) {
+        for (var i = 0; i < this.subscribers.length; i++) {
+            if (this.subscribers[i].topic === topic) {
+                this.subscribers[i].callback(value);
+            }
+        }
+    }
+};
+
+require(['knockout', 'app/viewmodel', 'app/config'],
+    function (ko, viewmodel, config) {
+
+    // Top bar menu
+    ko.components.register(config.menuComponent, {
+        viewModel: { require: 'app/components/topbarmenu/topbarmenuViewModel' },
+        template: { require: 'text!app/components/topbarmenu/topbarmenu.html' }
+    });
 
     // Annotations
     ko.components.register(config.annotationsComponent, {
-        viewModel: { require: 'app/components/menuannotations/annotationsViewModel' },
+        viewModel: { require: 'app/components/annotations/annotationsViewModel' },
         template: { require: 'text!app/components/annotations/annotations.html' }
     });
 
@@ -56,10 +79,34 @@ require(['knockout', 'app/viewmodel', 'app/config', 'jquery', 'bootstrap', 'mode
         template: { require: 'text!app/components/questions/questions.html' }
     });
 
-    // Top bar menu
-    ko.components.register(config.menuComponent, {
-        viewModel: { require: 'app/components/topbarmenu/topbarmenuViewModel' },
-        template: { require: 'text!app/components/topbarmenu/topbarmenu.html' }
+    // Question
+    ko.components.register(config.questionComponent, {
+        viewModel: { require: 'app/components/question/questionViewModel' },
+        template: { require: 'text!app/components/question/question.html' }
+    });
+
+    // User
+    ko.components.register(config.userComponent, {
+        viewModel: { require: 'app/components/user/userViewModel' },
+        template: { require: 'text!app/components/user/user.html' }
+    });
+
+    // Tags
+    ko.components.register(config.tagsComponent, {
+        viewModel: { require: 'app/components/tags/tagsViewModel' },
+        template: { require: 'text!app/components/tags/tags.html' }
+    });
+
+    // Comments
+    ko.components.register(config.commentsComponent, {
+        viewModel: { require: 'app/components/comments/commentsViewModel' },
+        template: { require: 'text!app/components/comments/comments.html' }
+    });
+
+    // Answers
+    ko.components.register(config.answersComponent, {
+        viewModel: { require: 'app/components/answers/answersViewModel' },
+        template: { require: 'text!app/components/answers/answers.html' }
     });
 
     ko.applyBindings(viewmodel);

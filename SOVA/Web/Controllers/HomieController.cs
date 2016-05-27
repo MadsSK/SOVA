@@ -10,11 +10,11 @@ using Web.Util;
 
 namespace Web.Controllers
 {
-    public class HomeController : BaseApiController
+    public class HomieController : BaseApiController
     {
         private readonly IRepository _repository;
         
-        public HomeController(IRepository _repository)
+        public HomieController(IRepository _repository)
         {
             this._repository = _repository;
         }

@@ -4,7 +4,7 @@
 
         return {
             currentComponent: currentComponent,
-            menuComponent: config.menuComponent
+            menuComponent: config.menuComponent,
         }
     });
 });
