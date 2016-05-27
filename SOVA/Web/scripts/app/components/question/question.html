@@ -1,0 +1,19 @@
+﻿<h1>Question</h1>
+<div data-bind="with: question">
+    <div data-bind="text: url"></div>
+    <div data-bind="text: creationDate"></div>
+    <div data-bind="text: score"></div>
+    <div data-bind="text: title"></div>
+    <div data-bind="html: body"></div>
+    <div data-bind="text: userUrl"></div>
+    <div data-bind="component: {name: $parent.userComponent, params: {userUrl: userUrl}}"></div>
+    <div data-bind="text: closedDate"></div>
+    <div data-bind="text: acceptedAnswerId"></div>
+    <div data-bind="text: tagsUrl"></div>
+    <div data-bind="component: {name: $parent.tagsComponent, params: {tagsUrl: tagsUrl}}"></div>
+    <div data-bind="text: commentsUrl"></div>
+    <div data-bind="component: {name: $parent.commentsComponent, params: {commentsUrl: commentsUrl}}"></div>
+    <div data-bind="text: linkedPostsUrl"></div>
+    <div data-bind="text: answersUrl"></div>
+    <div data-bind="component: {name: $parent.answersComponent, params: {answersUrl: answersUrl}}"></div>
+</div>
