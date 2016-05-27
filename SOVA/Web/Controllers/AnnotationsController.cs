@@ -1,6 +1,9 @@
-﻿using System.Linq;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Web.Http;
 using DataAccessLayer;
+using DomainModel;
 using Web.Models;
 using Web.Util;
 
@@ -8,12 +11,32 @@ namespace Web.Controllers
 {
     public class AnnotationsController : BaseApiController
     {
-        private readonly IRepository _repository = new MySqlRepository();
+        private readonly IRepository _repository;
+        
+        public AnnotationsController(IRepository _repository)
+        {
+            this._repository = _repository;
+        }
 
         public IHttpActionResult Get(int page = 0, int pagesize = Config.DefaultPageSize)
         {
-            var data = _repository.GetAnnotationsWithPaging(page, pagesize * page).Select(a => ModelFactory.Map(a, Url));
+            List<AnnotationModel> data = new List<AnnotationModel>();
+            var annotations = _repository.GetAnnotationsWithPaging(pagesize, pagesize*page);
+            
+            if (!annotations.Any() || annotations == null){return NotFound();}
 
+            foreach (var annotation in annotations)
+            {
+                if (_repository.GetQuestion((int)annotation.PostId) != null)
+                {
+                    data.Add(ModelFactory.Map(annotation, true, Url));
+                }
+                else
+                {
+                    data.Add(ModelFactory.Map(annotation, false, Url));
+                }
+            }
+            
             var result = GetWithPaging(
                 data,
                 pagesize,
@@ -26,14 +49,64 @@ namespace Web.Controllers
 
         public IHttpActionResult Get(int id)
         {
-            var result = ModelFactory.Map(_repository.FindAnnotation(id), Url);
+            bool question = true;
+            var result = _repository.FindQuestionAnnotation(id);
 
             if (result == null)
             {
-                return NotFound();
+                result = _repository.FindAnswerAnnotation(id);
+                question = false;
+                if (result == null)
+            {
+                    result = _repository.FindCommentAnnotation(id);
+                }
+            }
+            var annotationModel = ModelFactory.Map(result, question, Url);
+
+            if (annotationModel == null){return NotFound();}
+
+            return Ok(annotationModel);
+        }
+
+        public IHttpActionResult Post(AnnotationModel annotationModel)
+        {
+            if (annotationModel == null)return BadRequest("Annotation contains no values");
+            var annotation = new Annotation
+            {
+                Body = annotationModel.Body,
+                MarkingStart = annotationModel.MarkingStart,
+                MarkingEnd = annotationModel.MarkingEnd,
+                PostId = annotationModel.PostId,
+                CommentId = annotationModel.CommentId,
+                SearchUserId = annotationModel.SearchUserId
+            };
+            _repository.Insert(annotation);
+
+            bool question = _repository.GetQuestion((int) annotationModel.PostId) != null;
+
+            return Created(Config.AnnotationsRoute, ModelFactory.Map(annotation, question, Url));
+        }
+
+        public IHttpActionResult Delete(int id)
+        {
+            if (!_repository.DeleteAnnotation(id)) return NotFound();
+            return Ok();
             }
 
-            return Ok(result);
+        public IHttpActionResult Put(int id, AnnotationModel annotationModel)
+        {
+            var annotation = new Annotation
+            {
+                Body = annotationModel.Body,
+                MarkingStart = annotationModel.MarkingStart,
+                MarkingEnd = annotationModel.MarkingEnd,
+                PostId = annotationModel.PostId,
+                CommentId = annotationModel.CommentId,
+                SearchUserId = annotationModel.SearchUserId
+            };
+
+            if (!_repository.Update(annotation)) return NotFound();
+            return Ok();
         }
     }
 }

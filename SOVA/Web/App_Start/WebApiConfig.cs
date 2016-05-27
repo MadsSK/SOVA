@@ -9,57 +9,155 @@ namespace Web
         public static void Register(HttpConfiguration config)
         {
             // Web API configuration and services
-            string version = "v1.0.0/";
+            const string backEndVersion = "v1.0.0/";
 
             // Web API routes
             config.MapHttpAttributeRoutes();
 
+            // Annotations Routes
             config.Routes.MapHttpRoute(
                 name: Config.AnnotationsRoute,
-                routeTemplate: "api/" + version + "annotations/{id}",
+                routeTemplate: "api/" + backEndVersion + "annotations/{id}",
                 defaults: new { controller = "Annotations", id = RouteParameter.Optional }
             );
 
+            // Answers Routes
             config.Routes.MapHttpRoute(
                 name: Config.AnswersRoute,
-                routeTemplate: "api/" + version + "answers/{id}",
+                routeTemplate: "api/" + backEndVersion + "answers/{id}",
                 defaults: new { controller = "Answers", id = RouteParameter.Optional }
             );
 
             config.Routes.MapHttpRoute(
+                name: Config.AnswersCommentsRoute,
+                routeTemplate: "api/" + backEndVersion + "answers/{answerId}/comments",
+                defaults: new { controller = "Answers", answerId = "" }
+            );
+
+            config.Routes.MapHttpRoute(
+                name: Config.AnswersAnnotationsRoute,
+                routeTemplate: "api/" + backEndVersion + "answers/{answerId}/searchUsers/{searchUserId}/annotations",
+                defaults: new { controller = "Answers", route = Config.AnswersAnnotationsRoute, answerId = "", searchUserId = "" }
+            );
+
+            // Comments Routes
+            config.Routes.MapHttpRoute(
                 name: Config.CommentsRoute,
-                routeTemplate: "api/" + version + "comments/{id}",
+                routeTemplate: "api/" + backEndVersion + "comments/{id}",
                 defaults: new { controller = "Comments", id = RouteParameter.Optional }
             );
 
             config.Routes.MapHttpRoute(
-                name: Config.QuestionsRoute,
-                routeTemplate: "api/" + version + "questions/{id}",
-                defaults: new { controller = "Questions", id = RouteParameter.Optional }
+                name: Config.CommentsAnnotationsRoute,
+                routeTemplate: "api/" + backEndVersion + "comments/{commentId}/searchUsers/{searchUserId}/annotations",
+                defaults: new { controller = "Comments", commentId = "", searchUserId = ""}
             );
-            
+
+            // Questions Route
             config.Routes.MapHttpRoute(
-                name: Config.SearchesRoute,
-                routeTemplate: "api/" + version + "searches/{id}",
-                defaults: new { controller = "Searches", id = RouteParameter.Optional }
+                name: Config.QuestionsRoute,
+                routeTemplate: "api/" + backEndVersion + "questions/{id}",
+                defaults: new { controller = "Questions", id = RouteParameter.Optional }
             );
 
             config.Routes.MapHttpRoute(
+                name: Config.QuestionsAnswersRoute,
+                routeTemplate: "api/" + backEndVersion + "questions/{questionId}/answers",
+                defaults: new { controller = "Questions", questionId = ""}
+            );
+
+            config.Routes.MapHttpRoute(
+                name: Config.QuestionsCommentsRoute,
+                routeTemplate: "api/" + backEndVersion + "questions/{questionId}/comments",
+                defaults: new { controller = "QuestionsComments", questionId = ""}
+            );
+
+            config.Routes.MapHttpRoute(
+                name: Config.QuestionsLinkedPostsRoute,
+                routeTemplate: "api/" + backEndVersion + "questions/{questionId}/linkedposts",
+                defaults: new { controller = "QuestionsLinkedPosts", questionId = ""}
+            );
+
+            config.Routes.MapHttpRoute(
+                name: Config.QuestionsTagsRoute,
+                routeTemplate: "api/" + backEndVersion + "questions/{questionId}/tags",
+                defaults: new { controller = "QuestionsTags", questionId = ""}
+            );
+
+            config.Routes.MapHttpRoute(
+                name: Config.QuestionsAnnotationsRoute,
+                routeTemplate: "api/" + backEndVersion + "questions/{questionId}/searchUsers/{searchUserId}/annotations",
+                defaults: new { controller = "Questions", questionId = "", searchUserId = "" }
+            );
+
+            // Searches Routs
+            config.Routes.MapHttpRoute(
+                name: Config.SearchesRoute,
+                routeTemplate: "api/" + backEndVersion + "searches/{id}",
+                defaults: new { controller = "Searches", id = RouteParameter.Optional }
+            );
+
+            // SearchUsers Routes
+            config.Routes.MapHttpRoute(
                 name: Config.SearchUsersRoute,
-                routeTemplate: "api/" + version + "searchusers/{id}",
+                routeTemplate: "api/" + backEndVersion + "searchusers/{id}",
                 defaults: new { controller = "SearchUsers", id = RouteParameter.Optional }
             );
 
             config.Routes.MapHttpRoute(
+                name: Config.SearchUsersAnnotationsRoute,
+                routeTemplate: "api/" + backEndVersion + "searchusers/{searchUserId}/annotations",
+                defaults: new { controller = "SearchUsersAnnotations", searchUserId = "" }
+            );
+
+            config.Routes.MapHttpRoute(
+                name: Config.SearchUsersFavoritesRoute,
+                routeTemplate: "api/" + backEndVersion + "searchusers/{searchUserId}/favorites",
+                defaults: new { controller = "SearchUsersFavorites", searchUserId = "" }
+            );
+
+            config.Routes.MapHttpRoute(
+                name: Config.SearchUsersSearchsRoute,
+                routeTemplate: "api/" + backEndVersion + "searchusers/{searchUserId}/searchs",
+                defaults: new { controller = "SearchUsersSearchs", searchUserId = "" }
+            );
+
+            // Tags Routes
+            config.Routes.MapHttpRoute(
                 name: Config.TagsRoute,
-                routeTemplate: "api/" + version + "tags/{id}",
+                routeTemplate: "api/" + backEndVersion + "tags/{id}",
                 defaults: new { controller = "Tags", id = RouteParameter.Optional }
             );
 
             config.Routes.MapHttpRoute(
+                name: Config.TagsQuestionsRoute,
+                routeTemplate: "api/" + backEndVersion + "tags/{tagId}/questions",
+                defaults: new { controller = "Tags", tagId = ""}
+            );
+
+            // Users Routes
+            config.Routes.MapHttpRoute(
                 name: Config.UsersRoute,
-                routeTemplate: "api/" + version + "users/{id}",
+                routeTemplate: "api/" + backEndVersion + "users/{id}",
                 defaults: new { controller = "Users", id = RouteParameter.Optional }
+            );
+
+            config.Routes.MapHttpRoute(
+                name: Config.UsersAnswersRoute,
+                routeTemplate: "api/" + backEndVersion + "users/{userId}answers",
+                defaults: new { controller = "UsersAnswers", userId = ""}
+            );
+
+            config.Routes.MapHttpRoute(
+                name: Config.UsersQuestionsRoute,
+                routeTemplate: "api/" + backEndVersion + "users/{userId}questions",
+                defaults: new { controller = "UsersQuestions", userId = "" }
+            );
+
+            config.Routes.MapHttpRoute(
+                name: Config.UsersCommentsRoute,
+                routeTemplate: "api/" + backEndVersion + "users/{userId}comments",
+                defaults: new { controller = "UsersComments", userId = "" }
             );
 
             config.Formatters.JsonFormatter.SerializerSettings.ContractResolver

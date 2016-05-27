@@ -10,19 +10,17 @@ namespace Web.Models
         public string Url { get; set; }
         public DateTime CreationDate { get; set; }
         public int Score { get; set; }
-        public string Body { get; set; }
-        public int UserId { get; set; }
         public string Title { get; set; }
+        public string Body { get; set; }
+        public string UserUrl { get; set; }
+
         public DateTime? ClosedDate { get; set; }
         public int AcceptedAnswerId { get; set; }
 
-        
-        /*
-        public virtual ICollection<AnswerModel> Answers { get; set; }
-        public virtual ICollection<TagModel> Tags { get; set; }
-        public virtual ICollection<CommentModel> Comments { get; set; }
-        public virtual ICollection<AnnotationModel> Annotations { get; set; }
-        public virtual ICollection<SearchUserModel> SearchUsers{ get; set; }
-        */
+        public string TagsUrl { get; set; }
+        public string CommentsUrl { get; set; }
+        public string LinkedPostsUrl { get; set; }
+
+        public string AnswersUrl { get; set; }
     }
 }

@@ -11,7 +11,8 @@ namespace Web.Models
         public int Score { get; set; }
         public string Body { get; set; }
         public DateTime CreateDate { get; set; }
-        public int PostId { get; set; }
-        public int UserId { get; set; }
+        public string QuestionUrl { get; set; }
+        public string AnswerUrl { get; set; }
+        public string UserUrl { get; set; }
     }
 }

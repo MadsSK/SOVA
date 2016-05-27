@@ -7,20 +7,18 @@ namespace DomainModel
 {
     public class Post
     {
-        [Key]
         public int Id { get; set; }
         public DateTime CreationDate { get; set; }
         public int Score { get; set; }
         public string Body { get; set; }
         public int UserId { get; set; }
 
-        [ForeignKey("UserId")]
-        public User User { get; set; } 
+        public virtual User User { get; set; } 
 
         public virtual ICollection<Tag> Tags { get; set; }
         public virtual ICollection<Comment> Comments { get; set; }
         public virtual ICollection<Annotation> Annotations { get; set; } 
-        public virtual ICollection<SearchUser> SearchUsers { get; set; }
+        public virtual ICollection<SearchUser> Favorites { get; set; }
         public virtual ICollection<Post> LinkedPosts { get; set; }
     }
 }

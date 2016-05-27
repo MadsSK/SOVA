@@ -8,7 +8,12 @@ namespace Web.Controllers
 {
     public class TagsController : BaseApiController
     {
-        private readonly IRepository _repository = new MySqlRepository();
+        private readonly IRepository _repository;
+
+        public TagsController(IRepository _repository)
+        {
+            this._repository = _repository;
+        }
 
         public IHttpActionResult Get(int id)
         {
@@ -18,6 +23,38 @@ namespace Web.Controllers
             {
                 return NotFound();
             }
+
+            return Ok(result);
+        }
+
+        public IHttpActionResult Get(int page = 0, int pagesize = Config.DefaultPageSize)
+        {
+            var data = _repository.GetTags(pagesize, page * pagesize).Select(q => ModelFactory.Map(q, Url));
+
+            if (!data.Any()) { return NotFound();}
+
+            var result = GetWithPaging(
+                data,
+                pagesize,
+                page,
+                _repository.GetNumberOfTags(),
+                Config.TagsRoute);
+
+            return Ok(result);
+        }
+
+        public IHttpActionResult Get(int tagId, int page = 0, int pagesize = Config.DefaultPageSize)
+        {
+            var data = _repository.GetQuestionsWithTagId(tagId, pagesize, page * pagesize).Select(q => ModelFactory.Map(q, Url));
+
+            if (!data.Any()) return NotFound();
+
+            var result = GetWithPaging(
+                data,
+                pagesize,
+                page,
+                _repository.GetNumberOfQuestionsWithTagId(tagId),
+                Config.TagsRoute);
 
             return Ok(result);
         }
@@ -42,19 +79,7 @@ namespace Web.Controllers
             return Ok(result);
         }
 
-        public IHttpActionResult Get(int page = 0, int pagesize = Config.DefaultPageSize)
-        {
-            var data = _repository.GetQuestions(pagesize, page * pagesize).Select(q => ModelFactory.Map(q, Url));
-
-            var result = GetWithPaging(
-                data,
-                pagesize,
-                page,
-                _repository.GetNumbersOfQuestions(),
-                Config.QuestionsRoute);
-
-            return Ok(result);
-        }
+        
 
         public IHttpActionResult Get(string searchString, int page = 0, int pagesize = Config.DefaultPageSize)
         {
