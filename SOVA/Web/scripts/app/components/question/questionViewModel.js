@@ -10,15 +10,22 @@
         var markingEnd = ko.observable(params.markingEnd);
         var marking = ko.observable();
         var body = ko.observable();
+        var prevComponent = ko.observable(params.prevComponent);
 
         dataservice.getQuestion(params, function (data) {
             question(data);
             body(data.body);
             marking(body().substring(markingStart(), markingEnd() - markingStart()));
             console.log(body().substring(markingStart(), markingEnd() - markingStart()));
+            //TODO: we need to figure out how to set a highlight here og make it bold or somehting to show the annotation
             body(body().replace(marking(), "<div>" + "hey hey" + "</div>"));
             url(data.url);
         });
+
+        var goback = function () {
+            console.log(prevComponent());
+            ns.postbox.notify({ component: prevComponent() }, "currentComponent");
+        }
 
         return {
             question: question,
@@ -27,7 +34,8 @@
             tagsComponent: tagsComponent,
             commentsComponent: commentsComponent,
             answersComponent: answersComponent,
-            url: url
+            url: url,
+            goback: goback
         }
     };
 });

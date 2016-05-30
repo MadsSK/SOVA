@@ -16,7 +16,7 @@
     var nonMenuComponentElements = [
         "FullPagePost",                     // 0
         "Marking",                          // 1
-        "ListOfElementsWithSearch",         // 2
+        "LineBody",                         // 2
         "User",                             // 3
         "Tags",                             // 4
         "Comments",                         // 5
@@ -53,7 +53,7 @@
         questionComponent: menuElements[3].toLowerCase(),
         fullPagePostComponent: nonMenuComponentElements[0].toLowerCase(),
         markingComponent: nonMenuComponentElements[1].toLowerCase(),
-        listOfElementsWithSearchComponent: nonMenuComponentElements[2].toLowerCase(),
+        lineBodyComponent: nonMenuComponentElements[2].toLowerCase(),
         userComponent: nonMenuComponentElements[3].toLowerCase(),
         tagsComponent: nonMenuComponentElements[4].toLowerCase(),
         commentsComponent: nonMenuComponentElements[5].toLowerCase(),

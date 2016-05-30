@@ -2,6 +2,7 @@
     return function (params) {
         var annotations = ko.observableArray();
         var questionComponent = ko.observable();
+        var lineBodyComponent = ko.observable(config.lineBodyComponent);
         var showMessage = ko.observable(false);
         var curpage = ko.observable();
         var prevpage = ko.observable();
@@ -18,9 +19,9 @@
 
         dataservice.getAnnotations(callback);
 
-        var gotoquestion = function (markingStart, markingEnd, questionUrl) {
+        var gotoquestion = function (markingStart, markingEnd, questionUrl, root) {
             console.log(questionUrl);
-            ns.postbox.notify({ component: config.questionComponent, markingStart: markingStart, markingEnd: markingEnd, url: questionUrl,  }, "clickedComponent");
+            ns.postbox.notify({ component: config.questionComponent, markingStart: markingStart, markingEnd: markingEnd, url: questionUrl, prevComponent: root.currentComponent() }, "currentComponent");
         };
 
         return {
@@ -39,7 +40,8 @@
             markingComponent: ko.observable(config.markingComponent),
             questionComponent: questionComponent,
             showMessage: showMessage,
-            gotoquestion: gotoquestion
+            gotoquestion: gotoquestion,
+            lineBodyComponent: lineBodyComponent
         }
     };
 });

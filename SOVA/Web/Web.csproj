@@ -196,8 +196,8 @@
     <Content Include="scripts\app\components\fullpagepost\fullpagepost.html" />
     <Content Include="scripts\app\components\marking\markingViewModel.js" />
     <Content Include="scripts\app\components\marking\marking.html" />
-    <Content Include="scripts\app\components\listofelementswithsearch\listofelementswithsearchViewModel.js" />
-    <Content Include="scripts\app\components\listofelementswithsearch\listofelementswithsearch.html" />
+    <Content Include="scripts\app\components\linebody\linebodyViewModel.js" />
+    <Content Include="scripts\app\components\linebody\linebody.html" />
     <Content Include="scripts\app\components\question\question.html" />
     <Content Include="scripts\app\components\question\questionViewModel.js" />
     <Content Include="scripts\app\components\questions\questions.html" />

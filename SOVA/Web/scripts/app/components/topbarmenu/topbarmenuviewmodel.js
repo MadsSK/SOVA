@@ -10,6 +10,7 @@
             if (content !== undefined) {
                 currentComponent(content.toLowerCase());
                 ns.postbox.notify({ component: content.toLowerCase() }, "currentComponent");
+                
             }
 
         };

@@ -8,14 +8,14 @@
 
         //ns.postbox.notify(currentComponent, "currentComponent");
 
-        ns.postbox.subscribe(function(value) {
+        ns.postbox.subscribe(function (value) {
             currentComponent(value.component);
-            currentParamsData({ url: value.url });
+            currentParamsData({ markingStart: value.markingStart, markingEnd: value.markingEnd, url: value.url, prevComponent: value.prevComponent });
         }, "currentComponent");
 
         ns.postbox.subscribe(function (value) {
             clickedComponent(value.component);
-            clickParamsData({ markingStart: value.markingStart, markingEnd: value.markingEnd, url:  value.url });
+            clickParamsData({ markingStart: value.markingStart, markingEnd: value.markingEnd, url: value.url, prevComponent: value.prevComponent });
         }, "clickedComponent");
 
 

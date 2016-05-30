@@ -4,14 +4,14 @@
         <thead>
             <tr>
                 <th>Url</th>
-                <th>Marking</th>
                 <th>Body</th>
+                <th>Marking</th>
             </tr>
         </thead>
         <tbody data-bind="foreach: data">
-            <tr data-bind="click: $parent.gotoquestion.bind($parent, url)">
+            <tr data-bind="click: $parent.gotoquestion.bind($parent, url, $root)">
                 <td data-bind="text: url"></td>
-                <td data-bind="text: body"></td>
+                <td data-bind="component: {name: $parent.lineBodyComponent, params: body}"></td>
                 <td data-bind="text: $parents[0].questionId"></td>
             </tr>
        </tbody>
