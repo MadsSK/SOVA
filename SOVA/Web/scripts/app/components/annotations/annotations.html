@@ -2,23 +2,26 @@
 <div>
     <table class="table table-striped">
         <thead>
-            <tr>
-                <th>Url</th>
-                <th>Title</th>
-                <th>Marking</th>
-                <th>Body</th>
-            </tr>
+        <tr>
+            <th>Url</th>
+            <th>Title</th>
+            <th>Marking</th>
+            <th></th>
+            <th></th>
+            <th>Body</th>
+        </tr>
         </thead>
         <tbody data-bind="foreach: data">
-            <tr data-bind="click: $parent.gotoquestion">
-                <td data-bind="text: url"></td>
-                <td data-bind="if: $parent.title"><span data-bind="text: $parent.title"></span></td>
-                <td data-bind="if: questionUrl"><span data-bind="text: questionUrl"></span></td>
-                <td data-bind="if: answerUrl"><span data-bind="text: answerUrl"></span></td>
-                <td data-bind="if: commentUrl"></td>
-                <td data-bind="text: body"></td>
-                <td data-bind="text: $parents[0].questionId"></td>
-            </tr>
+        <tr data-bind="click: $parent.gotoquestion.bind($parent, markingStart, markingEnd, questionUrl)">
+            <td data-bind="text: url"></td>
+            <td data-bind="if: $parent.title">
+                <div data-bind="text: $parent.title"></div></td>
+            <td data-bind="if questionUrl"><span data-bind="component: {name: $parent.markingComponent, params: {markingStart: $data.markingStart, markingEnd: $data.markingEnd, url: $data.questionUrl}}"></span></td>
+            <td data-bind="if answerUrl"><span data-bind="component: {name: $parent.markingComponent, params: {markingStart: $data.markingStart, markingEnd: $data.markingEnd, url: $data.answerUrl}}"></span></td>
+            <td data-bind="if: commentUrl"><span data-bind="component: {name: $parent.markingComponent, params: {markingStart: $data.markingStart, markingEnd: $data.markingEnd, url: $data.commentUrl}}"></span>bla question</td>
+            <td data-bind="text: body"></td>
+        </tr>
+
         </tbody>
     </table>
     <span>Total: </span>

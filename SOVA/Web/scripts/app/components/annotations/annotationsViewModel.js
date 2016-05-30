@@ -1,12 +1,14 @@
-﻿define(['knockout', 'app/dataservice', 'app/viewmodel'], function (ko, dataservice, viewmodel) {
+﻿define(['knockout', 'app/dataservice', 'app/viewmodel', 'app/config'], function (ko, dataservice, viewmodel, config) {
     return function (params) {
         var annotations = ko.observableArray();
-        var questionId = "bla";
+        var questionComponent = ko.observable();
+        var showMessage = ko.observable(false);
         var curpage = ko.observable();
         var prevpage = ko.observable();
         var nextpage = ko.observable();
         var total = ko.observable();
-        var callback = function(data) {
+        
+        var callback = function (data) {
             annotations(data.data);
             curpage(data.page);
             prevpage(data.prev);
@@ -16,31 +18,28 @@
 
         dataservice.getAnnotations(callback);
 
-        ko.utils.arrayForEach(annotations, function(annotation) {
-            console.log(annotation);
-        });
-        
-        var gotoquestion = function(content) {
-            ns.postbox.notify(content, "currentComponent");
-        }
-
+        var gotoquestion = function (markingStart, markingEnd, questionUrl) {
+            console.log(questionUrl);
+            ns.postbox.notify({ component: config.questionComponent, markingStart: markingStart, markingEnd: markingEnd, url: questionUrl,  }, "clickedComponent");
+        };
 
         return {
             data: annotations,
-            prevClick: function () {
+            prevClick: function() {
                 dataservice.getAnnotations(prevpage, annotations);
             },
-            nextClick: function () {
+            nextClick: function() {
                 dataservice.getAnnotations(nextpage, annotations);
             },
-            questionId: questionId,
             prev: prevpage,
             next: nextpage,
             total: total,
             page: curpage,
             title: "hey hey",
+            markingComponent: ko.observable(config.markingComponent),
+            questionComponent: questionComponent,
+            showMessage: showMessage,
             gotoquestion: gotoquestion
-
         }
     };
 });

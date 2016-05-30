@@ -15,7 +15,7 @@
     // Array for components that do not belong to the top bar menu
     var nonMenuComponentElements = [
         "FullPagePost",                     // 0
-        "ListElement",                      // 1
+        "Marking",                          // 1
         "ListOfElementsWithSearch",         // 2
         "User",                             // 3
         "Tags",                             // 4
@@ -52,7 +52,7 @@
         annotationsComponent: menuElements[2].toLowerCase(),
         questionComponent: menuElements[3].toLowerCase(),
         fullPagePostComponent: nonMenuComponentElements[0].toLowerCase(),
-        listElementComponent: nonMenuComponentElements[1].toLowerCase(),
+        markingComponent: nonMenuComponentElements[1].toLowerCase(),
         listOfElementsWithSearchComponent: nonMenuComponentElements[2].toLowerCase(),
         userComponent: nonMenuComponentElements[3].toLowerCase(),
         tagsComponent: nonMenuComponentElements[4].toLowerCase(),
