@@ -78,6 +78,14 @@
                 data: data
 
             });
-        }
+        },
+        postData: function (url, data) {
+        $.ajax({
+            type: 'POST',
+            url: url,
+            data: data
+
+        });
+    }
     }
 });

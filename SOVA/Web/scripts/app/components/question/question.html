@@ -6,11 +6,15 @@
     <div><textarea data-bind="textInput: annotationBody"></textarea></div>
     <button data-bind="click: saveAnnotation.bind($data, annotationBody)">Save Annotation</button>
 </section>
+<section data-bind="if: isNewAnnotation">
+    <div><textarea data-bind="textInput: annotationBody"></textarea></div>
+    <button data-bind="click: createAnnotation.bind($data, annotationBody)">Create Annotation</button>
+</section>
 <button data-bind="click: goback">Go Back</button>
 
 
    
-    <div data-bind="with: question">
+    <div data-bind="with: question" id="question">
 
         <div data-bind="text: title" id="title"><small> Question</small></div>
 

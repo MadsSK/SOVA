@@ -13,9 +13,19 @@
         var annotations = ko.observableArray();
         var markings = ko.observableArray();
         var annotationBody = ko.observable();
-        var selection = ko.observable(window.getSelection());
+        var isNewAnnotation = ko.observable(false);
 
-        console.log(selection);
+        var getSelectionText = function () {
+            var text = "";
+            if (window.getSelection) {
+                text = window.getSelection().toString();
+            } else if (document.selection && document.selection.type != "Control") {
+                text = document.selection.createRange().text;
+            }
+            isNewAnnotation(true);
+        }
+
+        document.onmouseup = getSelectionText;
 
         dataservice.getQuestion(url(), function (data) {
             question(data);
@@ -32,9 +42,9 @@
                     for (var i = 0; i < annotations().length; i++) {
                         body(body().replace(markings()[i], '<em onClick = \"ns.postbox.notify({annotationUrl: \'' + annotations()[i].url + '\'}, \'annotationUrl\');\">' + markings()[i] + '</em>'));
                     }
-                }); 
+                });
             }
-            
+
         });
         /*$parents(1).showAnnotation(' + 'annotations()[i].url' + ')"*/
         /*onClick = "$root.showAnnotation(\"blablba\")"*/
@@ -45,6 +55,7 @@
 
         var getAnnotationBody = function (content, annotationUrl) {
             dataservice.getAnnotation(annotationUrl().annotationUrl, function (data) {
+                isNewAnnotation(false);
                 annotationBody(data.body);
             });
         };
@@ -64,7 +75,22 @@
             });
         }
 
-        ns.postbox.subscribe(function(data) {
+        var createAnnotation = function () {
+            console.log("Body: " + annotationBody() + " questionId: " + question().id);
+            var newAnnotation = ko.toJS({
+                Body: annotationBody(),
+                MarkingStart: null,
+                MarkingEnd: null,
+                PostId: question().id,
+                CommentId: null,
+                SearchUserId: 1
+            });
+            dataservice.postData(config.annotationsUrl, newAnnotation);
+            isNewAnnotation(false);
+        }
+
+
+        ns.postbox.subscribe(function (data) {
             annotationUrl(data);
         }, "annotationUrl");
 
@@ -80,7 +106,9 @@
             annotationUrl: annotationUrl,
             getAnnotationBody: getAnnotationBody,
             annotationBody: annotationBody,
-            saveAnnotation: saveAnnotation
+            saveAnnotation: saveAnnotation,
+            isNewAnnotation: isNewAnnotation,
+            createAnnotation: createAnnotation
         }
     };
 });
