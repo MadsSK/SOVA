@@ -1,10 +1,16 @@
-﻿<h2>Answers</h2>
+﻿<head>
+    <link rel="stylesheet" type="text/css" href="scripts/lib/StyleSheet1.css">
+</head>
+
+<h3>Answer</h3>
 <span data-bind="foreach: answers">
-    <h3>Answer</h3>
-    <span data-bind="text: url"></span>
-    <span data-bind="text: score"></span>
-    <span data-bind="html: body"></span>
-    <span data-bind="text: creationDate"></span>
+    
+    <span data-bind="text: creationDate" tag="date"></span>
+    <span data-bind="text: score" tag ="score"></span>
+    <span data-bind="text: url" tag ="url"></span>
+    
+    <span data-bind="html: body" tag="body"></span>
+   
     <span data-bind="component: {name: $parent.userComponent, params: {userUrl: userUrl}}"></span>
     <span data-bind="component: {name: $parent.commentsComponent, params: {commentsUrl: commentsUrl}}"></span>
 </span>

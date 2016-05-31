@@ -1,10 +1,18 @@
-﻿<h2>Comments</h2>
+﻿<head>
+    <link rel="stylesheet" type="text/css" href="scripts/lib/StyleSheet1.css">
+</head>
+
+
+<h3>Comments</h3>
 <span data-bind="foreach: comments">
     <h3>Comment</h3>
-    <span data-bind="text: url"></span>
-    <span data-bind="text: score"></span>
-    <span data-bind="html: body"></span>
-    <span data-bind="text: createDate"></span>
+    
+    <span data-bind="text: createDate" tag="date"></span>
+    <span data-bind="text: score" tag="score"></span>
+    <span data-bind="text: url" tag="url"></span>
+    
+    <span data-bind="html: body"tag="body"></span>
+    
     <span data-bind="component: {name: $parent.userComponent, params: {userUrl: userUrl}}"></span>
 </span>
 <span data-bind="text: total"></span>
