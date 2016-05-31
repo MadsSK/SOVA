@@ -10,19 +10,23 @@
 
         <div data-bind="text: creationDate" id="date"></div>
 
-        <div data-bind="text: score" id="score"></div>
+        <div data-bind="text: score" id="score" style="float:left"></div>
 
-        <div data-bind="html: body" id="body"></div>
-        <div data-bind="text: userUrl" id="url"></div>
-        <div data-bind="component: {name: $parent.userComponent, params: {userUrl: userUrl}}"tag="comp"></div>
-        <div data-bind="text: closedDate" id="date"></div>
-        <div data-bind="text: acceptedAnswerId" id="id"></div>
+        <div data-bind="html: body" id="body" style="float: left"></div>
+
+       
+        <div data-bind="text: userUrl" id="url" style="clear: both"></div>
+
+
+        <div data-bind="component: {name: $parent.userComponent, params: {userUrl: userUrl}}" id="comp"></div>
+        <div data-bind="text: closedDate" id="date1"></div>
+        <div data-bind="text: acceptedAnswerId" id="aaid"></div>
         <div data-bind="text: tagsUrl" id="url"></div>
         <div data-bind="component: {name: $parent.tagsComponent, params: {tagsUrl: tagsUrl}}"tag="comp"></div>
         <div data-bind="text: commentsUrl" id="url"></div>
         <div data-bind="component: {name: $parent.commentsComponent, params: {commentsUrl: commentsUrl}}"tag="comp"></div>
-        <div data-bind="text: linkedPostsUrl" tag="url"></div>
-        <div data-bind="text: answersUrl" tag="url"></div>
+        <div data-bind="text: linkedPostsUrl" íd="url"></div>
+        <div data-bind="text: answersUrl" id="url"></div>
         
         <div data-bind="component: {name: $parent.answersComponent, params: {answersUrl: answersUrl}}"></div>
     </div>

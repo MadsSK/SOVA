@@ -5,11 +5,11 @@
 <h3>Answer</h3>
 <span data-bind="foreach: answers">
     
-    <span data-bind="text: creationDate" tag="date"></span>
-    <span data-bind="text: score" tag ="score"></span>
-    <span data-bind="text: url" tag ="url"></span>
+    <span data-bind="text: creationDate" id="date"></span>
+    <span data-bind="text: score" id ="score"></span>
+    <span data-bind="text: url" id ="url"></span>
     
-    <span data-bind="html: body" tag="body"></span>
+    <span data-bind="html: body" id="body"></span>
    
     <span data-bind="component: {name: $parent.userComponent, params: {userUrl: userUrl}}"></span>
     <span data-bind="component: {name: $parent.commentsComponent, params: {commentsUrl: commentsUrl}}"></span>

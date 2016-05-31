@@ -4,16 +4,28 @@
 
 
 <h3>Comments</h3>
-<span data-bind="foreach: comments">
-    <h3>Comment</h3>
+
+<table class="table table-hover">
+    <thead>
+    <tr>
+        
+
+    </tr>
+    </thead>
+
+<tbody data-bind="foreach: comments">
+
+
+        <span data-bind="text: createDate" id="date"></span>
+        <span data-bind="text: score" id="score"></span>
+        <span data-bind="text: url" id="url"></span>
+
+        <span data-bind="html: body" id="body"></span>
+
+        <span data-bind="component: {name: $parent.userComponent, params: {userUrl: userUrl}}"></span>
+    </tbody>
     
-    <span data-bind="text: createDate" tag="date"></span>
-    <span data-bind="text: score" tag="score"></span>
-    <span data-bind="text: url" tag="url"></span>
-    
-    <span data-bind="html: body"tag="body"></span>
-    
-    <span data-bind="component: {name: $parent.userComponent, params: {userUrl: userUrl}}"></span>
-</span>
+</table>
+
 <span data-bind="text: total"></span>
-<span data-bind="if: more"><button data-bind="click: moreClick.bind($data, more)">More Comments</button></span>
+    <span data-bind="if: more"><button data-bind="click: moreClick.bind($data, more)">More Comments</button></span>

@@ -1,8 +1,12 @@
-﻿<h1>User</h1>
+﻿<head>
+    <link rel="stylesheet" type="text/css" href="scripts/lib/StyleSheet1.css">
+</head>
+
+
 <div data-bind="with: user">
-    <div data-bind="text: url"></div>
-    <div data-bind="text: displayName"></div>
-    <div data-bind="text: createDate"></div>
-    <div data-bind="text: location"></div>
-    <div data-bind="text: age"></div>
+    <div data-bind="text: displayName"id="userName"></div>
+    <div data-bind="text: url" id="url"></div>
+    <div data-bind="text: createDate"id="date"></div>
+    <div data-bind="text: location" id="location"></div>
+    <div data-bind="text: age" id="age"></div>
 </div>
