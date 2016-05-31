@@ -13,6 +13,9 @@
         var annotations = ko.observableArray();
         var markings = ko.observableArray();
         var annotationBody = ko.observable();
+        var selection = ko.observable(window.getSelection());
+
+        console.log(selection);
 
         dataservice.getQuestion(url(), function (data) {
             question(data);
