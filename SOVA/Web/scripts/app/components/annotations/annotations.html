@@ -1,7 +1,7 @@
 ﻿<h1>Annotations</h1>
 <div>
-    <table class="table table-striped">
-        <thead>
+<table class="table table-striped">
+    <thead>
         <tr>
             <th>Url</th>
             <th>Marking</th>
@@ -9,7 +9,7 @@
             <th></th>
             <th>Body</th>
         </tr>
-        </thead>
+    </thead>
         <tbody data-bind="foreach: data">
         <tr data-bind="click: $parent.gotoquestion.bind($parent, markingStart, markingEnd, questionUrl, $root, searchUserId)">
             <td data-bind="text: url"></td>
@@ -19,8 +19,8 @@
             <td data-bind="component: {name: $parent.lineBodyComponent, params: body}"></td>
         </tr>
 
-        </tbody>
-    </table>
+    </tbody>
+</table>
     <span>Total: </span>
     <span data-bind="text: total"></span>
     <span>Page: </span>

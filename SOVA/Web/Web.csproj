@@ -178,11 +178,13 @@
     <Content Include="scripts\app\components\answers\answersViewModel.js" />
     <Content Include="scripts\app\components\comments\comments.html" />
     <Content Include="scripts\app\components\comments\commentsViewModel.js" />
-    <Content Include="scripts\app\components\question\questionStyle.css" />
+    <Content Include="scripts\app\components\startpage\startpage.html" />
+    <Content Include="scripts\app\components\startpage\startpageViewModel.js" />
     <Content Include="scripts\app\components\tags\tags.html" />
     <Content Include="scripts\app\components\tags\tagsViewModel.js" />
     <Content Include="scripts\app\components\user\user.html" />
     <Content Include="scripts\app\components\user\userViewModel.js" />
+	<Content Include="scripts\app\components\question\questionStyle.css" />
     <Content Include="scripts\lib\modernizr-2.8.3.js" />
     <Content Include="Content\normalize.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />

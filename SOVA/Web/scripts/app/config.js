@@ -21,7 +21,9 @@
         "Tags",                             // 5
         "Comments",                         // 6
         "Answers",                          // 7
-        "SearchBar"                         // 8
+        "SearchBar",                        // 8
+        "StartPage"                         // 9
+
     ];
 
     var searchuserid = 1;
@@ -40,10 +42,10 @@
         // We need a userId variable that holds the current user
         favoritesUrl: server + frontEndVersion + "searchusers/" + 1 + "/" + menuElements[1].toLowerCase(),
 
-        
+
         // menu
         menuElements: menuElements,
-        defaultMenuItem: menuElements[0].toLowerCase(),        
+        defaultMenuItem: nonMenuComponentElements[8].toLowerCase(),        
 
         // components
         menuComponent: "topbarmenu",
@@ -58,6 +60,7 @@
         tagsComponent: nonMenuComponentElements[5].toLowerCase(),
         commentsComponent: nonMenuComponentElements[6].toLowerCase(),
         answersComponent: nonMenuComponentElements[7].toLowerCase(),
-        searchBarComponent: nonMenuComponentElements[8].toLowerCase()
-    }
+        searchBarComponent: nonMenuComponentElements[8].toLowerCase(),
+        startPageComponent: nonMenuComponentElements[9].toLowerCase()
+}
 });

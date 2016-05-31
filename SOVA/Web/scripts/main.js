@@ -124,5 +124,12 @@ require(['knockout', 'app/viewmodel', 'app/config'],
         template: { require: 'text!app/components/searchbar/searchbar.html' }
     });
 
+    // Start page
+    ko.components.register(config.startPageComponent, {
+        viewModel: { require: 'app/components/startpage/startpageViewModel' },
+        template: { require: 'text!app/components/startpage/startpage.html' }
+    });
+
+
     ko.applyBindings(viewmodel);
 });

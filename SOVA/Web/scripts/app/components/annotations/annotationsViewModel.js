@@ -8,7 +8,7 @@
         var prevpage = ko.observable();
         var nextpage = ko.observable();
         var total = ko.observable();
-        
+
         var callback = function (data) {
             annotations(data.data);
             curpage(data.page);
