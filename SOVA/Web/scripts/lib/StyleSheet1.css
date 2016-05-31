@@ -1,0 +1,40 @@
+﻿
+#title{
+    font-size: 35px;
+
+}
+
+#title:after {
+    font-size: 25px;
+    color: gray;
+    content: " Question";
+}
+
+#score {
+    color: grey;
+    font-size: 25px;
+}
+
+#date {
+    color: blue;
+    margin-left: 60px;
+}
+
+#date:before {
+    content: "Creation date: ";
+    color: black;
+}
+
+#body {
+    margin-left: 60px;
+}
+
+#url {
+    color: darkblue;
+    text-decoration: underline;
+    margin-left: 60px;
+}
+
+#comp {
+    margin-left: 100px;
+}
