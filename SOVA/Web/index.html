@@ -12,13 +12,13 @@
 </head>
 <body>
 <header>
-	<div class="container-fluid">
-		<div data-bind="component: menuComponent"></div>
-	</div>
+    <div class="container-fluid">
+        <div data-bind="component: menuComponent"></div>
+    </div>
 
-	<div class="container-fluid">
+    <div class="container-fluid">
         <div data-bind="component: {name: currentComponent, params: currentParamsData }"></div>
-	</div>
+    </div>
 
     <div data-bind="if: clickedComponent && clickParamsData" class="container-fluid">
         <div data-bind="component: {name: clickedComponent, params: clickParamsData}"></div>

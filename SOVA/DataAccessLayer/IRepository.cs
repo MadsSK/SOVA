@@ -19,7 +19,7 @@ namespace DataAccessLayer
         
         // Annotation - CRUD
         void Insert(Annotation annotation);
-        bool Update(Annotation annotation);
+        bool Update(int id, Annotation annotation);
         bool DeleteAnnotation(int id);
       
         // Answer

@@ -6,11 +6,13 @@
         var tagsComponent = ko.observable(config.tagsComponent);
         var commentsComponent = ko.observable(config.commentsComponent);
         var answersComponent = ko.observable(config.answersComponent);
+        var annotationUrl = ko.observable();
         var searchUserId = ko.observable(params.searchUserId);
-        var marking = ko.observable();
         var body = ko.observable();
         var prevComponent = ko.observable(params.prevComponent);
         var annotations = ko.observableArray();
+        var markings = ko.observableArray();
+        var annotationBody = ko.observable();
 
         dataservice.getQuestion(url(), function (data) {
             question(data);
@@ -20,22 +22,48 @@
                 dataservice.getQuestionAnnotations(data.id, searchUserId(), function (annotationData) {
                     annotations(annotationData.data);
                     for (var i = 0; i < annotations().length; i++) {
-                        marking(body().substring(annotations()[i].markingStart, annotations()[i].markingEnd));
-                        //Dosen't work, we should instead save the part of the body that we want to annotate and then finde it with replace.
-                        body(body().replace(marking(), '<em data-bind="click: showAnnotation(' + 'annotations()[i].body' + ')">' + marking() + '</em>'));
+                        //body().substring(annotations()[i].markingStart, annotations()[i].markingEnd);
+                        markings.push(body().substring(annotations()[i].markingStart, annotations()[i].markingEnd));
+                        console.log(markings());
                     }
-                });
+                    for (var i = 0; i < annotations().length; i++) {
+                        body(body().replace(markings()[i], '<em onClick = \"ns.postbox.notify({annotationUrl: \'' + annotations()[i].url + '\'}, \'annotationUrl\');\">' + markings()[i] + '</em>'));
+                    }
+                }); 
             }
+            
         });
+        /*$parents(1).showAnnotation(' + 'annotations()[i].url' + ')"*/
+        /*onClick = "$root.showAnnotation(\"blablba\")"*/
 
         var goback = function () {
-            console.log(prevComponent());
             ns.postbox.notify({ component: prevComponent() }, "currentComponent");
         }
 
-        var showAnnotation = function(body) {
-            console.log("blabla");
+        var getAnnotationBody = function (content, annotationUrl) {
+            dataservice.getAnnotation(annotationUrl().annotationUrl, function (data) {
+                annotationBody(data.body);
+            });
+        };
+
+        var saveAnnotation = function () {
+            console.log("URL: " + annotationUrl().annotationUrl + " Body: " + annotationBody());
+            dataservice.getAnnotation(annotationUrl().annotationUrl, function (data) {
+                var newAnnotation = ko.toJS({
+                    Body: annotationBody(),
+                    MarkingStart: data.markingStart,
+                    MarkingEnd: data.markingEnd,
+                    PostId: data.postId,
+                    CommentId: data.commentId,
+                    SearchUserId: data.searchUserId
+                });
+                dataservice.updateData(annotationUrl().annotationUrl, newAnnotation);
+            });
         }
+
+        ns.postbox.subscribe(function(data) {
+            annotationUrl(data);
+        }, "annotationUrl");
 
         return {
             question: question,
@@ -46,7 +74,10 @@
             answersComponent: answersComponent,
             url: url,
             goback: goback,
-            showAnnotation: showAnnotation
+            annotationUrl: annotationUrl,
+            getAnnotationBody: getAnnotationBody,
+            annotationBody: annotationBody,
+            saveAnnotation: saveAnnotation
         }
     };
 });

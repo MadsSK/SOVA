@@ -1,4 +1,9 @@
-﻿<button data-bind="click: goback">Go Back</button>
+﻿<section data-bind="if: annotationUrl">
+    <span data-bind="text: getAnnotationBody($data, annotationUrl)"></span>
+    <div><textarea data-bind="textInput: annotationBody"></textarea></div>
+    <button data-bind="click: saveAnnotation.bind($data, annotationBody)">Save Annotation</button>
+</section>
+<button data-bind="click: goback">Go Back</button>
 <h1>Question</h1>
 <section data-bind="with: question">
     <div data-bind="text: url"></div>
@@ -18,4 +23,3 @@
     <div data-bind="text: answersUrl"></div>
     <div data-bind="component: {name: $parent.answersComponent, params: {answersUrl: answersUrl}}"></div>
 </section>
-<!--<section data-bind="with: Annotation"></section>-->

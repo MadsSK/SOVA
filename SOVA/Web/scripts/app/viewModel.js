@@ -5,6 +5,7 @@
         var currentParamsData = ko.observable();
         var clickParamsData = ko.observable(null);
         var params = ko.observable();
+        var annotationUrl = ko.observable();
 
         //ns.postbox.notify(currentComponent, "currentComponent");
 
@@ -14,9 +15,9 @@
         }, "currentComponent");
 
         ns.postbox.subscribe(function (value) {
-            clickedComponent(value.component);
-            clickParamsData({ markingStart: value.markingStart, markingEnd: value.markingEnd, url: value.url, prevComponent: value.prevComponent, searchUserId: value.searchUserId });
-        }, "clickedComponent");
+            annotationUrl(value.annotationUrl);
+            console.log(annotationUrl());
+        }, "annotationUrl");
 
 
 

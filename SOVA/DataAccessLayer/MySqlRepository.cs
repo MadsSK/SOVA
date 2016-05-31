@@ -19,7 +19,7 @@ namespace DataAccessLayer
             using (var db = new StackOverflowDbContext())
             {
                 return db.Annotations
-                    .Where(a => db.Questions.Any(q => q.Id == id))
+                    .Where(a => db.Questions.Any(q => q.Id == a.PostId))
                     .FirstOrDefault(a => a.Id == id);
             }
         }
@@ -29,7 +29,7 @@ namespace DataAccessLayer
             using (var db = new StackOverflowDbContext())
             {
                 return db.Annotations
-                    .Where(an => db.Answers.Any(a => a.Id == id))
+                    .Where(an => db.Answers.Any(a => a.Id == an.PostId))
                     .FirstOrDefault(an => an.Id == id);
             }
         }
@@ -127,11 +127,11 @@ namespace DataAccessLayer
             }
         }
 
-        public bool Update(Annotation annotation)
+        public bool Update(int id, Annotation annotation)
         {
             using (var db = new StackOverflowDbContext())
             {
-                var dbAnnotation = db.Annotations.FirstOrDefault(a => a.Id == annotation.Id);
+                var dbAnnotation = db.Annotations.FirstOrDefault(a => a.Id == id);
                 if (dbAnnotation == null) return false;
 
                 dbAnnotation.Body = annotation.Body;
