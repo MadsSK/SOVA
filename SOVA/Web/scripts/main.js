@@ -16,13 +16,11 @@
     });
 })();
 
-
 var ns = ns || {};
-
-
 
 ns.postbox = {
     subscribers: [],
+    
     subscribe: function (callback, topic, source) {
         var found = false;
         for (var i = 0; i < this.subscribers.length; i++) {
@@ -125,6 +123,13 @@ require(['knockout', 'app/viewmodel', 'app/config'],
         viewModel: { require: 'app/components/searchbar/searchbarViewModel' },
         template: { require: 'text!app/components/searchbar/searchbar.html' }
     });
+
+    // Start page
+    ko.components.register(config.startPageComponent, {
+        viewModel: { require: 'app/components/startpage/startpageViewModel' },
+        template: { require: 'text!app/components/startpage/startpage.html' }
+    });
+
 
     ko.applyBindings(viewmodel);
 });

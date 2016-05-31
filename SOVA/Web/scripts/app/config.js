@@ -21,7 +21,8 @@
         "Tags",                             // 4
         "Comments",                         // 5
         "Answers",                          // 6
-        "SearchBar"                         // 7
+        "SearchBar",                        // 7
+        "StartPage"                         // 8
     ];
 
     var searchuserid = 1;
@@ -43,7 +44,7 @@
         
         // menu
         menuElements: menuElements,
-        defaultMenuItem: menuElements[0].toLowerCase(),        
+        defaultMenuItem: nonMenuComponentElements[8].toLowerCase(),        
 
         // components
         menuComponent: "topbarmenu",
@@ -58,6 +59,7 @@
         tagsComponent: nonMenuComponentElements[4].toLowerCase(),
         commentsComponent: nonMenuComponentElements[5].toLowerCase(),
         answersComponent: nonMenuComponentElements[6].toLowerCase(),
-        searchBarComponent: nonMenuComponentElements[7].toLowerCase()
+        searchBarComponent: nonMenuComponentElements[7].toLowerCase(),
+        startPageComponent: nonMenuComponentElements[8].toLowerCase()
     }
 });

@@ -178,6 +178,8 @@
     <Content Include="scripts\app\components\answers\answersViewModel.js" />
     <Content Include="scripts\app\components\comments\comments.html" />
     <Content Include="scripts\app\components\comments\commentsViewModel.js" />
+    <Content Include="scripts\app\components\startpage\startpage.html" />
+    <Content Include="scripts\app\components\startpage\startpageViewModel.js" />
     <Content Include="scripts\app\components\tags\tags.html" />
     <Content Include="scripts\app\components\tags\tagsViewModel.js" />
     <Content Include="scripts\app\components\user\user.html" />
@@ -202,7 +204,7 @@
     <Content Include="scripts\app\components\question\questionViewModel.js" />
     <Content Include="scripts\app\components\questions\questions.html" />
     <Content Include="scripts\app\components\questions\questionsViewModel.js" />
-	<Content Include="scripts\app\components\searchbar\searchbar.html" />
+    <Content Include="scripts\app\components\searchbar\searchbar.html" />
     <Content Include="scripts\app\components\searchbar\searchbarViewModel.js" />
     <Content Include="scripts\app\components\topbarmenu\topbarmenu.html" />
     <Content Include="scripts\app\components\topbarmenu\topbarmenuViewModel.js" />
