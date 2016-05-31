@@ -3,7 +3,7 @@
         var marking = ko.observable();
         var annotation = ko.observable(params);
         dataservice.getData(annotation().url, function (data) {
-            marking(data.body.substring(annotation().markingStart, annotation().markingEnd - annotation().markingStart));
+            marking(data.body.substring(annotation().markingStart, annotation().markingEnd));
         });
         
         return {

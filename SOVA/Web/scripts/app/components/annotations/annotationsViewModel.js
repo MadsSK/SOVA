@@ -19,9 +19,9 @@
 
         dataservice.getAnnotations(callback);
 
-        var gotoquestion = function (markingStart, markingEnd, questionUrl, root) {
-            console.log(questionUrl);
-            ns.postbox.notify({ component: config.questionComponent, markingStart: markingStart, markingEnd: markingEnd, url: questionUrl, prevComponent: root.currentComponent() }, "currentComponent");
+        var gotoquestion = function (markingStart, markingEnd, questionUrl, root, searchUserId) {
+            console.log();
+            ns.postbox.notify({ component: config.questionComponent, markingStart: markingStart, markingEnd: markingEnd, url: questionUrl, prevComponent: root.currentComponent(), searchUserId: searchUserId }, "currentComponent");
         };
 
         return {
@@ -36,7 +36,6 @@
             next: nextpage,
             total: total,
             page: curpage,
-            title: "hey hey",
             markingComponent: ko.observable(config.markingComponent),
             questionComponent: questionComponent,
             showMessage: showMessage,

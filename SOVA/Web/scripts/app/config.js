@@ -9,19 +9,19 @@
         "Questions",                        // 0
         "Favorites",                        // 1
         "Annotations",                      // 2
-        "Question",                         // 3
     ];
 
     // Array for components that do not belong to the top bar menu
     var nonMenuComponentElements = [
-        "FullPagePost",                     // 0
-        "Marking",                          // 1
-        "LineBody",                         // 2
-        "User",                             // 3
-        "Tags",                             // 4
-        "Comments",                         // 5
-        "Answers",                          // 6
-        "SearchBar"                         // 7
+        "Question",                         // 0 
+        "FullPagePost",                     // 1
+        "Marking",                          // 2
+        "LineBody",                         // 3
+        "User",                             // 4
+        "Tags",                             // 5
+        "Comments",                         // 6
+        "Answers",                          // 7
+        "SearchBar"                         // 8
     ];
 
     var searchuserid = 1;
@@ -50,14 +50,14 @@
         questionsComponent: menuElements[0].toLowerCase(),
         favoritesComponent: menuElements[1].toLowerCase(),
         annotationsComponent: menuElements[2].toLowerCase(),
-        questionComponent: menuElements[3].toLowerCase(),
-        fullPagePostComponent: nonMenuComponentElements[0].toLowerCase(),
-        markingComponent: nonMenuComponentElements[1].toLowerCase(),
-        lineBodyComponent: nonMenuComponentElements[2].toLowerCase(),
-        userComponent: nonMenuComponentElements[3].toLowerCase(),
-        tagsComponent: nonMenuComponentElements[4].toLowerCase(),
-        commentsComponent: nonMenuComponentElements[5].toLowerCase(),
-        answersComponent: nonMenuComponentElements[6].toLowerCase(),
-        searchBarComponent: nonMenuComponentElements[7].toLowerCase()
+        questionComponent: nonMenuComponentElements[0].toLowerCase(),
+        fullPagePostComponent: nonMenuComponentElements[1].toLowerCase(),
+        markingComponent: nonMenuComponentElements[2].toLowerCase(),
+        lineBodyComponent: nonMenuComponentElements[3].toLowerCase(),
+        userComponent: nonMenuComponentElements[4].toLowerCase(),
+        tagsComponent: nonMenuComponentElements[5].toLowerCase(),
+        commentsComponent: nonMenuComponentElements[6].toLowerCase(),
+        answersComponent: nonMenuComponentElements[7].toLowerCase(),
+        searchBarComponent: nonMenuComponentElements[8].toLowerCase()
     }
 });

@@ -10,12 +10,12 @@
 
         ns.postbox.subscribe(function (value) {
             currentComponent(value.component);
-            currentParamsData({ markingStart: value.markingStart, markingEnd: value.markingEnd, url: value.url, prevComponent: value.prevComponent });
+            currentParamsData({ markingStart: value.markingStart, markingEnd: value.markingEnd, url: value.url, prevComponent: value.prevComponent, searchUserId: value.searchUserId });
         }, "currentComponent");
 
         ns.postbox.subscribe(function (value) {
             clickedComponent(value.component);
-            clickParamsData({ markingStart: value.markingStart, markingEnd: value.markingEnd, url: value.url, prevComponent: value.prevComponent });
+            clickParamsData({ markingStart: value.markingStart, markingEnd: value.markingEnd, url: value.url, prevComponent: value.prevComponent, searchUserId: value.searchUserId });
         }, "clickedComponent");
 
 

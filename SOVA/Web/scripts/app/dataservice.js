@@ -46,6 +46,17 @@
                 callback(data);
             });
         },
+        getQuestionWithAnnotations: function (url, callback) {
+            $.getJSON(url, function (data) {
+                callback(data);
+            });
+        },
+        getQuestionAnnotations: function (questionid, searchUserId, callback) {
+            var url = conf.questionsUrl + "?questionid=" + questionid + "&searchuserid=" + searchUserId;
+            $.getJSON(url, function (data) {
+                callback(data);
+            });
+        },
         getQuestions: function (url, callback) {
         if (callback == undefined) {
             callback = url;

@@ -1,30 +1,40 @@
 ﻿define(['knockout', 'app/dataservice', 'app/config'], function (ko, dataservice, config) {
     return function (params) {
         var question = ko.observable();
-        var url = ko.observable();
+        var url = ko.observable(params.url);
         var userComponent = ko.observable(config.userComponent);
         var tagsComponent = ko.observable(config.tagsComponent);
         var commentsComponent = ko.observable(config.commentsComponent);
         var answersComponent = ko.observable(config.answersComponent);
-        var markingStart = ko.observable(params.markingStart);
-        var markingEnd = ko.observable(params.markingEnd);
+        var searchUserId = ko.observable(params.searchUserId);
         var marking = ko.observable();
         var body = ko.observable();
         var prevComponent = ko.observable(params.prevComponent);
+        var annotations = ko.observableArray();
 
-        dataservice.getQuestion(params, function (data) {
+        dataservice.getQuestion(url(), function (data) {
             question(data);
             body(data.body);
-            marking(body().substring(markingStart(), markingEnd() - markingStart()));
-            console.log(body().substring(markingStart(), markingEnd() - markingStart()));
-            //TODO: we need to figure out how to set a highlight here og make it bold or somehting to show the annotation
-            body(body().replace(marking(), "<div>" + "hey hey" + "</div>"));
             url(data.url);
+            if (searchUserId !== undefined || searchUserId !== null) {
+                dataservice.getQuestionAnnotations(data.id, searchUserId(), function (annotationData) {
+                    annotations(annotationData.data);
+                    for (var i = 0; i < annotations().length; i++) {
+                        marking(body().substring(annotations()[i].markingStart, annotations()[i].markingEnd));
+                        //Dosen't work, we should instead save the part of the body that we want to annotate and then finde it with replace.
+                        body(body().replace(marking(), '<em data-bind="click: showAnnotation(' + 'annotations()[i].body' + ')">' + marking() + '</em>'));
+                    }
+                });
+            }
         });
 
         var goback = function () {
             console.log(prevComponent());
             ns.postbox.notify({ component: prevComponent() }, "currentComponent");
+        }
+
+        var showAnnotation = function(body) {
+            console.log("blabla");
         }
 
         return {
@@ -35,7 +45,8 @@
             commentsComponent: commentsComponent,
             answersComponent: answersComponent,
             url: url,
-            goback: goback
+            goback: goback,
+            showAnnotation: showAnnotation
         }
     };
 });
