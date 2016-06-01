@@ -93,7 +93,7 @@ namespace Web
                 routeTemplate: "api/" + backEndVersion + "questions/{questionId}/searchUsers/{searchUserId}/annotations",
                 defaults: new { controller = "Questions", questionId = "", searchUserId = "" }
             );
-
+            /*
             //SearchResult Routes
             config.Routes.MapHttpRoute(
                 name: Config.SearchAllRoute,
@@ -124,7 +124,7 @@ namespace Web
                 routeTemplate: "api/" + backEndVersion + "Favorites/search?=" + searchString,
                 defaults: new {controllers = "Facorites"}
                 );
-
+                */
             // Searches Routs
             config.Routes.MapHttpRoute(
                 name: Config.SearchesRoute,

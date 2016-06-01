@@ -63,6 +63,9 @@ namespace DataAccessLayer
         IEnumerable<Question> GetQuestionsWithTagId(int tagId, int limit, int offset);
         IEnumerable<Annotation> GetAnnotationsOnQuestionWithQuestionIdSearchUserId(int questionId, int searchUserId, int limit, int offset);
 
+        //Search results
+        SearchRes SearchQuestionsRes(string searchString);
+
         // Search
         Search FindSearch(int id);
         IEnumerable<Search> GetSearchsWithPaging(int limit, int offset);

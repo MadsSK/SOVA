@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="Annotation.cs" />
     <Compile Include="Answer.cs" />
+    <Compile Include="SearchRes.cs" />
     <Compile Include="Comment.cs" />
     <Compile Include="Post.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

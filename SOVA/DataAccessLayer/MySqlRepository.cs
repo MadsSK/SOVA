@@ -859,5 +859,13 @@ namespace DataAccessLayer
                     .ToList();
             }
         }
+
+        public SearchRes SearchQuestionsRes(string searchString)
+        {
+            using (var db = new StackOverflowDbContext())
+            {
+                return //something...
+            }
+        }
     }
 }
