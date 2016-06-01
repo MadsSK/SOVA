@@ -178,13 +178,13 @@
     <Content Include="scripts\app\components\answers\answersViewModel.js" />
     <Content Include="scripts\app\components\comments\comments.html" />
     <Content Include="scripts\app\components\comments\commentsViewModel.js" />
+    <Content Include="scripts\app\components\question\questionStyle.css" />
     <Content Include="scripts\app\components\startpage\startpage.html" />
     <Content Include="scripts\app\components\startpage\startpageViewModel.js" />
     <Content Include="scripts\app\components\tags\tags.html" />
     <Content Include="scripts\app\components\tags\tagsViewModel.js" />
     <Content Include="scripts\app\components\user\user.html" />
     <Content Include="scripts\app\components\user\userViewModel.js" />
-	<Content Include="scripts\app\components\question\questionStyle.css" />
     <Content Include="scripts\lib\modernizr-2.8.3.js" />
     <Content Include="Content\normalize.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -246,6 +246,7 @@
     <Compile Include="Controllers\QuestionsTagsController.cs" />
     <Compile Include="Controllers\QuestionsLinkedPostsController.cs" />
     <Compile Include="Controllers\QuestionsCommentsController.cs" />
+    <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\SearchUsersFavoritesController.cs" />
     <Compile Include="Controllers\SearchUsersSearchsController.cs" />
     <Compile Include="Controllers\SearchUsersAnnotationsController.cs" />
@@ -267,10 +268,11 @@
     <Compile Include="Models\HomeModel.cs" />
     <Compile Include="Models\AnnotationModel.cs" />
     <Compile Include="Models\AnswerModel.cs" />
+    <Compile Include="Models\SearchModel.cs" />
     <Compile Include="Models\TagModel.cs" />
     <Compile Include="Models\SearchUserModel.cs" />
     <Compile Include="Models\UserModel.cs" />
-    <Compile Include="Models\SearchModel.cs" />
+    <Compile Include="Models\SearchResModel.cs" />
     <Compile Include="Models\ModelFactory.cs" />
     <Compile Include="Models\CommentModel.cs" />
     <Compile Include="Models\QuestionModel.cs" />

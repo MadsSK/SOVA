@@ -30,8 +30,6 @@
         var pageNumber = questionspage;
 
         var gotoquestion = function (questionUrl, root) {
-            console.log(questionUrl);
-            console.log(root.currentComponent());
             ns.postbox.notify({ component: config.questionComponent, url: questionUrl, prevComponent: root.currentComponent() }, "currentComponent");
         };
 

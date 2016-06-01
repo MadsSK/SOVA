@@ -17,7 +17,8 @@ namespace Web.Models
         private static readonly IMapper SearchUserMapper;
         private static readonly IMapper TagMapper;
         private static readonly IMapper UserMapper;
-        
+        private static readonly IMapper SearchResMapper;
+
         static ModelFactory()
         {
             var annotationCfg = new MapperConfiguration(cfg => cfg.CreateMap<Annotation, AnnotationModel>());
@@ -32,7 +33,7 @@ namespace Web.Models
             var questionCfg = new MapperConfiguration(cfg => cfg.CreateMap<Question, QuestionModel>());
             QuestionMapper = questionCfg.CreateMapper();
 
-            var searchCfg = new MapperConfiguration(cfg => cfg.CreateMap<Search, SearchModel>());
+            var searchCfg = new MapperConfiguration(cfg => cfg.CreateMap<Search, SearchResModel>());
             SearchMapper = searchCfg.CreateMapper();
 
             var searchUserCfg = new MapperConfiguration(cfg => cfg.CreateMap<SearchUser, SearchUserModel>());
@@ -43,6 +44,9 @@ namespace Web.Models
             
             var userCfg = new MapperConfiguration(cfg => cfg.CreateMap<User, UserModel>());
             UserMapper = userCfg.CreateMapper();
+
+            var searchResCfg = new MapperConfiguration(cfg => cfg.CreateMap<SearchRes, SearchResModel>());
+            SearchResMapper = searchResCfg.CreateMapper();
 
         }
 
@@ -166,6 +170,16 @@ namespace Web.Models
             userModel.Url = urlHelper.Link(Config.UsersRoute, new { user.Id });
 
             return userModel;
+        }
+
+        public static SearchResModel Map(SearchRes searchRes, UrlHelper urlHelper)
+        {
+            if (searchRes == null) return null;
+
+            var searchResModel = SearchResMapper.Map<SearchResModel>(searchRes);
+            searchResModel.Url = urlHelper.Link(Config.QuestionsRoute, new { searchRes.PostId });
+
+            return searchResModel;
         }
     }
 }

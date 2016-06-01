@@ -80,12 +80,18 @@
             });
         },
         postData: function (url, data) {
-        $.ajax({
-            type: 'POST',
-            url: url,
-            data: data
+            $.ajax({
+                type: 'POST',
+                url: url,
+                data: data
 
-        });
-    }
+            });
+        },
+        search: function (searchString, callback) {
+            url = conf.searchUrl + searchString;
+            $.getJSON(url, function (data) {
+                callback(data);
+            });
+        }
     }
 });
