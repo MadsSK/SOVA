@@ -1,5 +1,4 @@
 ﻿using System.Web.Http;
-using System.Web.Mvc;
 using Newtonsoft.Json.Serialization;
 using Web.Util;
 
@@ -11,9 +10,6 @@ namespace Web
         {
             // Web API configuration and services
             const string backEndVersion = "v1.0.0/";
-
-            //String used for searching.
-            string searchString="";
 
             // Web API routes
             config.MapHttpAttributeRoutes();
@@ -94,44 +90,13 @@ namespace Web
                 defaults: new { controller = "Questions", questionId = "", searchUserId = "" }
             );
 
+            // Search Routs
             config.Routes.MapHttpRoute(
-                name: Config.QuestionsSearchRoute,
-                routeTemplate: "api/" + backEndVersion + "questionssearch/{searchString}",
-                defaults: new { controller = "QuestionsSearch", searchString = ""}
+                name: Config.SearchRoute,
+                routeTemplate: "api/" + backEndVersion + "search/{id}",
+                defaults: new { controller = "Search", id = RouteParameter.Optional }
             );
 
-            /*
-            //SearchResult Routes
-            config.Routes.MapHttpRoute(
-                name: Config.SearchAllRoute,
-                routeTemplate: "api/" + backEndVersion + "search?=" + searchString,
-                defaults: new {controller = "Questions"}//Needs change
-                );
-
-            config.Routes.MapHttpRoute(
-                name:Config.SearchQuestionsRoute,
-                routeTemplate:"api/" + backEndVersion + "Questions/search?=" + searchString,
-                defaults: new { controller = "Questions"}
-                );
-
-            config.Routes.MapHttpRoute(
-                name: Config.SearchAnnotationsRoute,
-                routeTemplate: "api/" + backEndVersion + "Annotations/search?=" + searchString,
-                defaults: new {controller = "Annotations"}
-                );
-
-            config.Routes.MapHttpRoute(
-                name: Config.SearchCommentsRoute,
-                routeTemplate: "api/" + backEndVersion + "Comments/search?=" + searchString,
-                defaults: new {controllers = "Comments"}
-                );
-
-            config.Routes.MapHttpRoute(
-                name: Config.SearchFavoritesRoute,
-                routeTemplate: "api/" + backEndVersion + "Favorites/search?=" + searchString,
-                defaults: new {controllers = "Facorites"}
-                );
-                */
             // Searches Routs
             config.Routes.MapHttpRoute(
                 name: Config.SearchesRoute,

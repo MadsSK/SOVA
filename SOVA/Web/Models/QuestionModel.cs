@@ -8,6 +8,7 @@ namespace Web.Models
     public class QuestionModel
     {
         public string Url { get; set; }
+        public int Id { get; set; }
         public DateTime CreationDate { get; set; }
         public int Score { get; set; }
         public string Title { get; set; }

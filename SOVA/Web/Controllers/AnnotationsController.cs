@@ -135,7 +135,7 @@ namespace Web.Controllers
                 SearchUserId = annotationModel.SearchUserId
             };
 
-            if (!_repository.Update(annotation)) return NotFound();
+            if (!_repository.Update(id, annotation)) return NotFound();
             return Ok();
         }
     }

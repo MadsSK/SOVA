@@ -7,6 +7,7 @@
         var questionstotal = ko.observable();
         var questionspage = ko.observable();
         var questionComponent = ko.observable(config.questionComponent);
+        var lineBodyComponent = ko.observable(config.lineBodyComponent);
         
         var callback = function (data) {
             questionsdata(data.data);
@@ -25,10 +26,11 @@
             dataservice.getQuestions(questionsnext(), callback);
         };
 
+        
         var pageNumber = questionspage;
 
-        var gotoquestion = function (questionUrl) {
-            ns.postbox.notify({ component: config.questionComponent, url: questionUrl }, "currentComponent");
+        var gotoquestion = function (questionUrl, root) {
+            ns.postbox.notify({ component: config.questionComponent, url: questionUrl, prevComponent: root.currentComponent() }, "currentComponent");
         };
 
         return {
@@ -41,7 +43,8 @@
             total: questionstotal,
             pageNumber: pageNumber,
             gotoquestion: gotoquestion,
-            questionComponent: questionComponent
+            questionComponent: questionComponent,
+            lineBodyComponent: lineBodyComponent
         }
     };
 });

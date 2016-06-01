@@ -19,7 +19,7 @@ namespace DataAccessLayer
         
         // Annotation - CRUD
         void Insert(Annotation annotation);
-        bool Update(Annotation annotation);
+        bool Update(int id, Annotation annotation);
         bool DeleteAnnotation(int id);
       
         // Answer
@@ -67,6 +67,10 @@ namespace DataAccessLayer
         SearchRes SearchQuestionsRes(string searchString);
 
         // Search
+        IEnumerable<SearchRes> SearchWithPaging(string searchString, int limit, int offset);
+        int GetNumberOfSeachResult(string searchString);
+
+        // Search
         Search FindSearch(int id);
         IEnumerable<Search> GetSearchsWithPaging(int limit, int offset);
         int GetNumberOfSearchs();
@@ -104,6 +108,5 @@ namespace DataAccessLayer
         IEnumerable<Answer> GetAnswersWithUserId(int userId, int limit, int offset);
         IEnumerable<Question> GetQuestionsWithUserId(int userId, int limit, int offset);
         IEnumerable<Comment> GetCommentsWithUserId(int userId, int limit, int offset);
-        
     }
 }

@@ -33,6 +33,9 @@
         // Searches
         public const string SearchesRoute = "SearchApi";
 
+        // Searchs
+        public const string SearchRoute = "SearcherApi";
+
         // Search Users
         public const string SearchUsersRoute = "SearchUserApi";
         public const string SearchUsersAnnotationsRoute = "SearchUserAnnotationApi";

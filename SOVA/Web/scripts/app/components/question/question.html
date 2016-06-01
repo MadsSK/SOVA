@@ -1,35 +1,38 @@
 ﻿<head>
     <link rel="stylesheet" type="text/css" href="scripts/lib/StyleSheet1.css">
 </head>
+<section data-bind="if: annotationUrl">
+    <span data-bind="text: getAnnotationBody($data, annotationUrl)"></span>
+    <div><textarea data-bind="textInput: annotationBody"></textarea></div>
+    <button data-bind="click: saveAnnotation.bind($data, annotationBody)">Save Annotation</button>
+</section>
+<section data-bind="if: isNewAnnotation">
+    <div><textarea data-bind="textInput: annotationBody"></textarea></div>
+    <button data-bind="click: createAnnotation.bind($data, annotationBody)">Create Annotation</button>
+</section>
+<button data-bind="click: goback">Go Back</button>
+
+
    
-    <div data-bind="with: question">
+    <div data-bind="with: question" id="question">
 
         <div data-bind="text: title" id="title"><small> Question</small></div>
 
         <div data-bind="text: creationDate" id="date"></div>
 
-        <div data-bind="text: score" id="score" style="float:left"></div>
+        <div data-bind="text: score" id="score"></div>
 
-        <div data-bind="html: body" id="body" style="float: left"></div>
-       
-        <div data-bind="text: userUrl" id="url" style="clear: both"></div>
+        <div data-bind="html: $parent.body" id="body"></div>
+        <div data-bind="text: userUrl" id="url"></div>
+        <div data-bind="component: {name: $parent.userComponent, params: {userUrl: userUrl}}"tag="comp"></div>
+        <div data-bind="text: closedDate" id="date"></div>
+        <div data-bind="text: acceptedAnswerId" id="id"></div>
+        <div data-bind="text: tagsUrl" id="url"></div>
+        <div data-bind="component: {name: $parent.tagsComponent, params: {tagsUrl: tagsUrl}}"tag="comp"></div>
+        <div data-bind="text: commentsUrl" id="url"></div>
+        <div data-bind="component: {name: $parent.commentsComponent, params: {commentsUrl: commentsUrl}}"tag="comp"></div>
+        <div data-bind="text: linkedPostsUrl" tag="url"></div>
+        <div data-bind="text: answersUrl" tag="url"></div>
 
-        <div data-bind="component: {name: $parent.userComponent, params: {userUrl: userUrl}}" id="comp"></div>
-
-        <!--
-        <div data-bind="text: closedDate" id="date1"></div>
-        <div data-bind="text: acceptedAnswerId" id="aaid"></div>
-        <div data-bind="text: tagsUrl" id="url"></div> -->
-
-        <div data-bind="component: {name: $parent.tagsComponent, params: {tagsUrl: tagsUrl}}"id="tagsComp"></div>
-
-        <!--<div data-bind="text: commentsUrl" id="url"></div>-->
-
-        <div data-bind="component: {name: $parent.commentsComponent, params: {commentsUrl: commentsUrl}}"id="commentComp"></div>
-
-        <!--<div data-bind="text: linkedPostsUrl" íd="url"></div>-->
-
-        <!--<div data-bind="text: answersUrl" id="url"></div>-->
-        
-        <div data-bind="component: {name: $parent.answersComponent, params: {answersUrl: answersUrl}}" id="answer"></div>
-    </div>
+    <div data-bind="component: {name: $parent.answersComponent, params: {answersUrl: answersUrl}}"></div>
+        </div>

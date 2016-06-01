@@ -5,12 +5,19 @@
 
         ns.postbox.notify(currentComponent, "currentComponent");
 
-        ns.postbox.subscribe(function(value) {
+        
+        ns.postbox.subscribe(function (value) {
             currentComponent(value.component);
-            paramsData({ url: value.url });
-            //ns.postbox.notify(value.url, "questionurl");
+            paramsData({ markingStart: value.markingStart, markingEnd: value.markingEnd, url: value.url, prevComponent: value.prevComponent, searchUserId: value.searchUserId });
         }, "currentComponent");
 
+        ns.postbox.subscribe(function () {
+        }, "searchBarContent");
+
+        ns.postbox.subscribe(function (value) {
+            annotationUrl(value.annotationUrl);
+            console.log(annotationUrl());
+        }, "annotationUrl");
 
 
 
@@ -18,7 +25,8 @@
             currentComponent: currentComponent,
             menuComponent: config.menuComponent,
             paramsData: paramsData,
-            searchBarComponent: config.searchBarComponent
+            searchBarComponent: config.searchBarComponent,
+            startPageComponent: config.startPageComponent
         }
     });
 });
