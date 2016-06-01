@@ -1,7 +1,10 @@
 ﻿define(['knockout', 'app/dataservice', 'app/config', 'jquery'], function (ko, dataservice, config, $) {
     return function (params) {
-        
         var searchBarContents = ko.observable("");
+
+        ns.postbox.subscribe(function (value) {
+            searchBarContents(value);
+        }, "searchBarContent", "searchBarContext");
 
         var windowHeight = ko.observable($(window).height());
 
@@ -18,16 +21,11 @@
                     $("#primarySearchBar").focus();
                 });
             }
-
+            
             ns.postbox.notify(searchBarContents(), "searchBarContent");
 
             return searchBarContents().length;
         });
-
-        ns.postbox.subscribe(function(value) {
-            searchBarContents(value);
-        },"searchBarContent","searchBarContext  ");
-
 
         // When the window is resized...
         $(window).resize(function() {

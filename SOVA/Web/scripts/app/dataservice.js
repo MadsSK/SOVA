@@ -87,8 +87,7 @@
 
             });
         },
-        search: function (searchString, callback) {
-            url = conf.searchUrl + searchString;
+        search: function (url, callback) {
             $.getJSON(url, function (data) {
                 callback(data);
             });

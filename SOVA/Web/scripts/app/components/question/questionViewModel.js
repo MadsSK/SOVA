@@ -51,6 +51,8 @@
 
         var goback = function () {
             ns.postbox.notify({ component: prevComponent() }, "currentComponent");
+            var searchBarContent = params.searchBarContent;
+            ns.postbox.notify(searchBarContent, "searchBarContent");
         }
 
         var getAnnotationBody = function (content, annotationUrl) {
