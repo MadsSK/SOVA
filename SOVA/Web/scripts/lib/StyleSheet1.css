@@ -79,13 +79,12 @@
     content: "Age: ";
 }
 
-#tags {
-    
-}
-    
-
 /*Comment*/
 #commentComp {
     margin-left: 60px;
+}
+
+#answerCommentComp {
+    margin-left: 120px;
 }
 
