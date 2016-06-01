@@ -1,5 +1,5 @@
-﻿define(['knockout', 'app/dataservice', 'app/config'], function(ko, dataservice, config) {
-    return function() {
+﻿define(['knockout', 'app/dataservice', 'app/config'], function (ko, dataservice, config) {
+    return function () {
         var searchdata = ko.observableArray();
         var searchpage = ko.observable();
         var searchprev = ko.observable();
@@ -7,7 +7,7 @@
         var searchtotal = ko.observable();
         var searchString = ko.observable();
 
-        ns.postbox.subscribe(function(data) {
+        ns.postbox.subscribe(function (data) {
             searchString(data);
         }, "searchBarContent", "startPageContext");
 
@@ -26,7 +26,7 @@
         var prevClick = function () {
             dataservice.search(searchprev(), callback);
         };
-        var nextClick = function() {
+        var nextClick = function () {
             dataservice.search(searchnext(), callback);
         };
 
