@@ -1,32 +1,32 @@
 ﻿<!DOCTYPE html>
 <body>
-    <section>
-        <div id="desktopSearchElement" class="container-fluid">
-            <div data-bind="component: searchBarComponent"></div>
-        </div>
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>Rank</th>
-                    <th>Word</th>
-                    <th>Title</th>
-                    <th>Body</th>
-                </tr>
-            </thead>
-            <tbody data-bind="foreach: data">
-                <tr data-bind="click: $parent.gotoquestion.bind($parent, url, $root)">
-                    <td data-bind="text: rank"></td>
-                    <td data-bind="text: word"></td>
-                    <td data-bind="text: title"></td>
-                    <td data-bind="text: body"></td>
-                </tr>
-            </tbody>
-        </table>
-        <span>Total: </span>
-        <span data-bind="text: total"></span>
-        <span>Page: </span>
-        <span data-bind="text: pageNumber"></span>
-        <span data-bind="if: prev"><button data-bind="click: prevClick">Prev</button></span>
-        <span data-bind="if: next"><button data-bind="click: nextClick">Next</button></span>
-    </section>
+<section>
+    <div id="desktopSearchElement" class="container-fluid">
+        <div data-bind="component: searchBarComponent"></div>
+    </div>
+    <table data-bind="if: searchString" class="table table-striped">
+        <thead>
+            <tr>
+                <th>Rank</th>
+                <th>Word</th>
+                <th>Title</th>
+                <th>Body</th>
+            </tr>
+        </thead>
+        <tbody data-bind="foreach: data">
+            <tr data-bind="click: $parent.gotoquestion.bind($parent, url, $root)">
+                <td data-bind="text: rank"></td>
+                <td data-bind="text: word"></td>
+                <td data-bind="text: title"></td>
+                <td data-bind="text: body"></td>
+            </tr>
+        </tbody>
+    </table>
+    <span>Total: </span>
+    <span data-bind="text: total"></span>
+    <span>Page: </span>
+    <span data-bind="text: pageNumber"></span>
+    <span data-bind="if: prev"><button data-bind="click: prevClick">Prev</button></span>
+    <span data-bind="if: next"><button data-bind="click: nextClick">Next</button></span>
+</section>
 </body>

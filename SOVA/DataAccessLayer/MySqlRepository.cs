@@ -504,6 +504,11 @@ namespace DataAccessLayer
             }
         }
 
+        public SearchRes SearchQuestionsRes(string searchString)
+        {
+            throw new NotImplementedException();
+        }
+
         public IEnumerable<SearchRes> SearchWithPaging(string searchString, int limit, int offset)
         {
             using (var db = new StackOverflowDbContext())

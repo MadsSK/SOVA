@@ -46,7 +46,7 @@
 
         // menu
         menuElements: menuElements,
-        defaultMenuItem: nonMenuComponentElements[8].toLowerCase(),        
+        defaultMenuItem: nonMenuComponentElements[9].toLowerCase(),        
 
         // components
         menuComponent: "topbarmenu",

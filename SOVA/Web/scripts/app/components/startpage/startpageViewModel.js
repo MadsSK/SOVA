@@ -19,10 +19,10 @@
             searchtotal(data.total);
         };
 
-        if (searchString.hasChanged()) {
-            dataservice.search(config.searchUrl + searchString, callback);
-        }
-
+        ko.computed(function() {
+            dataservice.search(config.searchUrl + searchString(), callback);
+        });
+        
         var prevClick = function () {
             dataservice.search(searchprev(), callback);
         };
@@ -31,7 +31,9 @@
         };
 
         var gotoquestion = function (questionUrl, root) {
-            ns.postbox.notify({ component: config.questionComponent, url: questionUrl, prevComponent: root.currentComponent() }, "currentComponent");
+            console.log("startpage:" +searchString());
+            ns.postbox.notify({ component: config.questionComponent, url: questionUrl, prevComponent: root.currentComponent(), searchBarContent: searchString() }, "currentComponent");
+            ns.postbox.notify("", "searchBarContent");
         };
 
         return {
@@ -40,8 +42,11 @@
             total: searchtotal,
             pageNumber: searchpage,
             gotoquestion: gotoquestion,
+            prev: searchprev,
+            next: searchnext,
             prevClick: prevClick,
-            nextClick: nextClick
+            nextClick: nextClick,
+            searchString: searchString,
         }
     }
 });

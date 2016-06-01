@@ -177,7 +177,7 @@ namespace Web.Models
             if (searchRes == null) return null;
 
             var searchResModel = SearchResMapper.Map<SearchResModel>(searchRes);
-            searchResModel.Url = urlHelper.Link(Config.QuestionsRoute, new { searchRes.PostId });
+            searchResModel.Url = urlHelper.Link(Config.QuestionsRoute, new { id = searchRes.Id });
 
             return searchResModel;
         }
