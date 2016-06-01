@@ -1,21 +1,18 @@
-﻿
+﻿/*Styling for Answers and Questions*/
 #title{
     font-size: 35px;
-
 }
 
 #title:after {
     font-size: 25px;
     color: gray;
     content: " Question";
-
 }
 
 #score {
     color: grey;
     font-size: 25px;
     margin-top: 15px;
-
 }
 
 #date {
@@ -23,27 +20,23 @@
     color: blue;
     margin-left: 60px;
     margin-bottom: 20px;
-
 }
 
 #date:before {
     content: "Creation date: ";
     color: black;
-
 }
 
 #body {
     float: left;
     width: 75%;
     margin-left: 20px;
-
 }
 
 #url {
     color: darkblue;
     text-decoration: underline;
     margin-left: 60px;
-
 }
 
 #aaid {
@@ -53,6 +46,12 @@
     content: "Accepted answer id: ";
 }
 
+#answer {
+    margin-left: 60px;
+}
+
+
+/*Styling for user specifically*/
 #userName {
     font-size: 25px;
 
@@ -77,7 +76,16 @@
 }
 
 #age:before {
-    content: "Age: "
+    content: "Age: ";
+}
+
+#tags {
     
+}
+    
+
+/*Comment*/
+#commentComp {
+    margin-left: 60px;
 }
 

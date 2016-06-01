@@ -241,6 +241,7 @@
     <Compile Include="App_Start\UnityConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\HomieController.cs" />
+    <Compile Include="Controllers\QuestionsSearchController.cs" />
     <Compile Include="Controllers\QuestionsTagsController.cs" />
     <Compile Include="Controllers\QuestionsLinkedPostsController.cs" />
     <Compile Include="Controllers\QuestionsCommentsController.cs" />
@@ -265,6 +266,7 @@
     <Compile Include="Models\HomeModel.cs" />
     <Compile Include="Models\AnnotationModel.cs" />
     <Compile Include="Models\AnswerModel.cs" />
+    <Compile Include="Models\SearchRes.cs" />
     <Compile Include="Models\TagModel.cs" />
     <Compile Include="Models\SearchUserModel.cs" />
     <Compile Include="Models\UserModel.cs" />

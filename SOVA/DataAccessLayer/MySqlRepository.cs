@@ -500,6 +500,8 @@ namespace DataAccessLayer
             }
         }
 
+     
+
         public int GetNumberOfQuestions()
         {
             using (var db = new StackOverflowDbContext())
@@ -860,7 +862,21 @@ namespace DataAccessLayer
             }
         }
 
+        /*********************
+        search res
+        ***********************/
+     
+
         public SearchRes SearchQuestionsRes(string searchString)
+        {
+            return new SearchRes
+            {
+                Id = 1,
+                SearchResult = searchString
+            };
+        }
+
+        public IEnumerable<SearchRes> GetSearchQuestionsRes(string searchString)
         {
             using (var db = new StackOverflowDbContext())
             {

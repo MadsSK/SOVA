@@ -1,15 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Web;
 
-namespace DomainModel
+namespace Web.Models
 {
-    public class SearchRes
+    public class SearchResModel
     {
         public int Id { get; set; }
         public string SearchResult { get; set; }
-
     }
 }

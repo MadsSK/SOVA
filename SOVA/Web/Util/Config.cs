@@ -21,6 +21,7 @@
         public const string QuestionsCommentsRoute = "QuestionCommentApi";
         public const string QuestionsLinkedPostsRoute = "QuestionLinkedPostApi";
         public const string QuestionsTagsRoute = "QuestionTagApi";
+        public const string QuestionsSearchRoute = "QuestionSeachApi";
 
         //Search results
         public const string SearchAllRoute = "SearchAllApi";

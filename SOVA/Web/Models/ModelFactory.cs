@@ -17,7 +17,8 @@ namespace Web.Models
         private static readonly IMapper SearchUserMapper;
         private static readonly IMapper TagMapper;
         private static readonly IMapper UserMapper;
-        
+        private static readonly IMapper SearchResMapper;
+
         static ModelFactory()
         {
             var annotationCfg = new MapperConfiguration(cfg => cfg.CreateMap<Annotation, AnnotationModel>());
@@ -43,6 +44,9 @@ namespace Web.Models
             
             var userCfg = new MapperConfiguration(cfg => cfg.CreateMap<User, UserModel>());
             UserMapper = userCfg.CreateMapper();
+            
+            var searchResCfg = new MapperConfiguration(cfg => cfg.CreateMap<SearchRes, SearchResModel>());
+            SearchResMapper = searchResCfg.CreateMapper();
 
         }
 
@@ -162,10 +166,19 @@ namespace Web.Models
         {
             if (user == null) return null;
 
-            var userModel = UserMapper.Map<UserModel>(user);
+            var userModel = SearchResMapper.Map<UserModel>(user);
             userModel.Url = urlHelper.Link(Config.UsersRoute, new { user.Id });
 
             return userModel;
+        }
+
+        public static SearchResModel Map(SearchRes searchRes)
+        {
+            if (searchRes == null) return null;
+
+            var searchResModel = SearchResMapper.Map<SearchResModel>(searchRes);
+            
+            return searchResModel;
         }
     }
 }
