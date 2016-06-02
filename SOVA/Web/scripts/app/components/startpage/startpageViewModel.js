@@ -1,5 +1,9 @@
-﻿define(['knockout', 'app/dataservice', 'app/config'], function (ko, dataservice, config) {
+﻿define(['knockout', 'app/dataservice', 'app/config'], function(ko, dataservice, config) {
     return function () {
+
+        // Set this variable to true if you want to see window size and input length/value
+        var showDebugStats = false;
+
         var searchdata = ko.observableArray();
         var searchpage = ko.observable();
         var searchprev = ko.observable();
@@ -7,8 +11,15 @@
         var searchtotal = ko.observable();
         var searchString = ko.observable();
 
-        ns.postbox.subscribe(function (data) {
+        var windowHeight = ko.observable($(window).height());
+
+        var windowWidth = ko.observable($(window).width());
+
+        var searchContentLength = ko.observable();
+
+        ns.postbox.subscribe(function(data) {
             searchString(data);
+            searchContentLength(data.length);
         }, "searchBarContent", "startPageContext");
 
         var callback = function (data) {
@@ -26,7 +37,7 @@
         var prevClick = function () {
             dataservice.search(searchprev(), callback);
         };
-        var nextClick = function () {
+        var nextClick = function() {
             dataservice.search(searchnext(), callback);
         };
 
@@ -35,6 +46,11 @@
             ns.postbox.notify({ component: config.questionComponent, url: questionUrl, prevComponent: root.currentComponent(), searchBarContent: searchString() }, "currentComponent");
             ns.postbox.notify("", "searchBarContent");
         };
+
+        $(window).resize(function() {
+            windowWidth($(window).width());
+            windowHeight($(window).height());
+        });
 
         return {
             searchBarComponent: config.searchBarComponent,
@@ -47,6 +63,10 @@
             prevClick: prevClick,
             nextClick: nextClick,
             searchString: searchString,
+            windowWidth: windowWidth,
+            windowHeight: windowHeight,
+            searchContentLength: searchContentLength,
+            showDebugStats: showDebugStats
         }
     }
 });

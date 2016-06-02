@@ -21,7 +21,7 @@
                     $("#primarySearchBar").focus();
                 });
             }
-            
+
             ns.postbox.notify(searchBarContents(), "searchBarContent");
 
             return searchBarContents().length;
@@ -37,7 +37,6 @@
         // Add CSS
         $("#div").css('position', 'fixed');
         searchBarPositionHandler();
-        $("#functionalSearchBar").hide();
         
         function searchBarPositionHandler() {
 

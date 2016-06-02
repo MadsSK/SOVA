@@ -25,9 +25,6 @@
             dataservice.getQuestions(questionsnext(), callback);
         };
 
-        
-        var pageNumber = questionspage;
-
         var gotoquestion = function (questionUrl, root) {
             ns.postbox.notify({ component: config.questionComponent, url: questionUrl, prevComponent: root.currentComponent() }, "currentComponent");
         };
@@ -39,7 +36,7 @@
             prev: questionsprev,
             next: questionsnext,
             total: questionstotal,
-            pageNumber: pageNumber,
+            pageNumber: questionspage,
             gotoquestion: gotoquestion,
             questionComponent: questionComponent,
             lineBodyComponent: lineBodyComponent

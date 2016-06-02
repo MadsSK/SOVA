@@ -3,6 +3,8 @@
 
     var frontEndVersion = "/api/v1.0.0/";
 
+    var applicationName = "SOVA";
+
     // If you want to add additional menu elements, simply add them to this array, 
     // then define functionality in the view model of the tobarmenu component
     var menuElements = [
@@ -43,7 +45,7 @@
         favoritesUrl: server + frontEndVersion + "searchusers/" + 1 + "/" + menuElements[1].toLowerCase(),
         searchUrl: server + frontEndVersion + "search?searchstring=",
 
-
+        
         // menu
         menuElements: menuElements,
         defaultMenuItem: nonMenuComponentElements[9].toLowerCase(),        
@@ -62,6 +64,7 @@
         commentsComponent: nonMenuComponentElements[6].toLowerCase(),
         answersComponent: nonMenuComponentElements[7].toLowerCase(),
         searchBarComponent: nonMenuComponentElements[8].toLowerCase(),
-        startPageComponent: nonMenuComponentElements[9].toLowerCase()
-}
+        startPageComponent: nonMenuComponentElements[9].toLowerCase(),
+        applicationName: applicationName
+    }
 });

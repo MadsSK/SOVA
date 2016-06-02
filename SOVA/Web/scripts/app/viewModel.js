@@ -1,4 +1,4 @@
-﻿define(['knockout', 'app/config', 'modernizer', 'text'], function (ko, config, md, txt) {
+﻿define(['knockout', 'app/config'], function (ko, config) {
         return (function () {
         var currentComponent = ko.observable(config.defaultMenuItem);
         var paramsData = ko.observable();

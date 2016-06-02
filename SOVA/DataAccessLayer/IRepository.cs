@@ -66,7 +66,7 @@ namespace DataAccessLayer
         // Search Result
         IEnumerable<SearchRes> SearchWithPaging(string searchString, int limit, int offset);
         int GetNumberOfSeachResult(string searchString);
-
+        
         // Search
         Search FindSearch(int id);
         IEnumerable<Search> GetSearchsWithPaging(int limit, int offset);

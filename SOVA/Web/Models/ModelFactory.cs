@@ -18,7 +18,7 @@ namespace Web.Models
         private static readonly IMapper TagMapper;
         private static readonly IMapper UserMapper;
         private static readonly IMapper SearchResMapper;
-
+        
         static ModelFactory()
         {
             var annotationCfg = new MapperConfiguration(cfg => cfg.CreateMap<Annotation, AnnotationModel>());

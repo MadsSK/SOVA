@@ -13,7 +13,7 @@
 
 			<form class="navbar-form navbar-left" role="search">
 				<div class="form-group">
-					<input data-bind="textInput: searchBarContents" type="text" id="functionalSearchBar" class="form-control">
+					<input data-bind="textInput: searchBarContents, style: { color: searchContentLength() > 1000 ? 'red' : 'black' }" type="text" id="functionalSearchBar" class="form-control">
 				</div>
 			</form>
 
