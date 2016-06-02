@@ -1,5 +1,5 @@
-﻿define(['knockout', 'app/config'], function (ko, config) {
-    return (function () {
+﻿define(['knockout', 'app/config', 'modernizer', 'text'], function (ko, config, md, txt) {
+        return (function () {
         var currentComponent = ko.observable(config.defaultMenuItem);
         var paramsData = ko.observable();
 
@@ -20,6 +20,6 @@
             paramsData: paramsData,
             searchBarComponent: config.searchBarComponent,
             startPageComponent: config.startPageComponent
-        }
+        }   
     });
 });
