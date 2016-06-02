@@ -1,4 +1,4 @@
-﻿define(['knockout', 'app/config'], function (ko, config) {
+﻿define(['knockout', 'app/config', 'modernizer', 'text'], function (ko, config, md, txt) {
         return (function () {
         var currentComponent = ko.observable(config.defaultMenuItem);
         var paramsData = ko.observable();
@@ -13,7 +13,6 @@
 
         ns.postbox.subscribe(function() {
         }, "searchBarContent");
-
 
         return {
             currentComponent: currentComponent,

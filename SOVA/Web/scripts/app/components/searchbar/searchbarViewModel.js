@@ -46,20 +46,18 @@
             // Set search bar to vertical middle
             $("#div").css('top', (windowHeight() / 2) + 'px');
 
-            // Small "hack" that handles an apparent bug in jquery-bootstrap interactions in narrow screen resolutions.
-            // 667 is the pixel cutoff where col-sm is meant to be triggered, but it doesn't, so...
-            if (windowWidth() < 667) {
-                $("#div").css('width', (windowWidth() - 40) + 'px');
-            }
+            // Small "hack" that handles apparent overlapping interactions in CSS-bootstrap in narrow screen resolutions.
+            // 768 is the pixel cutoff where col-sm is meant to be triggered, but it doesn't when position is fixed, so...
+            if (windowWidth() < 768) {
+                $("#div").css('width', (windowWidth() - ((windowWidth()/12)*4)) + 'px');
+            } else $("#div").css('width', '');
         };
 
         return {
             searchBarContents: searchBarContents,
             windowWidth: windowWidth,
             windowHeight: windowHeight,
-            horizontalHalf: windowWidth / 2,
-            verticalHalf: windowHeight / 2, 
             searchContentLength: searchContentLength
-    }
+        }
     };
 });
