@@ -1,10 +1,11 @@
 ﻿/*Styling for Answers and Questions*/
+/*Header*/
 #title{
-    font-size: 35px;
+    font-size: 30px;
 }
 
 #title:after {
-    font-size: 25px;
+    font-size: 20px;
     color: gray;
     content: " Question";
 }
@@ -13,12 +14,12 @@
     color: grey;
     font-size: 25px;
     margin-top: 15px;
+    align-content: center;
 }
 
 #date {
     font-size: 10px;
     color: blue;
-    margin-left: 60px;
     margin-bottom: 20px;
 }
 
@@ -27,23 +28,22 @@
     color: black;
 }
 
-#body {
-    float: left;
-    width: 75%;
-    margin-left: 20px;
-}
 
 #url {
     color: darkblue;
     text-decoration: underline;
-    margin-left: 60px;
+    font-size: 10px;
+   
 }
 
-#aaid {
-    margin-left: 60px;
-}
+
 #aaid:before {
     content: "Accepted answer id: ";
+}
+
+#tags {
+    background-color: lightblue;
+    color: darkblue;
 }
 
 #answer {
@@ -53,7 +53,7 @@
 
 /*Styling for user specifically*/
 #userName {
-    font-size: 25px;
+    font-size: 20px;
 
 }
 
@@ -66,9 +66,8 @@
 
 #comp {
     margin-top: 15px;
-    margin-left: 100px;
     background-color: lightblue;
-    float: right;
+   
 }
 
 #location:before {
