@@ -39,6 +39,7 @@
         questionsUrl: server + frontEndVersion + menuElements[0].toLowerCase(),
         annotationsUrl: server + frontEndVersion + menuElements[2].toLowerCase(),
         searchuserannotationsurl: server + frontEndVersion + "searchusers/" + 1 + "/" + menuElements[2].toLowerCase(),
+        searchusersurl: server + frontEndVersion + "searchusers/",
 
         // This one won't work because our favourites are stored on a per searchuser basis :C
         // We need a userId variable that holds the current user
