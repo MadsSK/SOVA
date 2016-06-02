@@ -90,6 +90,13 @@ namespace Web
                 defaults: new { controller = "Questions", questionId = "", searchUserId = "" }
             );
 
+            // Search Routs
+            config.Routes.MapHttpRoute(
+                name: Config.SearchRoute,
+                routeTemplate: "api/" + backEndVersion + "search/{id}",
+                defaults: new { controller = "Search", id = RouteParameter.Optional }
+            );
+
             // Searches Routs
             config.Routes.MapHttpRoute(
                 name: Config.SearchesRoute,

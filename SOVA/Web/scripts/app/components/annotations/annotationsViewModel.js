@@ -1,12 +1,46 @@
-﻿define(['knockout', 'app/dataservice'], function (ko, dataservice) {
+﻿define(['knockout', 'app/dataservice', 'app/viewmodel', 'app/config'], function (ko, dataservice, viewmodel, config) {
     return function (params) {
         var annotations = ko.observableArray();
+        var questionComponent = ko.observable();
+        var lineBodyComponent = ko.observable(config.lineBodyComponent);
+        var showMessage = ko.observable(false);
+        var curpage = ko.observable();
+        var prevpage = ko.observable();
+        var nextpage = ko.observable();
+        var total = ko.observable();
 
-        dataservice.getAnnotations(annotations, params);
+        var callback = function (data) {
+            annotations(data.data);
+            curpage(data.page);
+            prevpage(data.prev);
+            nextpage(data.next);
+            total(data.total);
+        };
+
+        dataservice.getAnnotations(callback);
+
+        var gotoquestion = function (markingStart, markingEnd, questionUrl, root, searchUserId) {
+            console.log();
+            ns.postbox.notify({ component: config.questionComponent, markingStart: markingStart, markingEnd: markingEnd, url: questionUrl, prevComponent: root.currentComponent(), searchUserId: searchUserId }, "currentComponent");
+        };
 
         return {
-            annotations: annotations
+            data: annotations,
+            prevClick: function() {
+                dataservice.getAnnotations(prevpage, annotations);
+            },
+            nextClick: function() {
+                dataservice.getAnnotations(nextpage, annotations);
+            },
+            prev: prevpage,
+            next: nextpage,
+            total: total,
+            page: curpage,
+            markingComponent: ko.observable(config.markingComponent),
+            questionComponent: questionComponent,
+            showMessage: showMessage,
+            gotoquestion: gotoquestion,
+            lineBodyComponent: lineBodyComponent
         }
-
     };
 });

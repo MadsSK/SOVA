@@ -21,9 +21,20 @@
         public const string QuestionsCommentsRoute = "QuestionCommentApi";
         public const string QuestionsLinkedPostsRoute = "QuestionLinkedPostApi";
         public const string QuestionsTagsRoute = "QuestionTagApi";
+        public const string QuestionsSearchRoute = "QuestionSeachApi";
+
+        //Search results
+        public const string SearchAllRoute = "SearchAllApi";
+        public const string SearchQuestionsRoute = "SearchQuestionsApi";
+        public const string SearchAnnotationsRoute = "SearchAnnotationApi";
+        public const string SearchCommentsRoute = "SearchCommentsApi";
+        public const string SearchFavoritesRoute = "SearchFavoritesApi";
         
-        // Searchs
+        // Searches
         public const string SearchesRoute = "SearchApi";
+
+        // Searchs
+        public const string SearchRoute = "SearcherApi";
 
         // Search Users
         public const string SearchUsersRoute = "SearchUserApi";

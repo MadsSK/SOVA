@@ -47,6 +47,36 @@ namespace Web.Controllers
             return Ok(result);
         }
 
+        public IHttpActionResult Get(string search, int page = 0, int pagesize = Config.DefaultPageSize)
+        {
+            List<AnnotationModel> data = new List<AnnotationModel>();
+            var annotations = _repository.GetAnnotationsWithPaging(pagesize, pagesize * page);
+
+            if (!annotations.Any() || annotations == null) { return NotFound(); }
+
+            foreach (var annotation in annotations)
+            {
+                if (_repository.GetQuestion((int)annotation.PostId) != null)
+                {
+                    data.Add(ModelFactory.Map(annotation, true, Url));
+                }
+                else
+                {
+                    data.Add(ModelFactory.Map(annotation, false, Url));
+                }
+            }
+
+            var result = GetWithPaging(
+                data,
+                pagesize,
+                page,
+                _repository.GetNumberOfAnnotations(),
+                Config.AnnotationsRoute);
+
+            return Ok(result);
+        }
+
+
         public IHttpActionResult Get(int id)
         {
             bool question = true;
@@ -105,7 +135,7 @@ namespace Web.Controllers
                 SearchUserId = annotationModel.SearchUserId
             };
 
-            if (!_repository.Update(annotation)) return NotFound();
+            if (!_repository.Update(id, annotation)) return NotFound();
             return Ok();
         }
     }

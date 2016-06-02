@@ -8,19 +8,21 @@
 	<meta charset="utf-8"/>
 	<link href="Content/bootstrap.min.css" rel="stylesheet"/>
 	<script src="scripts/lib/modernizr-2.8.3.js"></script>
+    <link href="scripts/lib/siteMagin.css" rel="stylesheet"/>
 </head>
 <body>
 <header>
 	<div class="container-fluid">
-		<div data-bind="component: {name: menuComponent, params: {currentComponent: currentComponent}}"></div>
+		<div data-bind="component: menuComponent"></div>
 	</div>
 
 	<div class="container-fluid">
-		<div data-bind="component: currentComponent"></div>
+		<div data-bind="component: { name: currentComponent, params: paramsData }"></div>
 	</div>
 
-	<script data-main="Scripts/main" src="Scripts/lib/require.js"></script>
 </header>
+
+<script data-main="Scripts/main" src="Scripts/lib/require.js"></script>
 
 </body>
 </html>

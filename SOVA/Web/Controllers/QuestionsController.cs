@@ -77,32 +77,5 @@ namespace Web.Controllers
 
             return Ok(result);
         }
-
-        public IHttpActionResult Get(string searchString, int page = 0, int pagesize = Config.DefaultPageSize)
-        {
-            var data = _repository.SearchQuestionsWithPaging(searchString, pagesize, page * pagesize).Select(q => ModelFactory.Map(q, Url));
-
-            var result = SearchWithPaging(
-                data,
-                searchString,
-                pagesize,
-                page,
-                _repository.GetNumberOfQuestionsSearchResults(searchString),
-                Config.QuestionsRoute);
-
-            return Ok(result);
-        }
-        
-        public IHttpActionResult Get(string searchString)
-        {
-            var result = _repository.SearchQuestions(searchString).Select(q => ModelFactory.Map(q, Url));
-
-            if (result == null)
-            {
-                return NotFound();
-            }
-
-            return Ok(result);
-        }       
     }
 }

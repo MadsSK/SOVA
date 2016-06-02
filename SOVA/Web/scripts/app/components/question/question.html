@@ -1,0 +1,89 @@
+﻿<head>
+    <link rel="stylesheet" type="text/css" href="scripts/lib/StyleSheet1.css">
+</head>
+
+<section data-bind="if: annotationUrl">
+    <span data-bind="text: getAnnotationBody($data, annotationUrl)"></span>
+    <div><textarea data-bind="textInput: annotationBody"></textarea></div>
+    <button data-bind="click: saveAnnotation.bind($data, annotationBody)">Save Annotation</button>
+</section>
+<section data-bind="if: isNewAnnotation">
+    <div><textarea data-bind="textInput: annotationBody"></textarea></div>
+    <button data-bind="click: createAnnotation.bind($data, annotationBody)">Create Annotation</button>
+</section>
+<button data-bind="click: goback">Go Back</button>
+
+
+<!--Bootstrap-->
+
+<div class="container-fluid">
+<div data-bind="with: question">
+
+        <!--Header-->
+        <div class="row">
+            <div class="col-xs-12">
+                <div data-bind="text: title" id="title"></div>
+            </div>
+        </div>
+
+        <!--Creation date-->
+        <div class="row">
+            <div class="col-xs-1"></div>
+            <div class="col-xs-12 col-md-11">
+    <div data-bind="text: creationDate" id="date"></div>
+            </div>
+        </div>
+
+        <!--Score & body-->
+        <div class="row">
+            <!--Score-->
+            <div class="col-xs-1">
+                <div data-bind="text: score" id="score" style="float: left"></div>
+            </div>
+            <!--Body-->
+            <div class="col-xs-11">
+                <div data-bind="html: body" id="body" style="float: left"></div>
+            </div>
+        </div>
+
+        <!--User-->
+        <div class="row">
+            <div class="col-xs-12 col-sm-4 col-sm-offset-8 col-md-3 col-md-offset-8 col-lg-3 col-lg-offset-9  ">
+                <div data-bind="component: {name: $parent.userComponent, params: {userUrl: userUrl}}" id="comp"></div>
+            </div>
+        </div>
+
+        <!--Tags-->
+        <div class="row">
+            <div class="col-xs-11 col-xs-offset-1">
+                <div data-bind="component: {name: $parent.tagsComponent, params: {tagsUrl: tagsUrl}}" id="tagsComp"></div>
+            </div>
+        </div>
+
+        <!--Comments table-->
+        <div class="row">
+            <div class="col-xs-12 col-sm-11 col-sm-offset-1 col-md-11 col-md-offset-1 col-lg-11 col-lg-offset-1">
+                <div data-bind="component: {name: $parent.commentsComponent, params: {commentsUrl: commentsUrl}}" id="commentComp"></div>
+            </div>
+        </div>
+
+        <!--Answers table-->
+        <div class="row">
+            <div class="col-xs-11 col-xs-offset-1 col-md-10 col-md-offset-2">
+                <div data-bind="component: {name: $parent.answersComponent, params: {answersUrl: answersUrl}}" id="answer"></div>
+            </div>
+        </div>
+
+        <!--Stuff we're not showing in the presentation-->
+
+    <!--
+    <div data-bind="text: closedDate" id="date1"></div>
+    <div data-bind="text: acceptedAnswerId" id="aaid"></div>
+    <div data-bind="text: tagsUrl" id="url"></div> -->
+
+    <!--<div data-bind="text: commentsUrl" id="url"></div>-->
+    <!--<div data-bind="text: linkedPostsUrl" íd="url"></div>-->
+    <!--<div data-bind="text: answersUrl" id="url"></div>-->
+
+    </div>
+</div>
