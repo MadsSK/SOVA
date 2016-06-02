@@ -44,7 +44,7 @@
                     $("#functionalSearchBar").hide();
                 }); 
             }
-            
+
             ns.postbox.notify(searchBarContents(), "searchBarContent");
 
             return searchBarContents().length;

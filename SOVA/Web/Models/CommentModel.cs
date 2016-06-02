@@ -8,6 +8,7 @@ namespace Web.Models
     public class CommentModel
     {
         public string Url { get; set; }
+        public int Id { get; set; }
         public int Score { get; set; }
         public string Body { get; set; }
         public DateTime CreateDate { get; set; }

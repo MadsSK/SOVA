@@ -1,9 +1,13 @@
 ﻿using System;
 
 using System.Collections.Generic;
+using System.Data;
 using System.Data.Entity;
+using System.Data.SqlClient;
 using System.Linq;
+using System.Xml.Schema;
 using DomainModel;
+using MySql.Data.MySqlClient;
 using MySqlDatabase;
 
 namespace DataAccessLayer
@@ -19,7 +23,7 @@ namespace DataAccessLayer
             using (var db = new StackOverflowDbContext())
             {
                 return db.Annotations
-                    .Where(a => db.Questions.Any(q => q.Id == id))
+                    .Where(a => db.Questions.Any(q => q.Id == a.PostId))
                     .FirstOrDefault(a => a.Id == id);
             }
         }
@@ -29,7 +33,7 @@ namespace DataAccessLayer
             using (var db = new StackOverflowDbContext())
             {
                 return db.Annotations
-                    .Where(an => db.Answers.Any(a => a.Id == id))
+                    .Where(an => db.Answers.Any(a => a.Id == an.PostId))
                     .FirstOrDefault(an => an.Id == id);
             }
         }
@@ -127,11 +131,11 @@ namespace DataAccessLayer
             }
         }
 
-        public bool Update(Annotation annotation)
+        public bool Update(int id, Annotation annotation)
         {
             using (var db = new StackOverflowDbContext())
             {
-                var dbAnnotation = db.Annotations.FirstOrDefault(a => a.Id == annotation.Id);
+                var dbAnnotation = db.Annotations.FirstOrDefault(a => a.Id == id);
                 if (dbAnnotation == null) return false;
 
                 dbAnnotation.Body = annotation.Body;
@@ -497,6 +501,30 @@ namespace DataAccessLayer
                     .Skip(offset)
                     .Take(limit)
                     .ToList();
+            }
+        }
+
+        public IEnumerable<SearchRes> SearchWithPaging(string searchString, int limit, int offset)
+        {
+            using (var db = new StackOverflowDbContext())
+            {
+                var s = new MySqlParameter("@s", MySqlDbType.String) { Value = searchString};
+                var o = new MySqlParameter("@o", MySqlDbType.Int32) { Value = limit };
+                var l = new MySqlParameter("@l", MySqlDbType.Int32) { Value = offset};
+                var searchResults = db.Database.SqlQuery<SearchRes>("Call split(@s, @o, @l)", s, o, l);
+                var result = searchResults.ToList();
+                return result;
+            }
+        }
+
+        public int GetNumberOfSeachResult(string searchString)
+        {
+            using (var db = new StackOverflowDbContext())
+            {
+                var s = new MySqlParameter("@s", MySqlDbType.String) { Value = searchString };
+                var result = db.Database.SqlQuery<Int32>("Call splitCount(@s)", s);
+                int count = result.FirstOrDefault();
+                return count;
             }
         }
 

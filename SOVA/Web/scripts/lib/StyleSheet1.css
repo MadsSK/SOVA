@@ -1,0 +1,90 @@
+﻿/*Styling for Answers and Questions*/
+#title{
+    font-size: 35px;
+}
+
+#title:after {
+    font-size: 25px;
+    color: gray;
+    content: " Question";
+}
+
+#score {
+    color: grey;
+    font-size: 25px;
+    margin-top: 15px;
+}
+
+#date {
+    font-size: 10px;
+    color: blue;
+    margin-left: 60px;
+    margin-bottom: 20px;
+}
+
+#date:before {
+    content: "Creation date: ";
+    color: black;
+}
+
+#body {
+    float: left;
+    width: 75%;
+    margin-left: 20px;
+}
+
+#url {
+    color: darkblue;
+    text-decoration: underline;
+    margin-left: 60px;
+}
+
+#aaid {
+    margin-left: 60px;
+}
+#aaid:before {
+    content: "Accepted answer id: ";
+}
+
+#answer {
+    margin-left: 60px;
+}
+
+
+/*Styling for user specifically*/
+#userName {
+    font-size: 25px;
+
+}
+
+#userName:after {
+    content: " User";
+    font-size: 15px;
+    color: gray;
+
+}
+
+#comp {
+    margin-top: 15px;
+    margin-left: 100px;
+    background-color: lightblue;
+    float: right;
+}
+
+#location:before {
+    content: "Location: "
+}
+
+#age:before {
+    content: "Age: ";
+}
+
+/*Comment*/
+#commentComp {
+    margin-left: 60px;
+}
+
+#answerCommentComp {
+    margin-left: 120px;
+}
+

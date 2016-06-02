@@ -16,11 +16,11 @@
     });
 })();
 
+
 var ns = ns || {};
 
 ns.postbox = {
     subscribers: [],
-    
     subscribe: function (callback, topic, source) {
         var found = false;
         for (var i = 0; i < this.subscribers.length; i++) {
@@ -70,16 +70,16 @@ require(['knockout', 'app/viewmodel', 'app/config', 'jquery', 'bootstrap'],
         template: { require: 'text!app/components/fullpagepost/fullpagepost.html' }
     });
 
-    // List element
-    ko.components.register(config.listElementComponent, {
-        viewModel: { require: 'app/components/listelement/listelementViewModel' },
-        template: { require: 'text!app/components/listelement/listelement.html' }
+    // Marking
+    ko.components.register(config.markingComponent, {
+        viewModel: { require: 'app/components/marking/markingViewModel' },
+        template: { require: 'text!app/components/marking/marking.html' }
     });
 
-    // List of elements with the search bar (essentially, main element)
-    ko.components.register(config.listOfElementsWithSearchComponent, {
-        viewModel: { require: 'app/components/listofelementswithsearch/listofelementswithsearchViewModel' },
-        template: { require: 'text!app/components/listofelementswithsearch/listofelementswithsearch.html' }
+    // Line Body
+    ko.components.register(config.lineBodyComponent, {
+        viewModel: { require: 'app/components/linebody/linebodyViewModel' },
+        template: { require: 'text!app/components/linebody/linebody.html' }
     });
 
     // Questions

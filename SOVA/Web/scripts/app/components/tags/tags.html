@@ -1,7 +1,12 @@
-﻿<h1>Tags</h1>
+﻿<head>
+    <link rel="stylesheet" type="text/css" href="scripts/lib/StyleSheet1.css">
+</head>
+
+
+<h1>Tags</h1>
 <span data-bind="foreach: tags">
-    <span data-bind="text: url"></span>
-    <span data-bind="text: body"></span>
+    <!--<span data-bind="text: url" tag="url"></span>-->
+    <span data-bind="text: body" id="tags"></span>
 </span>
 <span data-bind="text: total"></span>
 <span data-bind="if: more"><button data-bind="click: moreClick">More Tags</button></span>
