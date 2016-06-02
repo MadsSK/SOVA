@@ -1,5 +1,6 @@
 ﻿define(['knockout', 'app/dataservice', 'app/config', 'jquery'], function (ko, dataservice, config, $) {
     return function (params) {
+
         var searchBarContents = ko.observable("");
 
         ns.postbox.subscribe(function (value) {
@@ -37,7 +38,6 @@
         // Add CSS
         $("#div").css('position', 'fixed');
         searchBarPositionHandler();
-        $("#functionalSearchBar").hide();
         
         function searchBarPositionHandler() {
 

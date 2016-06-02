@@ -1,6 +1,7 @@
 ﻿define(['knockout', 'app/dataservice', 'app/config'], function (ko, dataservice, config) {
     return function (params) {
-        var applicationName = "SOVA";
+        $("#functionalSearchBar").hide();
+        var applicationName = config.applicationName;
 
         var currentComponent = ko.observable();
 
