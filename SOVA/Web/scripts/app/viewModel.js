@@ -14,13 +14,6 @@
         ns.postbox.subscribe(function () {
         }, "searchBarContent");
 
-        ns.postbox.subscribe(function (value) {
-            annotationUrl(value.annotationUrl);
-            console.log(annotationUrl());
-        }, "annotationUrl");
-
-
-
         return {
             currentComponent: currentComponent,
             menuComponent: config.menuComponent,

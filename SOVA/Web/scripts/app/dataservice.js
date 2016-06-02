@@ -71,7 +71,7 @@
                 callback(data);
             });
         },
-        updateData: function (url, data) {
+        updateData: function(url, data) {
             $.ajax({
                 type: 'PUT',
                 url: url,
@@ -79,7 +79,7 @@
 
             });
         },
-        postData: function (url, data) {
+        postData: function(url, data) {
             $.ajax({
                 type: 'POST',
                 url: url,

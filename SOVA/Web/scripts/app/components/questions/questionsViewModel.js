@@ -1,7 +1,6 @@
 ﻿define(['knockout', 'app/dataservice', 'app/config'], function (ko, dataservice, config) {
     return function (params) {
         var questionsdata = ko.observableArray();
-        var questionId = "bla";
         var questionsprev = ko.observable();
         var questionsnext = ko.observable();
         var questionstotal = ko.observable();
@@ -37,7 +36,6 @@
             data: questionsdata,
             prevClick: prevClick,
             nextClick: nextClick,
-            questionId: questionId,
             prev: questionsprev,
             next: questionsnext,
             total: questionstotal,
