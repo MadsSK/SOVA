@@ -1,6 +1,7 @@
 ﻿<head>
     <link rel="stylesheet" type="text/css" href="scripts/lib/StyleSheet1.css">
 </head>
+
 <section data-bind="if: annotationUrl">
     <span data-bind="text: getAnnotationBody($data, annotationUrl)"></span>
     <div><textarea data-bind="textInput: annotationBody"></textarea></div>
@@ -13,11 +14,11 @@
 <button data-bind="click: goback">Go Back</button>
 
 
-  <div data-bind="with: question">
+<div data-bind="with: question">
 
-    <div data-bind="text: title" id="title"><small> Question</small></div>
+        <div data-bind="text: title" id="title"><small> Question</small></div>
 
-    <div data-bind="text: creationDate" id="date"></div>
+        <div data-bind="text: creationDate" id="date"></div>
 
     <div data-bind="text: score" id="score" style="float:left"></div>
 
@@ -42,4 +43,4 @@
     <!--<div data-bind="text: answersUrl" id="url"></div>-->
 
     <div data-bind="component: {name: $parent.answersComponent, params: {answersUrl: answersUrl}}" id="answer"></div>
-</div>
+        </div>
