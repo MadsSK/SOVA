@@ -42,8 +42,8 @@ ns.postbox = {
     }
 };
 
-require(['knockout', 'app/viewmodel', 'app/config'],
-    function (ko, viewmodel, config) {
+require(['knockout', 'app/viewmodel', 'app/config', 'jquery', 'bootstrap'],
+    function (ko, viewmodel, config, $, bs) {
 
     // Top bar menu
     ko.components.register(config.menuComponent, {
