@@ -77,18 +77,5 @@ namespace Web.Controllers
 
             return Ok(result);
         }
-
-        public IHttpActionResult Get(string searchString)
-        {
-            var result = _repository.SearchQuestionsRes(searchString);
-
-            if (result == null)
-            {
-                return NotFound();
-            }
-            var nResult = ModelFactory.Map(result);
-
-            return Ok(nResult);
-        }       
     }
 }
