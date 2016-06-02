@@ -30,13 +30,13 @@
                 <td data-bind="text: url" id="url"></td>
 
                 <td data-bind="html: body" id="body"></td>
-
+    
                 <span data-bind="component: {name: $parent.userComponent, params: {userUrl: userUrl}}"></span>-->
             </tr>
         </tbody>
-
+    
     </table>
-
-    <span data-bind="text: total"></span>
-    <span data-bind="if: more"><button data-bind="click: moreClick.bind($data, more)">More Comments</button></span>
+    
+<span data-bind="text: total"></span>
+<span data-bind="if: more"><button data-bind="click: moreClick.bind($data, more)">More Comments</button></span>
 </div>

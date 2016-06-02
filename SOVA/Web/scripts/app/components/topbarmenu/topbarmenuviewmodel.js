@@ -1,26 +1,17 @@
 ﻿define(['knockout', 'app/dataservice', 'app/config'], function (ko, dataservice, config) {
-    return function(params) {
+    return function (params) {
+        var applicationName = "SOVA";
+
         var currentComponent = ko.observable();
 
         var isMenuSelected = function(content) {
             return content && currentComponent() === content.toLowerCase();
         };
-
         
         var changeContent = function (content) {
             if (content !== undefined) {
-
-                var tempArray = content;
-
-                console.log(tempArray[0].toLowerCase());
-
-                /*  if (content === "SOVA") {
-                    currentComponent(config.defaultMenuItem);
-                    ns.postbox.notify({ component: config.defaultMenuItem }, "currentComponent");
-                } else {*/
                     currentComponent(content.toLowerCase());
                     ns.postbox.notify({ component: content.toLowerCase() }, "currentComponent");
-                //}
             }
         };
 
@@ -31,11 +22,17 @@
         ns.postbox.subscribe(function (value) {
             searchBarContents(value);
         }, "searchBarContent","topBarContext");
-
         var searchContentLength = ko.computed(function () {
             if (searchBarContents().length === 1) {
                 $("#functionalSearchBar").slideDown("fast", function () {
-                    console.log("hey");
+
+                    // If the window is wider than 768px, set the functional search bar to be half the length
+                    // of the primary search bar. If it's not, our bootstrap handles the fluid transistion, 
+                    // so override css width styling.
+                    if ($(window).width() > 768) {
+                        $("#functionalSearchBar").css('width',($("#primarySearchBar").width() / 2) + 'px');
+                    } else $("#functionalSearchBar").css('width', '');
+
                     $("#functionalSearchBar").show();
                     $("#functionalSearchBar").focus();
                 });
@@ -45,7 +42,6 @@
             } else {
                 $("#functionalSearchBar").slideUp("fast", function () {
                     $("#functionalSearchBar").hide();
-                    console.log("yo");
                 }); 
             }
 
@@ -60,7 +56,9 @@
             changeContent: changeContent,
             isMenuSelected: isMenuSelected,
             searchBarContents: searchBarContents,
-            searchContentLength: searchContentLength
+            searchContentLength: searchContentLength,
+            applicationName: applicationName,
+            defaultComponent: config.defaultMenuItem
         }
     };
 });
